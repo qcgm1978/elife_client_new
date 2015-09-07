@@ -1,0 +1,111 @@
+<link rel="stylesheet" href="css/date.css">
+<div class="scrollable page my_integral">
+    <!-- 内容 -->
+    <div class="scrollable-content">
+
+        <!-- 头部栏 -->
+        <header class="header common_header">
+            <div>
+                <div class="back" ng-click="return_btn($event)">
+                    <div class="back_arrow"></div>
+                    <div>返回</div>
+                </div>
+            </div>
+
+            <div class="confirm_btn" ng-click="displayQueryBox()">明细查询</div>
+            <div class="title">我的积分</div>
+        </header>
+
+        <div class="intefral_top">
+            <div class="top_remain">
+                温馨提示：您可以在e生活平台向商户付款时使用您的积分。
+            </div>
+            <ul class="integral_num remaining_sum clearfix">
+                <li class="fl">积分余额</li>
+                <li class="fr">
+                    <ul>
+                        <li>121122</li>
+                        <li>本年到期积分：<span>234</span></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="integral_num clearfix">
+                <li class="fl">折后金额</li>
+                <li class="fr">约200元</li>
+            </ul>
+        </div>
+
+        <div ng-show="!isEmpty" class="statistics">
+            <ul class="form_head">
+                <li class="fl">摘要/交易金额/交易日期</li>
+                <li class="fr">积分值</li>
+            </ul>
+            <ul class="stat_list" ng-repeat="item in creditData">
+                <li class="fl">
+                    <ul>
+                        <li ng-bind="item.type"></li>
+                        <li class="price_time">{{item.credit}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                                ng-bind="item.date"></span></li>
+                    </ul>
+                </li>
+                <li class="fr plus">{{item.credit}}</li>
+            </ul>
+        </div>
+        <div ng-show="!isEmpty" class="mare_btn" ng-click="displayQueryBox()">
+            <a href="">点击查询更多</a>
+        </div>
+        <div class="no_search_result"
+             ng-show="isEmpty"
+             ng-include="'views/widget/no_business_result.html'">
+        </div>
+        <div ng-show="isEmpty" class="btn_credit" ng-click="displayQueryBox()">
+            <a href="">查看其他时段的积分明细</a>
+        </div>
+
+    </div>
+
+</div>
+<div ui-content-for="modals">
+    <div class="my_integral">
+        <div class="modal alert_modal ng-scope" ui-if="comment_del_modal" ui-state="comment_del_modal">
+            <div class="modal-backdrop in"></div>
+            <div class="modal-dialog">
+                <div class="integral_content">
+                    <div class="valid_from">
+                        <ul class="clearfix">
+                            <li>起始日期</li>
+                            <li class="time">
+                                <input type="text" class="calendars dateInput" start="2000" end="2024"
+                                       ng-model="s_date" readonly="readonly" format="yy-mm-dd"
+                                       Calendar="s_date">
+                            </li>
+                        </ul>
+                        <ul class="clearfix">
+                            <li>终止日期</li>
+                            <li class="time">
+                                <input type="text" class="calendars dateInput" start="2000" end="2024"
+                                       ng-model="e_date" readonly="readonly" format="yy-mm-dd"
+                                       Calendar="e_date">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="time_choose" ui-state="activeTab" default="3">
+                        <ul class="clearfix">
+                            <li ui-class="{'chosen': activeTab == 1}" ui-set="{'activeTab': 1}">今日</li>
+                            <li ui-class="{'chosen': activeTab == 2}" ui-set="{'activeTab': 2}">近1周</li>
+                            <li ui-class="{'chosen': activeTab == 3}" ui-set="{'activeTab': 3}">近1月</li>
+                            <li ui-class="{'chosen': activeTab == 4}" ui-set="{'activeTab': 4}">近3月</li>
+                            <li ui-class="{'chosen': activeTab == 5}" ui-set="{'activeTab': 5}">近6月</li>
+                        </ul>
+                    </div>
+                    <div class="btn" ui-turn-off="comment_del_modal">
+                        <a ng-click="queryCreditByConditions()">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--<script src="/elife_client_new/lib/calendar.js"></script>-->

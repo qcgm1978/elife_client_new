@@ -1,0 +1,111 @@
+// 优惠券部分
+.coupon{
+  margin:10px 30px;
+  border:20px solid transparent;
+  color:#fff;
+  font-size: 12px;
+  border-image:url(img/coupon_border.png) 38 38 round;
+  .container{
+    background-color: #50c4f5;
+    padding: 0;
+    .title{
+      font-size: 14px;
+      line-height: 28px;
+      text-align: center;
+      white-space: nowrap;
+      margin: 0 -30px;
+      overflow: hidden;
+      text-overflow:ellipsis;
+
+      @media (min-width: 320px){
+        font-size: 16px;
+      } 
+    }
+    .info{
+      text-align: center;
+    }
+    .coupon_button{
+      color: white;
+      font-size: 14px;
+      margin:0px auto;
+      margin-top:30px;
+      width:50px;
+      text-align: center;
+      padding:2px 5px;
+      border:1px solid #fff;
+      border-radius:5px;
+      cursor:pointer;
+    }
+  }
+}
+
+// 优惠描述
+.coupon_desc{
+  background-color: #fff;
+  padding:16px 10px;
+  width:100%;
+  word-break:break-all;
+  border-top:solid 1px #ccc;
+  border-bottom:solid 1px #ccc;
+  p{
+    font-size: 12px;
+    margin:0;
+  }
+}
+
+// 星级评分
+.star_full{
+  display:inline-block;
+  width:12px;
+  height:12px;
+  background-image:url(img/icon_star_full.png);
+  background-size:12px 12px;
+  margin-right:0px;
+}
+.star_half{
+  @extend .star_full;
+  background-image:url(img/icon_star_half.png);
+}
+.star_gray{
+  @extend .star_full;
+  background-image:url(img/icon_star_gray.png);
+}
+
+// 适用门店
+.apply_store{
+  background-color:#fff;
+  .section_header {
+  
+    position: relative;
+  }
+  .business_basic_info_section{
+    @extend .business_basic_info_section;
+    padding: 10px 0;
+    position:relative;
+    .business_brand_content{
+      .business_brand_content_star{
+        line-height: 25px;
+        .consume-avg{
+          float:right;
+          display: inline-block;
+        }
+      }
+    }
+    // 门店距离
+    .distance{
+      position:absolute;
+      right:10px;
+      bottom:18px;
+      font-size: 12px;
+      color: $text_color_light_gray;
+    }
+  }
+}
+
+.card_list{
+  background-color: white;
+}
+
+.line_large{
+  line-height:48px;
+}

@@ -1,0 +1,11 @@
+.discount_categories {
+  .categories_item_list{
+    .list_item {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+  }
+}

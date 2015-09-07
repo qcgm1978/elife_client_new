@@ -1,0 +1,468 @@
+<div class="scrollable page business_info">
+    <div class="scrollable-content">
+        <!-- 页头 -->
+        <div class="scrollable-header">
+            <header class="header common_header business_info_header">
+                <div ng-click="return_btn($event)">
+                    <div class="back">
+                        <div class="back_arrow"></div>
+                        <div>返回</div>
+                    </div>
+                </div>
+                <div ng-class="{'favorite':!isLogined || busiInfo.fav_status=='0', 'favorite_choose':busiInfo.fav_status=='1'}"
+                     ng-click="AddFavor()"></div>
+                <div class="share"                      ng-click="share({'store_code':'{{id}}','share_type':'store'})"></div>
+                <div class="title">商户详情</div>
+
+            </header>
+        </div>
+
+        <!-- 顶部商户基本信息 -->
+        <div class="business_basic_info_section">
+            <a href="#/business/album/{{id}}" class="business_brandwrap">
+                <div class="business_brand">
+                    <div class="business_brand_icon">
+                        <img alt="没有图片" ng-src="{{parseImageUrl(busiInfo.image_url)}}" fallback-src="{{defaultStoreImgUrl}}">
+                    </div>
+                   <div class="business_brand_num business_brand_info_num">{{busiInfo.view_count}}</div>
+                </div>
+            </a>
+
+            <div class="business_brand_content">
+                <div class="business_brand_content_name">
+                    <div class="inline_block text_overflow" ng-style="busiInfo.PRStyle">{{::busiInfo.store_name}}
+                        <div class="icons">
+                            <div ng-click="displayIconInfo(flag)" ng-repeat="flag in busiInfo.new_flags" class="{{flag}}"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="business_brand_content_star">
+                    <div ng-repeat="star in avg_stars" class="star star_{{star.type}}"></div>
+                    <div class="consume-avg"><p ng-show="busiInfo.average_price !=0 && busiInfo.average_price !=null">
+                        {{'¥'+ busiInfo.average_price + '元/人'}}</p></div>
+                </div>
+                <div class="business_brand_content_num">
+                    <div>人气：{{busiInfo.sentiment_count}}</div>
+                    <!--<div class="praise">点赞量：{{busiInfo.praise_count}}</div>-->
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <!-- 商户地址 -->
+        <!--/navigation/route/:origin/:destination/:destStoreName/:destLongitude/:destLatitude-->
+        <a ng-click="confirm()">
+        <div class="business_location_section">
+            <div class="icon_location"></div>
+            <div class="location_content"><p>{{busiInfo.store_address}}</p></div>
+            <div class="right_arrow"></div>
+        </div>
+        </a>
+
+        <!-- 联系方式 -->
+        <div class="business_connect_section colums_2" ng-class="{mb10:onlineStatus === 'false'}">
+            <div class="telephone_num col">
+                <!--<a href="tel:{{busiInfo.tel_phone}}">-->
+                <div class="tel_content" ui-turn-on="tel_modal">{{busiInfo.tel_phone[0]}}</div>
+                <div class="telephone_icon"></div>
+            </div>
+
+            <div class="e_financial" ng-hide="hidden"
+                 ng-click="contactStore({'sid':'{{sid}}','storeName':'{{storeName}}'})">
+                <div class="e_content">联系商户</div>
+                <div class="e_financial_icon"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+
+        <!-- 线上付账 -->
+        <div class="triangle_corner_item online_pay" ng-hide="onlineStatus === 'false'">
+            <div class="item_icon icon_fu_t"></div>
+            <div class="item_title">在线支付</div>
+            <a ng-click="validateLogin('#/personal/pay_orders/1/{{::id}}/{{::orderId || 'undefined'}}/3')">
+                <!-- <a href="#/personal/pay_orders/{{::id}}/{{::orderId || 'undefined'}}"> -->
+                <div class="online_pay_btn">我要买单</div>
+            </a>
+
+            <div class="clearfix"></div>
+        </div>
+
+        <!-- 工行卡优惠 -->
+        <div class="triangle_corner_item icbc_offer" ng-show="mark">
+            <div class="item_icon icon_gong_t"></div>
+            <a ng-repeat="cardOffer in cardOfferList | limitTo: 1" href="#/discount/card_offer/{{::cardOffer.id}}/bank"
+               class="clearfix">
+                <div class="icbc_list_item icbc_list_item_1st " style="border:0;">
+                    <div class="item_title">{{cardOffer.promotions_title||'工行优惠'}}</div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+
+            <div class="hide_to_show" ng-show="showList[0]">
+                <a ng-repeat="cardOffer in cardOfferList" ng-show="$index > 0"
+                   href="#/discount/card_offer/{{::cardOffer.id}}/{{'bank'}}">
+                    <div class="icbc_list_item icbc_list_item_1st">
+                        <div class="item_title">{{ cardOffer.promotions_title||'工行优惠' }}</div>
+                         <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="get_more no_line" ng-click="showList[0]=!showList[0]" ng-show="cardOfferList.length > 1">
+                <div class="get_more_content">
+                    <div class="get_more_title">
+                        <span ng-show="showList[0]">收起列表</span>
+                        <span ng-show="!showList[0]">查看更多</span>
+                    </div>
+                    <div class="get_more_icon down_arrow" ng-class="{rotate180:!showList[0]}"></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <!--<div class="triangle_corner_item icbc_offer">
+          <div class="item_icon icon_gong_t"></div>
+          <a href="#/discount/card_offer/20011000036">
+            <div class="icbc_list_item icbc_list_item_1st" >
+              <div class="item_title">工行卡优惠</div>
+              <div class="item_mid_content "><span class="red_text">爱购卡8.5折</span></div>
+              <div class="clearfix"></div>
+            </div>
+          </a>
+          <a href="#/discount/card_offer/20011000036">
+            <div class="icbc_list_item" ng-show="showList[0]">
+              <div class="item_title">工行卡优惠</div>
+              <div class="item_mid_content "><span class="red_text">爱购卡8.5折</span></div>
+              <div class="clearfix"></div>
+            </div>
+          </a>
+        </div>-->
+
+        <!-- 团购 -->
+        <div class="triangle_corner_item customers" ng-show="mark2">
+            <div class="item_icon icon_tuan_t"></div>
+            <div class="customers_list ">
+                <a ng-repeat="discount in storeGppList | limitTo: 2" href="#/discount/customers/{{id}}/{{discount.gpp_code}}">
+                    <div class="customers_list_item customers_list_item_1st">
+                        <div class="customers_item_img"><img ng-src="{{parseImageUrl(discount.image_url)}}" alt="暂无图片" fallback-src="{{defaultImgUrl}}"></div>
+                        <div class="customers_item_content">
+                            <div class="customers_item_content_name">{{discount.gpp_pft_title}}</div>
+                            <div class="price_block clearfix">
+                                <div class="current_price customers_item_content_price">
+                                    <span class="red_text">¥{{discount.n_price}}</span>
+                                </div>
+                                <div class="former_price">
+                                    <span>¥{{discount.o_price}}</span>
+
+                                    <div class="red_line"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+
+                <div ng-show="showList[1]">
+                    <a ng-repeat="discount in storeGppList" ng-show="$index > 1"
+                       href="#/discount/customers/{{id}}/{{discount.gpp_code}}">
+                        <div class="customers_list_item customers_list_item_1st down_line">
+                            <div class="customers_item_img"><img ng-src="{{parseImageUrl(discount.image_url)}}" alt="暂无图片" fallback-src="{{defaultImgUrl}}"></div>
+                            <div class="customers_item_content">
+                                <div class="customers_item_content_name">{{discount.gpp_pft_title}}</div>
+                                <div class="price_block clearfix">
+                                    <div class="current_price customers_item_content_price">
+                                        <span class="red_text">¥{{discount.n_price}}</span>
+                                    </div>
+                                    <div class="former_price">
+                                        <span>¥{{discount.o_price}}</span>
+
+                                        <div class="red_line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+                <div class="get_more no_line" ng-click="showList[1]=!showList[1]" ng-show="storeGppList.length > 2">
+                    <div class="get_more_content">
+                        <div class="get_more_title">
+                            <span ng-show="showList[1]">收起列表</span>
+                            <span ng-show="!showList[1]">查看更多</span>
+                        </div>
+                        <div class="get_more_icon down_arrow" ng-class="{rotate180:!showList[1]}"></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!-- coupon -->
+        <div class="triangle_corner_item customers" ng-show="mark3">
+            <div class="item_icon icon_cu"></div>
+            <div class="customers_list ">
+                <a ng-repeat="discount in storePrompList | limitTo: 2"
+                   href="#/discount/business_offer/{{discount.store_code}}/{{discount.text_code}}/store">
+                    <div class="customers_list_item customers_list_item_1st down_line">
+                        <div class="customers_item_img"><img ng-src="{{parseImageUrl(discount.image_url)}}" alt="暂无图片"
+                                                             fallback-src="{{defaultImgUrl}}"></div>
+                        <div class="customers_item_content">
+                            <div class="customers_item_content_name">{{discount.txt_pft_title}}</div>
+                            <div class="price_block clearfix">
+                                <span>{{discount.start_date}}</span>~
+                                <span>{{discount.end_date}}</span>
+
+
+                                <div class="red_line"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+
+                <div ng-show="showList[2]">
+                    <a ng-repeat="discount in storePrompList" ng-show="$index > 1"
+                       href="#/discount/business_offer/{{discount.store_code}}/{{discount.text_code}}/store">
+                        <div class="customers_list_item customers_list_item_1st">
+                            <div class="customers_item_img"><img ng-src="{{parseImageUrl(discount.image_url)}}"
+                                                                 alt="暂无图片" fallback-src="{{defaultImgUrl}}"></div>
+                            <div class="customers_item_content">
+                                <div class="customers_item_content_name">{{discount.txt_pft_title}}</div>
+                                <div class="price_block clearfix">
+                                        <span>{{discount.start_date}}~</span>
+                                        <span>{{discount.end_date}}</span>
+
+
+                                        <div class="red_line"></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+                <a href="">
+                    <div class="get_more no_line" ng-click="showList[2]=!showList[2]" ng-show="storePrompList.length > 2">
+                        <div class="get_more_content">
+                            <div class="get_more_title"><span ng-show="showList[2]">收起列表</span><span
+                                    ng-show="!showList[2]">查看更多</span></div>
+                            <div class="get_more_icon down_arrow" ng-class="{rotate180:!showList[2]}"></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <!-- 会员卡
+        <div class="triangle_corner_item">
+          <div class="item_icon icon_ka_t"></div>
+          <div class="item_title">会员卡</div>
+          <div class="item_mid_content">会员享9.5折，免费开卡</div>
+          <div class="right_arrow"></div>
+          <div class="clearfix"></div>
+        </div>
+        -->
+        <!-- 网友点评 -->
+        <div class="title_section review" ng-show="count>0">
+            <a href="#/review/index/{{id}}/{{'Store'}}">
+                <div class="section_header">
+                    <div class="title">网友点评（{{count}}）</div>
+                    <div class="right_arrow"></div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+
+            <div class="content">
+                <div class="img_wrap">
+                    <img fallback-src="{{defaultImgUrl}}" ng-src="{{parseImageUrl(review.image_url)}}">
+                </div>
+                <div class="right">
+                    <div class="title">{{review.nick_name}}</div>
+                    <div class="star_area">
+                        <span ng-repeat="star in stars" class="star_{{star.type}}"></span>
+                    </div>
+                    <div class="price" ng-show="review.avg_price && review.avg_price>0">{{review.avg_price+"元/人"}}</div>
+
+
+                    <div class="desc line_break">
+                        <span ng-bind="review.content" class="line_break"></span>
+                        <span ng-show="showContent" ng-bind="review.more" class="line_break">..</span>
+
+                        <span class="light_blue_text" ng-show="review.longEnough" ng-click="showContent = !showContent"><span
+                                ng-show="!showContent">查看全部</span><span ng-show="showContent">收起</span><i
+                                class="fa fa-chevron-down transition" ng-class="{rotate180:showContent}"></i></span>
+
+                    </div>
+                    <a href="#/review/album" ng-show="imagelist.length > 0">
+                        <ul>
+                            <li ng-repeat="image in imagelist | limitTo:3" ng-class="{list_last_img:$index == 2}"><img ng-src="{{parseImageUrl(image.review_image_url)}}" fallback-src="{{defaultImgUrl}}" alt=""><div class="rest_img_num" ng-show="imagelist.length>3&&($index == 2)">还剩{{imagelist.length-3}}张</div></li>
+                        </ul>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 商户信息 -->
+        <div class="title_section review">
+            <a href="#/business/detail/{{id}}">
+                <div class="section_header">
+                    <div class="title">商户信息</div>
+                    <div class="right_arrow"></div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+
+            <div class="business_detail_info">
+                <div class="detail_info_column">
+                    <div class="detail_info_left">
+                        <div class="detail_info_left_block">
+                            <div class="detail_info_icon icon_car{{busiInfo.is_free}}"></div>
+                            <div class="detail_info_column_text icon_car_text light{{busiInfo.is_free}}_text">免费停车</div>
+                        </div>
+                    </div>
+                    <div class="detail_info_mid">
+                        <div class="detail_info_icon icon_pc{{busiInfo.is_wifi}}"></div>
+                        <div class="detail_info_column_text icon_wifi_text light{{busiInfo.is_wifi}}_text">wifi</div>
+                    </div>
+                    <div class="detail_info_right">
+                        <div class="detail_info_icon icon_bank_card{{busiInfo.is_credit_card}}"></div>
+                        <div class="detail_info_column_text icon_bank_card_text light{{busiInfo.is_credit_card}}_text">
+                            支持刷卡
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="detail_info_text">
+                    <div class="detail_info_time">营业时间：</div>
+                    <div class="detail_info_time_content">
+                        <p>{{busiInfo.busihours||'全天'}}
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 其他分店 -->
+        <a href="#/business/other_store/{{id}}">
+            <div class="other_business">
+                <div class="item_title">其他分店</div>
+                <div class="right_arrow"></div>
+            </div>
+        </a>
+        <!--   附近网点
+          <div class="nearby_outlet">
+            <div>附近网点</div>
+            <div class="right_arrow"></div>
+          </div> -->
+
+    </div>
+    <div class="scrollable-footer">
+        <div class="tab_bar business_tab">
+           <!--商户详情内的拍照--> 
+           <a ng-click="validateLogin('#/review/photo_added/{{id}}')" class="tab">
+               <div class="icon tab_camera"></div>
+               <div class="name">拍照</div>
+           </a>
+            <a ng-click='validateLogin()' class="tab" link-data="{{busiInfo.comment_url}}" id="comment">
+                <div class="icon tab_comment"></div>
+                <div class="name">点评</div>
+            </a>
+            <a ng-click="errComment()" class="tab">
+                <div class="icon tab_error" ></div>
+                <div class="name">报错</div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div ui-content-for="modals">
+    <!-- 电话弹出框 -->
+    <div class="modal" ui-if="tel_modal" ui-state="tel_modal">
+        <div class="modal-backdrop in" ui-turn-off="tel_modal"></div>
+        <div class="modal-dialog action_sheet">
+            <div class="modal-content">
+                <a href="tel:{{telphone}}" class="item" ng-show="!isAndroid"
+                   ng-repeat="telphone in busiInfo.tel_phone track by $index">{{telphone}}</a>
+                <a ng-click="callphone('{{telphone}}')" ng-show="isAndroid" class="item"
+                   ng-repeat="telphone in busiInfo.tel_phone track by $index">{{telphone}}</a>
+                <div ui-turn-off="tel_modal" class="item">取消</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 错误弹出框 -->
+    <div class="modal" ui-if="error_modal" ui-state="error_modal">
+        <div class="modal-backdrop in" ui-turn-off="error_modal"></div>
+        <div class="modal-dialog action_sheet">
+            <div class="modal-content">
+                <a href="" class="item" ui-turn-off="error_modal" ui-turn-on="shyg_modal">商户已关</a>
+                <a href="#/error/district/{{id}}" class="item">地理位置错误</a>
+                <a href="#/error/business/{{id}}" class="item">商户信息错误</a>
+                <a href="" class="item" ui-turn-off="error_modal" ui-turn-on="shcf_modal">商户重复</a>
+                <a href="#/error/other/{{id}}" class="item">其它</a>
+                <div ui-turn-off="error_modal" class="item">返回</div>
+            </div>
+        </div>
+    </div>
+
+    <!--商户已关-->
+    <div class="modal alert_modal ng-scope" ui-if="shyg_modal" ui-state="shyg_modal">
+        <div class="modal-backdrop in" ui-turn-off="shyg_modal"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="top">
+                    <div>商户已关</div>
+                </div>
+                <!-- <div ui-turn-off="shyg_modal"  ng-click="errorReport('close')" class="bottom">
+                 确定
+               </div> -->
+                <div ui-turn-off="shyg_modal" class="bottom1">
+                    <span ui-turn-off="shyg_modal" class="bottom_cancel">取消</span>
+                    <span class="split"> | </span>
+                    <span ui-turn-off="shyg_modal" ng-click="errorReport('06')" class="bottom_confirm">确定</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--商户重复-->
+    <div class="modal alert_modal ng-scope" ui-if="shcf_modal" ui-state="shcf_modal">
+        <div class="modal-backdrop in" ui-turn-off="shcf_modal"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="top">
+                    <div>商户重复</div>
+                </div>
+                <div ui-turn-off="shcf_modal" class="bottom1">
+                    <span ui-turn-off="shcf_modal" class="bottom_cancel">取消</span>
+                    <span class="split"> | </span>
+                    <span ui-turn-off="shcf_modal" ng-click="errorReport('09')" class="bottom_confirm">确定</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal alert_modal ng-scope" ui-if="success_modal" ui-state="success_modal">
+        <div class="modal-backdrop in" ui-turn-off="success_modal"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="top">
+                    <div class="icon icon_praise"></div>
+                    <div>
+                        <h5>提交成功</h5>
+
+                        <div>感谢您的修改，稍后我们会将审核结果发送到您的消息。</div>
+                    </div>
+                </div>
+                <div class="bottom" ui-turn-off="success_modal">确定</div>
+            </div>
+        </div>
+
+    </div>
+    <!-- end of modal -->
+
+

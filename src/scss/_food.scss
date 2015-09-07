@@ -1,0 +1,9 @@
+.food{
+  @extend .brand_result;
+  @extend .search_result;
+  
+}
+
+.other_info .avg_price{
+	margin-top:25px;
+}

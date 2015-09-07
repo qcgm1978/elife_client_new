@@ -1,0 +1,268 @@
+<div class="scrollable page discount_index">
+  <div class="scrollable-content">
+    <header class="header common_header search_header">
+      <a href="javascript:history.back();" class="index_close_icon location_btn_arrow close_icon"><div class="redback_arrow"></div></a>
+      <div class="search_input">
+        <!-- <input type="text" title="" placeholder="搜索优惠" ng-model="searchHeaderValue"> -->
+        <a href="javascript:newWebview('#/discount/search')">
+          <div class="search">
+            <i class="icon_search"></i>
+            <span>请输入优惠标题</span>
+          </div>
+        </a>
+      </div>
+    </header>
+
+    <!-- 工行优惠 -->
+    <div class="title_section icbc_offer bg_white">
+      <div class="section_header">
+        <div class="title">工行卡优惠</div>
+        <a href="javascript:newWebview('#/discount/card_list')"><div class="subtitle">更多</div></a>
+      </div>
+      <div class="content clearfix">
+        <ul rn-carousel class="carousel clearfix" rn-carousel-index="categoryIndex">
+       
+          <li ng-repeat="cardOffer in ghService | limitTo : 3">
+            <div class="colums_layout colums_3">
+             <a ng-repeat="sub_item in cardOffer.services" href="javascript:newWebview('#/discount/card_offer/{{::sub_item.id}}/bank')">
+              <div class="col">
+                <div class="product_sale_vertical">
+                  <div class="discount_title">{{::sub_item.slogan}}</div>
+                 <!--  <div class="discount_name">美食狂欢节</div> -->
+                  <div class="img_wrap">
+                    <img  ng-src="{{parseImageUrl(sub_item.image_url)}}"  fallback-src="{{defaultImgUrl}}">
+                  </div>
+                </div>
+              </div>
+              </a>
+             <!-- <a href="javascript:newWebview('')#/discount/card_offer">
+              <div class="col">
+                <div class="product_sale_vertical">
+                  <div class="discount_title">工行卡8.5折</div>
+                  <div class="discount_name">狂欢星期一</div>
+                  <div class="img_wrap">
+                    <img src="images/discount_monday.png">
+                  </div>
+                </div>
+              </div>
+              </a>
+              <a href="javascript:newWebview('')#/discount/bank_offer">
+              <div class="col">
+                <div class="product_sale_vertical">
+                  <div class="discount_title">白金卡6.5折</div>
+                  <div class="discount_name">美食狂欢节</div>
+                  <div class="img_wrap">
+                    <img src="images/discount_food.png">
+                  </div>
+                </div>
+              </div>
+              </a>
+              <a href="javascript:newWebview('')#/discount/bank_offer">
+              <div class="col">
+                <div class="product_sale_vertical">
+                  <div class="discount_title">联名双倍积分</div>
+                  <div class="discount_name">南航、海航</div>
+                  <div class="img_wrap">
+                    <img src="images/discount_airport.png">
+                  </div>
+                </div>
+              </div>
+              </a> -->
+            </div>
+          </li>
+         <!--  <li>
+            <div class="colums_layout colums_3">
+              <div class="col">
+                <div class="product_sale_vertical">
+                  <div class="discount_title">工行卡8.5折</div>
+                  <div class="discount_name">狂欢星期一</div>
+                  <div class="img_wrap">
+                    <img src="images/discount_monday.png">
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="product_sale_vertical">
+                  <div class="discount_title">白金卡6.5折</div>
+                  <div class="discount_name">美食狂欢节</div>
+                  <div class="img_wrap">
+                    <img src="images/discount_food.png">
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="product_sale_vertical">
+                  <div class="discount_title">联名双倍积分</div>
+                  <div class="discount_name">南航、海航</div>
+                  <div class="img_wrap">
+                    <img src="images/discount_airport.png">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="colums_layout colums_3">
+              <div class="col">
+                <div class="product_sale_vertical">
+                  <div class="discount_title">工行卡8.5折</div>
+                  <div class="discount_name">狂欢星期一</div>
+                  <div class="img_wrap">
+                    <img src="images/discount_monday.png">
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="product_sale_vertical">
+                  <div class="discount_title">白金卡6.5折</div>
+                  <div class="discount_name">美食狂欢节</div>
+                  <div class="img_wrap">
+                    <img src="images/discount_food.png">
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="product_sale_vertical">
+                  <div class="discount_title">联名双倍积分</div>
+                  <div class="discount_name">南航、海航</div>
+                  <div class="img_wrap">
+                    <img src="images/discount_airport.png">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li> -->
+        </ul>
+        <div class="indicators">
+            <i class="dot" ng-repeat="service in ghService | limitTo : 3" ng-class="{'active':categoryIndex == $index}"></i>
+            <!--  <i class="dot" ng-show="ghService.length>1" ng-class="{'active':categoryIndex == 0}"></i>
+            <i class="dot" ng-show="ghService.length>2" ng-class="{'active':categoryIndex == 1}"></i>
+            <i class="dot" ng-show="ghService.length>3" ng-class="{'active':categoryIndex == 2}"></i>
+            <i class="dot" ng-show="ghService.length>4" ng-class="{'active':categoryIndex == 3}"></i> -->
+          </div>  
+       <!--  <div class="indicators">
+          <i class="dot" ng-class="{'active':categoryIndex == 0}"></i>
+          <i class="dot" ng-class="{'active':categoryIndex == 1}"></i>
+          <i class="dot" ng-class="{'active':categoryIndex == 2}"></i>
+        </div> -->
+        <!-- <div class="colums_layout colums_3">
+          <div class="col">
+            <div class="product_sale_vertical">
+              <div class="discount_title">工行卡8.5折</div>
+              <div class="discount_name">狂欢星期一</div>
+              <div class="img_wrap">
+                <img src="images/discount_monday.png">
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="product_sale_vertical">
+              <div class="discount_title">白金卡6.5折</div>
+              <div class="discount_name">美食狂欢节</div>
+              <div class="img_wrap">
+                <img src="images/discount_food.png">
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="product_sale_vertical">
+              <div class="discount_title">联名双倍积分</div>
+              <div class="discount_name">南航、海航</div>
+              <div class="img_wrap">
+                <img src="images/discount_airport.png">
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div><!-- end of ICBC offer-->
+
+    <!-- 商户优惠 -->
+    <div class="title_section business_offer">
+      <div class="section_header">
+          <div class="title">商户优惠</div>
+      </div>
+      <div class="business_offer_category content">
+        <div class="item" ng-repeat="offerCategory in businessOfferCategories | limitTo: 5">
+          <a href="javascript:newWebview('#/discount/discount_food/{{offerCategory.large_name}}/{{offerCategory.large_code}}')"><div class="name" id="bb" >{{offerCategory.large_name}}</div></a>
+        </div>
+        <div class="item">
+          <a href="javascript:newWebview('#/discount/categories')"><div class="name more">更多</div></a>
+        </div>
+      </div> 
+    </div> <!-- end of business offer-->
+
+    <!-- 附近优惠 -->
+    <div class="title_section nearby_offer">
+      <div class="section_header">
+        <div class="title" id="aa">附近优惠</div>
+      </div>
+      <div class="content clearfix" ui-state="brandProductsMore">
+        <ul class="thumb_list">
+          <li ng-repeat="store in storeList | limitTo : 10">
+            <!--银行卡优惠-->
+            <a href="javascript:newWebview('#/discount/card_offer/{{store.bank_list[0].bank_pft_code}}/bank')" class="list_product_item clearfix" ng-show="store.bank_list.length > 0">
+              <img class="left"  ng-src="{{parseImageUrl(store.bank_list[0].image_url)}}"  fallback-src="{{defaultImgUrl}}">
+              <div class="right">
+                <div class="top large">{{store.store_name | limitTo: 10}}<span ng-show="store.store_name.length>10">...</span></div>
+                <div class="top large">{{store.bank_list[0].bank_pft_title | limitTo: 10}}<span ng-show="store.bank_list[0].bank_pft_title.length>10">...</span></div>
+                <div class="middle small gray" ng-show="store.bank_list[0].view_count == '0'">{{store.bottomContent | limitTo: 17}}<span ng-show="store.bottomContent.length>17">...</span></div>
+                <div class="middle small gray" ng-show="store.bank_list[0].view_count != '0'">{{store.bottomContent | limitTo: 12}}<span ng-show="store.bottomContent.length>12">...</span></div>
+                 <div class="right_bottom small light_gray" ng-show="store.bank_list[0].view_count != '0'">已浏览{{store.bank_list[0].view_count}}次</div>                          
+                <div class="right_top small light_gray" ng-show="store.distance != '0.0'">{{store.distance}}{{store.unit}}</div>
+               </div>
+            </a>
+            <!--团购优惠-->
+             <a href="javascript:newWebview('#/discount/customers/{{store.gpp_list[0].gpp_pft_code}}')" class="list_product_item clearfix" ng-show="store.gpp_list.length > 0">
+              <img class="left"  ng-src="{{parseImageUrl(store.image_url)}}"  fallback-src="{{defaultImgUrl}}">
+              <div class="right">
+                <div class="top large">{{store.store_name | limitTo: 10}}<span ng-show="store.store_name.length>10">...</span></div>
+                <div class="top large">{{store.gpp_list[0].gpp_pft_title | limitTo: 10}}<span ng-show="store.gpp_list[0].gpp_pft_title.length>10">...</span></div>
+                <div class="current_price">¥{{store.n_price}}</div>
+                <div class="former_price">
+                    ¥{{store.o_price}}
+                    <div class="red_line"></div>
+                </div>
+                <div class="right_bottom small light_gray" ng-show="store.gpp_list[0].buy_count != '0'">已购买{{store.gpp_list[0].buy_count}}次</div> 
+                <div class="right_top small light_gray" ng-show="store.distance!='0.0'">{{store.distance}}{{store.unit}}</div>
+              </div>
+            </a>
+            <!--文本优惠-->
+              <a href="javascript:newWebview('#/discount/business_offer/{{store.store_code}}/{{store.text_list[0].text_code}}/store')" class="list_product_item clearfix" ng-show="store.text_list.length > 0">
+              <img class="left"  ng-src="{{parseImageUrl(store.image_url)}}"  fallback-src="{{defaultImgUrl}}">
+              <div class="right">
+                <div class="top large">{{store.store_name | limitTo: 10}}<span ng-show="::store.store_name.length>10">...</span></div>
+                <div class="top large">{{store.text_list[0].txt_pft_title | limitTo: 10}}<span ng-show="store.text_list[0].txt_pft_title.length>10">...</span></div>
+                <div class="middle small gray" ng-show="store.text_list[0].view_count != '0'">{{store.bottomContent | limitTo:12}}<span ng-show="store.bottomContent.length>12">...</span></div>
+                <div class="middle small gray" ng-show="store.text_list[0].view_count == '0'">{{store.bottomContent | limitTo:17}}<span ng-show="store.bottomContent.length>17">...</span></div>
+                <div class="right_bottom small light_gray" ng-show="store.text_list[0].view_count != '0'">已浏览{{store.text_list[0].view_count}}次</div>                         
+                <div class="right_top small light_gray" ng-show="store.distance!='0.0'">{{store.distance}}{{store.unit}}</div>
+              </div>
+            </a>
+            
+          </li>
+        </ul>
+      </div> <!-- end of content -->
+    </div><!-- end of nearby offer -->
+        <div class="btn-more">
+          <a href="javascript:newWebview('#/discount/nearby_offer')">查看更多</a>
+        </div>
+
+  </div> <!-- end of scrollable-content -->
+  <div class="scrollable-footer foot">
+    <div class="tab_bar">
+      <a href="#/home/index" class="tab">
+        <div class="icon tab_home"></div>
+        <div class="name">首页</div>
+      </a>
+      <a href="#/discount/index" class="tab active">
+        <div class="icon tab_discount" ></div>
+        <div class="name">优惠</div>
+      </a>
+      <a href="#/personal/index" class="tab">
+        <div class="icon tab_profile"></div>
+        <div class="name">我的</div>
+      </a>
+    </div>
+  </div>
+</div>

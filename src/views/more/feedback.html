@@ -1,0 +1,22 @@
+<div class="page more_feedback">
+
+  <!-- 头部栏 -->
+  <header class="header common_header">
+    <a href="javascript:history.back();">
+      <div class="back">
+        <div class="back_arrow"></div>
+      </div>
+    </a>
+    <div class="confirm_btn">提交</div>
+    <div class="title">意见反馈</div>
+  </header>
+
+  <!-- 反馈信息报告 -->
+  <div class="detail_info">请留下您的宝贵意见，谢谢。</div>
+  <div class="detail_desc_wrap">
+    <textarea class="detail_desc" id="trade_return_content" ng-model="content" ng-maxlength="1000" maxlength="1000"></textarea>
+  </div>
+  <div class="count">
+  <span ng-show="content.length>999" class="red_text">对不起，您的输入达到最大值</span>
+  <span ng-bind="content.length || 0">0</span>/<span>1000</span></div>
+</div>

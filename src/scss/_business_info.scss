@@ -1,0 +1,514 @@
+.business_info{
+  .business_info_header{
+     @include retina_border_bottom;
+  }
+  //顶部商户基本信息
+  @at_root{
+    .business_basic_info_section{
+      background-color: #fff;
+      padding:15px 0px;
+      overflow: hidden;
+      position: relative;
+      @include retina_border_bottom;
+      .business_brandwrap {
+        position: absolute;
+        z-index: 2;
+
+        margin-top:5px;
+        width: 70px;
+        height: 55px;
+        @include retina_border;
+        margin-left: 10px;
+        overflow: hidden;
+      }
+        .business_brand{            
+          .business_brand_icon{
+            width: 100%;
+            height: 100%;
+          }
+          .business_brand_info_num{
+            font-size: 10px;
+            width: 36px;
+            height: 20px;
+            line-height: 20px;
+            color: #fff;
+            text-align: center;
+            vertical-align: middle;
+            position:absolute;
+            right: 5px;
+            bottom: 5px;
+            border-radius: 10px;
+            background-color:rgba(0,0,0,0.6);
+          }
+        }
+        .business_brand_content{
+          // float:left;
+          padding: 0 10px 0 90px;
+          height: 65px;
+          // margin-left: 10px;
+          position: relative;
+          .business_brand_content_name{
+            font-size: 15px;
+            height: 22px;
+            .inline_block {
+              display: inline-block;
+              position: relative;
+              max-width: 100%;
+              .icons {
+                position: absolute;
+                right: 0;
+                top: 0;
+                z-index: 2;
+              }
+            }
+            div {
+              float: left; 
+            }
+            .icon_yi, .icon_ji, .icon_shan, .icon_fen{
+              width: 17px;
+              height: 22px;
+              background-size:17px 17px;
+              margin-left:5px; 
+            }
+            .icon_yi{
+              // margin-left:5px;
+            }
+
+          }
+          .business_brand_content_star{
+            font-size: 12px;
+            height: 21px;
+            .star{
+              float:left;
+              margin-top: 4px;
+              margin-left: 1px;
+              width: 12px;
+              height: 12px;
+              background-size: 12px 12px;
+            }
+            .consume-avg{
+              height: 21px;
+              margin-left: 27px;
+              // float: right;
+              float: left;
+              line-height: 21px;
+              vertical-align: middle;
+            }
+
+          }
+          .business_brand_content_num{
+            height: 22px;
+            line-height: 22px;
+            font-size: 12px;
+            color: $text_color_gray;
+            div{
+              float:left;
+            }
+            .praise{
+              margin-left: 23px;
+            }
+          }
+        }
+    }
+  }
+
+  // 商户地址
+  .business_location_section{
+    background-color:#fff;
+    @include retina_border_bottom;
+    position:relative;
+    p{
+      margin:0;
+    }
+    .icon_location{
+      width:10px;
+      height: 100%;
+      position:absolute;
+      left: 10px;
+      margin-right: 21px;
+      background-size:10px 17px;
+      float:left;
+    }
+    .location_content{
+      font-size: 15px;
+      height: 100%;
+      vertical-align: middle;
+      margin:0 40px;
+      padding:20px 0px;
+      width: auto;
+    }
+   
+  }
+
+  // 联系方式
+  .business_connect_section{
+    background-color:#fff;
+    border-bottom: none;
+    .telephone_num{
+      padding:20px 0px;
+      border-right: 0 none;
+      position: relative;
+      .telephone_icon{
+      position:absolute;
+      left: 10px;
+      top: 0px;
+      height: 100%;
+      width: 11px;
+      background-size:11px 12px;
+      }
+      .tel_content{
+      margin-left: 40px;
+     }
+    }
+    .e_financial{
+      padding:20px 0px;
+      position:relative;
+      width: 50%;
+      float: left;
+      border-left: 1px solid #dcdcd4;
+      .e_financial_icon{
+      position:absolute;
+      left: 10px;
+      top: 0px;
+      height: 100%;
+      width: 29px;
+      background-size:28px 28px;
+     }
+     .e_content{
+      margin-left: 79px;
+     }
+    }
+  }
+  .mb10 {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #dcdcd4;
+    }
+  //带三角标题的块
+  .triangle_corner_item{
+    color:$search_secction_title;
+    font-size: 15px;
+    padding: 15px 0px;
+    background-color:#fff;
+    position:relative;
+    margin-bottom: 10px;
+    @include retina_border_top;
+    @include retina_border_bottom;
+    .item_icon{
+      position:absolute;
+      top:2px;
+      left:2px;
+      width: 24px;
+      height: 23px;
+      background-size:24px 23px;
+    }
+    .item_title{
+      float:left;
+      margin-left:40px;
+    }
+
+    // 工行卡折扣
+    .item_mid_content{
+      position:absolute;
+      left: 210px;
+      top: 18px;
+      font-size: 12px;
+
+    }
+
+    // 线上支付按钮
+    .online_pay_btn{
+      width: 70px;
+      height: 30px;
+      background-color:$text_color_orange;
+      line-height: 30px;
+      vertical-align: middle;
+      text-align: center;
+      font-size: 14px;
+      border-radius: 5px;
+      color: #fff;
+      position:absolute;
+      right: 10px;
+      top: 10px;
+    }
+  }
+  
+  .hide_to_show{
+    background-color: #fff;
+  }
+
+  // 工行优惠
+  .icbc_offer{
+    padding:0px 26px;
+    margin-bottom: 0px;
+    .icbc_list_item{
+      position:relative;
+      padding:15px 0px;
+      @include retina_border_top;
+      .item_title{
+        margin-left: 14px;
+      }
+      :first{
+        border: 0;}
+    }
+    .icbc_list_item_1st{
+      //border:0px;
+    }
+  }
+  //团购块
+  .customers{
+    padding:0px 26px;
+    margin-bottom: 0px;
+
+    .customers_list_item{
+      padding:10px 14px;
+      @include retina_border_top;
+      .customers_item_img{
+        width: 63px;
+        height: 48px;
+        float: left;
+      }
+      .customers_item_content{
+        float: left;
+        margin-left: 12px;
+        position:relative;
+        .price_block{
+          margin-top: 10px;
+          .customers_item_content_price{
+          float: left;
+          font-size: 16px;
+          }
+          .former_price{
+            top:4px;
+          }
+        }
+        
+       
+      }
+    }
+    .customers_list_item_1st{
+      border-top: 0px;  
+    }
+  }
+
+  // 网友点评
+  .title_section{
+    margin-top: 0px;
+    .section_header{
+      .title{
+      font-size: 15px;
+      font-weight: 200;
+      }
+    }
+    .right{
+      .title{
+        display: inline-block;
+      }
+      .star_area{
+        position: relative;
+        top: 1px;
+      }
+      .price{
+        position:absolute;
+        right: 10px;
+        top: 20px;
+      }
+    }
+  }
+
+  //商户信息
+  .business_detail_info{
+    position:relative;
+    padding:20px 0;
+    .detail_info_column{
+      width: 100%;
+      position:relative;
+      .detail_info_left, .detail_info_mid, .detail_info_right{
+        width: 33%;
+        float: left;
+        text-align: center;
+       color:$text_color_red;
+      }
+      .detail_info_icon{
+        height: 30px;
+        background-size:51px 30px;
+        margin-bottom: 12px;
+      }
+      .icon_car{
+        width: 61px;
+        margin-left: 40px;
+      }
+      .icon_car_gray{
+        width: 61px;
+        margin-left: 40px;
+      }
+      .icon_car_text {
+          width: 61px;
+        margin-left: 36px;
+      }
+      .icon_bank_card_gray{
+        position:absolute;
+        width: 46px;
+        right: 40px;
+      }
+      .icon_bank_card{
+        position:absolute;
+        width: 46px;
+        right: 40px;
+      }
+      .icon_bank_card_text{
+        position:absolute;
+        width: 61px;
+        top: 40px;
+        right: 40px;
+      }
+    }
+    .detail_info_time{
+      margin-top: 20px;
+      margin-left: 40px;
+      float:left;
+    }
+    .detail_info_time_content{
+      margin-top: 20px;
+      float: left;
+    }
+
+  }
+  //其他分店，附近网点
+  .other_business, .nearby_outlet{
+    position:relative;
+    background-color:#fff;
+    padding:15px 10px;
+    font-size: 15px;
+    @include retina_border_top;
+  }
+
+// 获得更多
+  .get_more{
+    background-color:#fff;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 10px;
+    padding:10px 0;
+    @include retina_border_top;
+    position:relative;
+    top: -1px;
+    .get_more_content{
+      position:relative;
+      width: 72px;
+      margin:0 auto;
+      .get_more_title{
+        float:left;
+      }
+     .get_more_icon{
+      float:left;
+      margin-left: 5px;
+      width: 10px;
+      height: 17px;
+      background-size: 10px 5px;
+      @include transition(-webkit-transform 0.3s);
+     }
+    }
+  }
+  .right_arrow{
+    width:10px;
+    height: 100%;
+    position:absolute;
+    top: 0px;
+    right: 10px;
+    margin-left: 21px;
+    background-size:10px 17px;
+  }
+}
+.business_tel_modal{
+    border-radius:6px;
+    position:absolute;
+    height: 190px;
+    width: 90%;
+    bottom:20px;
+    left: 0px;
+    right: 0px;
+    margin: 0 auto;
+    .modal-content{
+      position:relative;
+      background-color: transparent;
+      border: 0px;
+      border-radius: 5px;
+       -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+    .tel_list{
+      border-radius:5px;
+      -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+      box-shadow: 0 3px 9px rgba(0,0,0,.5);
+      @include retina_border;
+    }
+    .tel_list_item{
+      height: 45px;
+      line-height: 45px;
+      font-size: 17px;
+      text-align: center;
+      background-color: #fff;
+      @include retina_border_bottom;
+    }
+     a:last-child .tel_list_item{
+      border-bottom:0px;
+     }
+     .tel_list_blank{
+      height: 15px;
+      background-color: transparent;
+     }
+     .tel_list_cancel{
+      border-radius: 5px;
+      border-bottom: 0px;
+      color: #fff;
+      background-color: #c7000a;
+      -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+      box-shadow: 0 3px 9px rgba(0,0,0,.5);
+      @include retina_border(1px solid #c7000a);
+     }
+
+}
+.business_info{
+  
+  .business_tab{
+    background-color: #efeff4;
+    @include retina_border_top($border_all);
+    .tab{
+      width: 1/3 * 100%;
+    }
+
+    .tab_camera{
+      background-image: url(img/icon_tab_camera.png);
+    }
+    .tab_comment{
+      background-image: url(img/icon_tab_comment.png);
+    }
+    .tab_error{
+      background-image: url(img/icon_tab_error.png);
+    }
+  }
+}
+
+.list_last_img{
+    position: relative;
+    .rest_img_num{
+      position:absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background-color:rgba(0,0,0, 0.5);
+      font-size: 10px;
+      color:#fff;
+      line-height: 45px;
+      text-align: center;
+    }
+  }
+
+.down_line{
+  border-bottom:solid 1px #ccc;
+}
+
+.no_line{
+  border:0 !important;
+}

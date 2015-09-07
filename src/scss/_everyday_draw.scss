@@ -1,0 +1,59 @@
+.my_draw {
+  @extend .my_draw;
+}
+
+//$background:;
+.everyday_draw_label {
+  @extend .draw_label;
+  background: url(img/draw_redlabel.png) no-repeat;
+  background-size: 45px 45px;
+}
+
+.biglabel {
+  @include draw_biglabel($background-color: #94b74f, $text-align: left);
+  padding-left: 10px;
+
+  span {
+    font-size: 12px;
+    background: url(img/alarm_clock.png) no-repeat left center;
+    background-size: 14px 14px;
+    background-position: 0px 7px;
+    width: 110px;
+    padding-left: 20px;
+  }
+
+}
+
+.draw_label_grey {
+  @extend .draw_label;
+  background: url(img/draw_label.png) no-repeat;
+  background-size: 45px 45px;
+}
+
+.biglabel1 {
+  @include draw_biglabel($background-color: #3DB39E, $text-align: left);
+  padding-left: 10px;
+
+  span {
+    font-size: 12px;
+    background: url(img/alarm_clock.png) no-repeat left center;
+    background-size: 14px 14px;
+    background-position: 0px 7px;
+    width: 110px;
+    padding-left: 20px;
+  }
+}
+
+.biglabel2{
+	@include draw_biglabel($background-color:#3D3D3D,$text-align:left);
+	padding-left:10px;
+
+	span{
+		font-size:12px;
+		background:url(img/alarm_clock.png) no-repeat left center;
+		background-size:14px 14px;
+		background-position:0px 7px;
+		width:110px;
+		padding-left:20px;
+	}
+}

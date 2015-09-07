@@ -1,0 +1,216 @@
+<div class="scrollable page customers_info">
+    <div class="scrollable-content">
+        <!-- 页头 -->
+        <header class="header common_header ">
+            <a href="javascript:history.back();" class="return_btn">
+                <div class="back" ng-click="return_btn($event)">
+                    <div class="back_arrow"></div>
+                    <div>返回</div>
+                </div>
+            </a>
+
+            <div ng-class="{'favorite':gppInfo.fav_status=='0', 'favorite_choose':gppInfo.fav_status=='1'}"
+                 ng-click="addCustomerFavor()"></div>
+            <div class="share" ng-click="share({'pft_code':'{{code}}','share_type':'gpp'})"></div>
+            <div class="title">团购详情</div>
+        </header>
+        <div class="customers_header">
+            <div class="modal_img">
+                <div class="customers_header_bg">
+                    <!-- <img src="images/customers_header_bg.png"> -->
+                    <img lazy-img="{{parseImageUrl(gppInfo.image_url)}}" alt="暂无图片" src="{{defaultImgUrl}}">
+
+                    <div class="black_modal"></div>
+                </div>
+
+            </div>
+            <div class="customers_header_title">
+                <!--<div class="title">俏江南（金融街店）</div>
+                <div class="subtitle">三人套餐，不限时段</div>-->
+                <div class="title">{{gppInfo.promotions_title}}</div>
+                <div class="subtitle">{{gppInfo.desc}}</div>
+            </div>
+        </div>
+
+        <!-- 立即抢购 -->
+        <div class="customers_rect_block payment clearfix">
+            <div class="price_block clear">
+                <!--<div class="current_price">¥88</div>
+                <div class="former_price">
+                    ¥100-->
+                <div class="current_price">¥{{gppInfo.n_price}}</div>
+                <div class="former_price">
+                    ¥{{gppInfo.o_price}}
+                    <div class="red_line"></div>
+                </div>
+            </div>
+            <a href="#/discount/customers_add_order/{{::storeId}}/{{code}}/{{gppInfo.n_price}}"
+               ng-click="validateLogin()">
+                <div class="purchase_btn">立即抢购</div>
+            </a>
+        </div>
+
+        <!--支付服务  -->
+        <div class="customers_rect_block clearfix">
+            <div class="customers_attributes clearfix">
+                <div class="customers_attributes_item">
+                    <div class="customers_attributes_item">
+                        <div class="customers_check_icon" ng-show="gppInfo.retire_two != '0'"></div>
+                        <div class="customers_attributes_item_content" ng-show="gppInfo.retire_two != '0'">随时退</div>
+                    </div>
+                    <div class="send_numGroup">已售{{gppInfo.sale_nums || 0}}件</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 用户好评 -->
+        <div class="customers_rect_block praise clearfix" ng-show="gppInfo.comments_nums > 0">
+            <a href="#/review/index/{{code}}/Group">
+                <div class="customers_praise_icon"></div>
+                <div class="customers_praise_num">{{gppInfo.comments_count}}个好评</div>
+                <div class="customers_comments_num">共{{gppInfo.comments_nums}}条评论</div>
+                <i class="fa fa-chevron-right"></i>
+            </a>
+        </div>
+
+        <!-- 团购适用门店 -->
+        <!--<div class="customers_rect_block suitable-store-title clearfix" >
+            适用门店
+            <span ng-show="gppStoreList.length>1">（<span ng-bind="gppStoreList.length"></span>家）<span>（</span></span>
+            <i class="fa fa-chevron-right"></i>
+        </div>-->
+        <!--<div class="title_section apply_store">
+            <div class="section_header" ng-show="gppStoreList.length == 1">
+              <div class="title">适用门店（1家）</div>
+             <div class="right_arrow" ng-show="gppStoreList.length>1"></div>
+             </div>
+
+          <a href="#/business/bank_available_store" ng-show="gppStoreList.length != 1">
+            <div class="section_header">
+              <div class="title">适用门店（<span ng-bind="gppStoreList.length"></span>家）</div>
+              <div class="right_arrow" ng-show="gppStoreList.length>1"></div>
+            </div>
+          </a>
+
+        <div class="customers_rect_block suitable-store-content clearfix">
+            <ul class="thumb_list">
+                <li class="customers_body_business_item" ng-repeat="gppStore in gppStoreList">
+                    <a href="#/business/index/{{id}}" class="clearfix">
+                        <div class="left">
+                            <img class="left" src="images/restaurant_qjn.jpg"></div>
+                        <div class="right">
+                            <div class="top large">
+                                <div class="top_title">{{gppStore.store_name | limitTo :10}}<span ng-show="bankStore.store_name.length>10">...</span></div>
+                                <div class="icon_area">
+                                    <div class="icon_yi"></div>
+                                </div>
+                            </div>
+                            <div class="middle">
+                             <div class="stars">
+                               <div ng-repeat="star in gppStore.levels" class="star_{{star.type}}"></div>
+                             </div>
+                                <div class="price">{{gppStore.avg_price}}元/每人</div>
+                            </div>
+                            <div class="bottom small gray">{{gppStore.bottomContent}}</div>
+                            <div class="right_bottom small light_gray" ng-hide="gppStore.distance === '0.0'">{{gppStore.distance}}{{gppStore.unit}}</div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        </div>-->
+
+        <!--适用门店 -->
+        <div class="title_section apply_store">
+            <div class="section_header" ng-show="gppStoreList.length == 1">
+                <div class="title">适用门店</div>
+            </div>
+
+            <a href="#/business/business_available_store/{{code}}/{{'GROUP'}}" ng-show="gppStoreList.length != 1">
+                <div class="section_header">
+                    <div class="title">适用门店<span ng-show="gppStoreList.length>1">（<span
+                            ng-bind="gppStoreList.length"></span>家）</span></div>
+                    <div class="right_arrow" ng-show="gppStoreList.length>1"></div>
+                </div>
+            </a>
+
+            <ul class="thumb_list">
+                <li ng-repeat="gppStore in gppStoreList">
+                    <a href="#/business/index/{{gppStore.store_code}}">
+                        <img class="left"
+                             lazy-img="{{parseImageUrl(gppStore.image_url)}}" src="{{defaultImgUrl}}">
+
+                        <div class="right">
+                            <div class="top large">{{gppStore.store_name | limitTo :10}}<span
+                                    ng-show="gppStore.store_name.length>10">...</span></div>
+                            <div class="middle">
+                                <div class="stars">
+                                    <div ng-repeat="star in gppStore.levels" class="star_{{star.type}}"></div>
+                                </div>
+                            </div>
+                            <div class="bottom small gray">
+                                {{gppStore.bottomContent}}
+                            </div>
+                            <div class="right_bottom small light_gray">{{gppStore.distance}}{{gppStore.unit}}</div>
+                            <div class="other_info">
+                                <div ng-repeat="role in gppStore.new_discount_role" class="top discount_icon {{role}}">
+                                </div>
+
+                                <div class="middle small avg_price" ng-bind="gppStore.average_price">元/人</div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <!-- 团购详情 -->
+        <div class="customers_body_item_title">团购详情</div>
+        <div class="customers_rect_block clearfix">
+            <div class="customers_info_content">
+                <div class="top_item"></div>
+                <div class="top_title">{{gppInfo.gppdetail}}</div>
+                <!--<div class="top_item">
+                    <div class="top_item_left">宫保鸡丁</div>
+                    <div class="top_item_mid">1份</div>
+                    <div class="top_item_right">100元</div>
+                </div>
+                <div class="top_item">
+                    <div class="top_item_left">宫保鸡丁</div>
+                    <div class="top_item_mid">1份</div>
+                    <div class="top_item_right">100元</div>
+                </div>
+                <div class="top_item">
+                    <div class="top_item_left">宫保鸡丁</div>
+                    <div class="top_item_mid">1份</div>
+                    <div class="top_item_right">100元</div>
+                </div>
+                <div class="top_item">
+                    <div class="top_item_left">宫保鸡丁</div>
+                    <div class="top_item_mid">1份</div>
+                    <div class="top_item_right">100元</div>
+                </div>-->
+            </div>
+        </div>
+
+        <div class="customers_rect_block view-more clearfix">
+            <!-- 查看详情 -->
+            <a href="#/discount/customers_more/{{::storeId}}/{{code}}">
+                <div>查看图文详情</div>
+                <i class="fa fa-chevron-right"></i>
+            </a>
+        </div>
+
+        <!-- 购买须知 -->
+        <div class="customers_body_item_title">购买须知</div>
+        <div class="customers_rect_block clearfix">
+            <div class="light_gray">使用时间</div>
+            <div>{{gppInfo.use_explain}}</div>
+            <div class="light_gray">预约信息</div>
+            <div>{{gppInfo.reserve_explain}}</div>
+        </div>
+    </div>
+
+
+

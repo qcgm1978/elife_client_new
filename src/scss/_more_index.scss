@@ -1,0 +1,25 @@
+.more_index {
+  .detail_infos{
+    padding: 0 10px;
+    background-color: #fff;
+  }
+  .detail_title{
+    border-bottom: 1px solid $border_color_light_gray;
+    padding: 15px;
+    position: relative;
+    .detail_subtitle{
+      float:right;
+      margin-right: 25px;
+    }
+  }
+  .bottom_infos{
+    @extend .detail_infos;
+    margin-top: 20px;
+    border-bottom: 1px solid $border_color_light_gray;
+  }
+  .last_detail_title{
+    @extend .detail_title;
+    border: none;
+  }
+
+}

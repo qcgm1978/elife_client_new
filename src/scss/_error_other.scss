@@ -1,0 +1,31 @@
+.error_other {
+  .detail_info{
+    margin:10px 10px;
+    font-size: 12px;
+  }
+  .detail_desc_wrap{
+    width: 100%;
+    padding: 10px;
+  }
+  .detail_desc{
+    display: block;
+    width: 100%;
+    background-color: #fff;
+    height:200px;
+    font-size: 12px;
+    border: none;
+    padding: 10px;
+    &:focus{
+      border: none;
+      outline-style: none;
+    }
+  }
+
+  .count{
+    font-size: 12px;
+    color: red;
+    text-align: right;
+    padding: 0 10px;
+  }
+
+}

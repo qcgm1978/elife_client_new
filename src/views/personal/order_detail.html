@@ -1,0 +1,41 @@
+<div class="scrollable page trade_detail">
+<!-- 内容 -->
+  <div class="scrollable-content">
+    
+    <header class="header common_header">
+      <a href="javascript:history.back();">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+  <div class="share" ng-click="share({'store_code':'{{id}}','share_type':'store'})"></div>
+      <div class="title">二维码支付详情</div>
+    </header>
+    
+    <div class="detial_info">
+      <div class="detial_success">
+        <div class="key_center"><img src="css/img/customers_praise_icon.png">&nbsp;您已成功支付！</div>
+        <div class="value_center">消费时间:&nbsp;{{order_detial.order_time}}</div>
+      </div>
+      <div class="info">
+        <div class="key">商户名称</div>
+        <div class="value" >{{order_detial.store_name}}</div>
+      </div>
+      <div class="info">
+        <div class="key">交易金额</div>
+        <div class="value">¥{{order_detial.total_amount}}</div>
+      </div>
+      <div class="info">
+        <div class="key">商户实收</div>
+        <div class="value">¥{{order_detial.store_paid}}</div>
+      </div>
+      <div class="info">
+        <div class="key">用户支付</div>
+        <div class="value">¥{{order_detial.user_pay}}</div>
+      </div>
+    
+    
+    
+  </div><!--  scrollable content -->
+</div>

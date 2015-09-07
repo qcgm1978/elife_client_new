@@ -1,0 +1,59 @@
+<div class="scrollable page choose_coupon">
+<!-- 内容 -->
+  <div class="scrollable-content">
+    
+    <header class="header common_header">
+      <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="title">电子券</div>
+    </header>
+    <div class="coupon_list">
+      <ul class="thumb_list">
+         <li ng-repeat="ecoupon in ECoupons">
+           <!--定向券(有效)-->
+          <a ng-show="ecoupon.Ec_type === '2' && ecoupon.Ec_invalid==='0'" href="#/personal/e_coupon_business_list/{{ecoupon.Ec_code}}" class="clearfix">
+             <img class="left"  ng-src="{{ parseImageUrl(ecoupon.Ec_img)}}"  alt="暂无图片" fallback-src="{{defaultImgUrl}}">
+             <div class="right">
+             <div class="right_arrow"></div>
+               <div class="top large" >{{ecoupon.Ec_name}}</div>               
+                <div class="clearfix"></div>
+               <div class="bottom small gray">有效期{{ecoupon.Effect_beginDate}}至{{ecoupon.Effect_endDate}}</div>
+             </div>
+           </a>
+           <!--通用的(有效)-->
+          <a ng-show="ecoupon.Ec_type === '1'  && ecoupon.Ec_invalid==='0'" href="#/personal/e_coupon_business_blank" class="clearfix">
+             <img class="left"  lazy-img="{{ parseImageUrl(ecoupon.Ec_img)}}"  alt="暂无图片" src="{{defaultImgUrl}}">
+             <div class="right">
+              <div class="right_arrow"></div>
+               <div class="top large" >{{ecoupon.Ec_name}}</div>               
+                <div class="clearfix"></div>
+               <div class="bottom small gray">有效期{{ecoupon.Effect_beginDate}}至{{ecoupon.Effect_endDate}}</div>
+             </div>
+           </a>
+           <!--定向券(无效)-->
+          <a ng-show="ecoupon.Ec_type === '2'  && ecoupon.Ec_invalid==='1'" href="" class="clearfix">
+             <img class="left"  lazy-img="{{ parseImageUrl(ecoupon.Ec_img)}}"  alt="暂无图片" src="{{defaultImgUrl}}">
+             <div class="right">
+               <div class="top large" >{{ecoupon.Ec_name}}</div>               
+                <div class="clearfix"></div>
+               <div class="bottom small gray">有效期{{ecoupon.Effect_beginDate}}至{{ecoupon.Effect_endDate}}<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已过期</span></div>
+             </div>
+           </a>
+           <!--通用的(无效)-->
+          <a ng-show="ecoupon.Ec_type === '1'  && ecoupon.Ec_invalid==='1'" href="" class="clearfix">
+             <img class="left"  ng-src="{{ parseImageUrl(ecoupon.Ec_img)}}"  alt="暂无图片" fallback-src="{{defaultImgUrl}}">
+             <div class="right">
+               <div class="top large" >{{ecoupon.Ec_name}}</div>               
+                <div class="clearfix"></div>
+               <div class="bottom small gray">有效期{{ecoupon.Effect_beginDate}}至{{ecoupon.Effect_endDate}}<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已过期</span></div>
+             </div>
+           </a>
+         </li>
+      </ul>
+    </div>
+  </div>
+</div>

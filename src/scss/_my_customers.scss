@@ -1,0 +1,257 @@
+.my_customers{
+  .header{
+    border-bottom: 0px;
+  }
+  .my_customers_nav{
+    @include retina_border_top(1px,solid,$text_color_light_gray);
+    @include retina_border_bottom(1px,solid,$text_color_light_gray);
+    padding: 7px 0;
+    padding-bottom: 0px;
+    text-align: center;
+    height: 40px;
+    line-height: 26px;
+    position: relative;
+    .paid{
+      float: left;
+      width: 50%;
+      @include retina_border_right(1px,solid,$text_color_light_gray);
+    }
+    .unpaid{
+      float: left;
+      width: 50%;
+    }
+    .active_nav{
+      color: $text_color_red;
+      @include retina_border_bottom(3px,solid,$text_color_red);
+    }
+
+  }
+  .paid_list{
+    .comment_btn{
+      font-size: 14px;
+      color: $text_color_red;
+      height: 30px;
+      width: 50px;
+      line-height: 30px;
+      position: absolute;
+      text-align: center;
+      border-radius: 5px;
+      border: 1px solid red;
+      right: 10px;
+      top: 40px;
+      background-color: #fff;
+    }
+  }
+  .unpaid_list{
+    .pay_btn{
+      font-size: 14px;
+      color: #fff;
+      height: 30px;
+      width: 50px;
+      line-height: 30px;
+      position: absolute;
+      text-align: center;
+      border-radius: 5px;
+      right:10px;
+      top: 40px;
+      background-color: $text_color_red;
+    }
+  }
+  .thumb_list li{
+    position: relative;
+    .right{
+      margin-left: 107px;
+    }
+  }
+}
+.assess{
+  color: #c00;
+  padding: 3px 6px;
+  border: 1px solid #c00;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+// 发送到手机
+.send_customers{
+  .tel{
+    margin-top:20px;
+    padding: 0 10px;
+    font-size: 17px;
+    height: 55px;
+    background-color: #fff;
+    line-height: 55px;
+    span{
+      display: inline-block;
+    }
+    form{
+      display: inline-block;
+    }
+    .error{
+      color: $text_color_red;
+      font-size: 12px;
+    }
+    input{
+      width: 200px;
+      font-size: 17px;
+    }
+  }
+  .shop_title{
+    height: 20px;
+    line-height: 20px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+  .shop_list_item{
+    padding: 10px 10px;
+    position: relative;
+    background-color: #fff;
+    @include retina_border_bottom;
+    .title{
+      font-size: 15px;
+    }
+    .subtitle{
+      font-size: 12px;
+      color:$text_color_light_gray;
+    }
+    .radio_btn{
+      position:absolute;
+      right: 15px;
+      top: 0px;
+      width: 18px;
+      height: 58px;
+      background-size: 18px 18px;
+    }
+    .customers_check{
+      background-image:url(img/customers_check.png);
+    }
+  }
+  .send_btn{
+    margin:10px 15px;
+  }
+
+}
+
+// 申请退款
+.customers_drawback{
+  .customers_title{
+  color: $search_secction_title;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  padding: 0px 10px;
+  }
+  .customers_drawback_section{
+    font-size: 17px;
+    padding: 15px 10px;
+    position: relative;
+    background-color: #fff;
+    @include retina_border_bottom;
+
+    .price{
+      color: $text_color_red;
+    }
+    .favor_uncheck_icon{
+      height: 55px;
+      width: 20px; 
+      background-size: 20px 20px;
+      position: absolute;
+      top: 0px;
+      right: 10px;
+    }
+    .favor_check_icon{
+      background-image:url(img/favor_check_icon.png);
+    }
+  }
+  .drawback_way{
+    padding:7px 10px;
+    .drawback_way_des{
+      color: $search_secction_title;
+      font-size: 12px;
+    }
+
+  }
+  .red_confirm_btn{
+    margin-top: 10px;
+  }
+
+}
+// 团购详情
+
+//退款详情
+.customers_drawback_info{
+  .drawback_info_top{
+    background-color: white;
+    @include retina_border_bottom();
+    .line{
+      line-height: 35px;
+      height: 35px;
+
+
+      .key{
+        width: 110px;
+        padding: 0 10px;
+        float: left;
+      }
+      .value{
+        margin-left: 110px;
+      }
+    }
+  }
+
+  .drawback_process{
+    margin: 15px;
+    padding: 16px;
+    background-color: white;
+
+    .process.done{
+      .indicator .dot{
+        background-color: red;
+      }
+    }
+    .process{
+      width: 100%;
+      overflow: hidden;
+
+      &:last-child{
+        .indicator .line{
+          display: none;
+        }
+      }
+
+      .indicator{
+        float: left;
+        width: 40px;
+        .dot{
+          width: 12px;
+          height: 12px;
+          margin: 0 auto;
+          border-radius: 6px;
+          border: 1px solid red;
+          background-color: white;
+        }
+        .line{
+          height: 40px;
+          background: red;
+          width: 1px;
+          margin: auto;
+        }
+      }
+      .right{
+        margin-left: 40px;
+        font-size: 12px;
+        overflow: hidden;
+        margin-top: -2px;
+        .name{
+          float: left;
+        }
+        .time{
+          float: right;
+          color: $text_color_light_gray;
+        }
+        .desc{
+          color: $text_color_gray;
+        }
+      }
+    }
+  }
+}

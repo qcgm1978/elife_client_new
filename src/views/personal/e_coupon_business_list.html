@@ -1,0 +1,138 @@
+<div class="scrollable page e_coupon_list">
+<!-- 内容 -->
+  <div class="scrollable-content">
+    
+    <header class="header common_header">
+      <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+
+      <div class="title">使用说明</div>
+    </header>
+    <div class="usage">
+      <div class="usage_title">
+        使用说明
+      </div>
+      <p>这里边写使用说明的具体内容，可否。这里边写使用说明的具体内容，可否。这里边写使用说明的具体内容，可否。</p>
+    </div>
+    <div class="title_section apply_store">
+      <a href="#/business/store_available_store/{{eCode}}/{{'ETC'}}">
+        <div class="section_header">
+          <div class="title">适用门店（{{businessStoreList.length || 0}}家）</div>
+          <div class="right_arrow"></div>
+        </div>
+      </a>
+      
+      <div class="content">
+          <ul class="thumb_list"  >
+        <li ng-repeat="busiStore in businessStoreList | limitTo : 5">
+          <a href="#/business/index/{{busiStore.store_code}}">
+            <img class="left"
+              lazy-img="{{parseImageUrl(busiStore.image_url)}}" src="{{defaultImgUrl}}">
+            <div class="right">
+              <div class="top large">{{busiStore.store_name | limitTo :10}}<span ng-show="busiStore.store_name.length>10">...</span></div>
+              <div class="middle">
+                <div class="stars">
+                 <div ng-repeat="star in busiStore.levels" class="star_{{star.type}}"></div>
+                </div>
+              </div>
+              <div class="bottom small gray">
+                {{busiStore.bottomContent}}
+              </div>
+              <div class="right_bottom small light_gray">{{busiStore.distance}}{{busiStore.unit}}</div>
+              <div class="other_info">
+                <div ng-repeat= "role in busiStore.new_discount_role" class="top none discount_icon {{role}}" >
+                  </div>
+                 
+                <div class="middle small avg_price" ng-bind="busiStore.average_price">元/人</div>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+        <!--<ul class="thumb_list">-->
+          <!--<li>
+            <a href="#/business/index">
+              <img class="left" src="images/restaurant_qjn.jpg">
+              <div class="right">
+                <div class="top large">俏江南（金融街店）</div>
+                <div class="middle">
+                  <div class="stars">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                  </div>
+                </div>
+                <div class="bottom small gray">
+                  金融街 川菜/家常菜
+                </div>
+                <div class="right_bottom small light_gray">0.7km</div>
+                <div class="other_info">
+                  <div class="top none icon_yi"></div>
+                  <div class="middle small avg_price">127元/人</div>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a href="#/business/index">
+              <img class="left" src="images/restaurant_qjn.jpg">
+              <div class="right">
+                <div class="top large">俏江南（金融街店）</div>
+                <div class="middle">
+                  <div class="stars">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                  </div>
+                </div>
+                <div class="bottom small gray">
+                  金融街 川菜/家常菜
+                </div>
+                <div class="right_bottom small light_gray">0.7km</div>
+                <div class="other_info">
+                  <div class="top none icon_yi"></div>
+                  <div class="middle small avg_price">127元/人</div>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a href="#/business/index">
+              <img class="left" src="images/restaurant_qjn.jpg">
+              <div class="right">
+                <div class="top large">俏江南（金融街店）</div>
+                <div class="middle">
+                  <div class="stars">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                  </div>
+                </div>
+                <div class="bottom small gray">
+                  金融街 川菜/家常菜
+                </div>
+                <div class="right_bottom small light_gray">0.7km</div>
+                <div class="other_info">
+                  <div class="top none icon_yi"></div>
+                  <div class="middle small avg_price">127元/人</div>
+                </div>
+              </div>
+            </a>
+          </li>-->
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

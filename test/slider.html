@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<slider step="1">
+    <slider-range model="slider.left.value" >
+        <div class="slider-handle"><div class="circle_handle"></div></div>
+        <div class="slider-label slider-label-top" id='minValue'>{{slider.left.value | number:0 }}</div>
+    </slider-range>
+    <slider-range model="slider.middle.value" min-value="20">
+        <div class="slider-handle"><div class="circle_handle"></div></div>
+        <div class="slider-label" id='maxValue'>{{slider.left.value + slider.middle.value | number:0 }}</div>
+    </slider-range>
+    <slider-range model="slider.right.value">
+    </slider-range>
+</slider>
+</body>
+</html>

@@ -1,0 +1,94 @@
+//编辑图片
+
+.review_photo_edit{
+  .image_wrap{
+    margin: 50px;
+    overflow: hidden;
+    img{
+      @include transition(ease all 0.2s);
+    }
+    img.r90{
+      @include transform(rotate(90deg));
+    }
+    img.r180{
+      @include transform(rotate(180deg));
+    }
+    img.r270{
+      @include transform(rotate(270deg));
+    }
+  }
+
+  .photo_ctrl{
+    text-align: center;
+    .icon_rotate, .icon_delete{
+      width: 28px;
+      height: 33px;
+      display: inline-block;
+      margin: 0 30px;
+      background:{
+        image: url(img/icon_rotate.png);
+        size: 100% 100%;
+      }
+    }
+    .icon_delete{
+      background:{
+        image: url(img/icon_delete.png);
+        size: 100% 100%;
+      }
+    }
+  }
+
+  .photo_info{
+    width: 255px;
+    margin: 50px auto;
+    .info{
+      line-height: 40px;
+      overflow: hidden;
+
+      .name{
+        width: 80px;
+        font-size: 14px;
+        float: left;
+      }
+      
+      .values{
+        width: 175px;
+        display: inline-block;
+        line-height: 24px;
+        .type{
+          display: inline-block;
+          background-color: black;
+          color: white;
+          margin: 0 5px 5px 0;
+          height: 20px;
+          line-height: 20px;
+          width: 100px;
+          text-align: center;
+        }
+        .selected{
+          background-color: $text_color_red;
+        }
+
+        .name_input{
+          width: 100%;
+          background-color: white;
+          border: none;
+          height: 24px;
+          line-height: 24px;
+          border-radius: 12px;
+          font-size: 12px;
+          padding: 0 10px;
+
+          &:focus{
+            border: none;
+            outline-style: none;
+          } 
+        }
+
+      }
+      
+    }
+    
+  }
+  
+}

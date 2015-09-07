@@ -1,0 +1,41 @@
+
+<div class="scrollable page customers_info customers_more_info">
+<div class="scrollable-content">
+  <!-- 页头 -->
+  <header class="header common_header ">
+    <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+          <div class="back_arrow"></div>
+        </div>
+    </a>
+    <div class="title">更多详情</div>
+  </header>
+   <div class="customers_rect_block clearfix">
+    <div class="price_block clear">
+      <div class="current_price">¥{{gppInfoDetail.promotions_price}}</div>
+      <div class="former_price">
+        ¥{{gppInfoDetail.total_price}}
+        <div class="red_line"></div>
+      </div>
+    </div>
+     <a ng-click="validateLogin()"><div class="purchase_btn">立即抢购</div></a>
+  </div>
+  <div class="customers_more_info_content">
+    <div>{{gppInfoDetail.desc}}</div>
+    <!--<div>1.电子券</div>
+    <div>2.电子券</div>
+    <div>3.电子券</div>-->
+    <div class="modal_img more_info_img ">
+      <div class="customers_header_bg"><img src="images/customers_header_bg.png">
+      <div class="black_modal"></div>
+      </div>
+      
+    </div>
+
+  </div>
+
+</div>
+</div>
+
+
+

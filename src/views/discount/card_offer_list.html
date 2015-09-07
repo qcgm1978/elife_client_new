@@ -1,0 +1,132 @@
+<div class="scrollable page card_list search_result">
+  <div class="scrollable-content">
+    
+    <div class="header common_header search_header search-head">
+      <div >
+        <div class="back" ng-click="removeCookieBack()">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </div>
+      <div class="title">{{typeName}}</div>
+    </div>
+    
+    <div class="list_filter_wrap select-head">
+      <div class="list_filter" ui-state="listFilterIndex">
+        <div class="list_filter_category" ng-click="filterToggle(1)" ui-class="{'selected':listFilterIndex == 1 && listFilter}">
+          <div class="name" ng-bind="currentDistanceTitle || currentCityDistrict.district_name ||currentDistrict.district_name || currentDistrict.community_name || '商区'"></div>
+          <i class="fa fa-caret-down" ></i>
+        </div>
+        <div class="list_filter_category"  ng-click="filterToggle(2)" ui-class="{'selected':listFilterIndex == 2 && listFilter}">
+          <div class="name" ng-bind="currentLargeType.large_name ||currentSmallType.small_name || '行业'"></div>
+          <i class="fa fa-caret-down"></i>
+        </div>
+        <div class="list_filter_category"  ng-click="filterToggle(3)" ui-class="{'selected':listFilterIndex == 3 && listFilter}">
+          <div class="name" ng-bind="order_name || '排序'">排序</div>
+          <i class="fa fa-caret-down"></i>
+        </div>
+      </div>
+      <div class="drop_down_group" ui-state="listFilter" ui-show="listFilter && listFilterIndex == 1">
+        <div class="side_list_tab">
+          <ui-state id="sideTab1" default="1"></ui-state>
+          <ul class="tabs">
+            <li class="tab tab_left selected" ui-set="{'sideTab1': 1}" ui-class="{'selected': sideTab1==1}">附近</li>
+            <li class="tab tab_left" ui-set="{'sideTab1': 2}" ui-class="{'selected': sideTab1==2}">热门商区</li>
+             <li class="tab tab_left" ng-repeat="district in citys" ui-set="{'sideTab1': district.district_code}" ui-class="{'selected': sideTab1=={{district.district_code}}}">{{::district.district_name}}</li>
+          </ul>
+          <div class="tab_contents">
+            <ul class="filter_choices" ui-if="sideTab1 == 1">
+              <li ng-click = "filterByDistance(500)">500米</li>
+              <li ng-click = "filterByDistance(1000)">1000米</li>
+              <li ng-click = "filterByDistance(2000)">2000米</li>
+            </ul>
+            <ul class="filter_choices" ui-if="sideTab1 == 2">
+              <li 
+                ng-repeat="city in hotCitys"
+                ng-click = "filterByDistrict(city)">{{::city.community_name}}</li>
+            </ul>
+             <ul ng-repeat="district in citys" class="filter_choices" ui-show="sideTab1 == {{::district.district_code}}">
+              <li ng-click = "filterByDistrict(district)">全部</li>              
+              <li ng-repeat="subRegion in district.community_list" ng-click = "filterByDistrict(subRegion)">
+                {{::subRegion.community_name}}
+              </li>
+            </ul>
+          </div> <!-- end of tab contents -->
+        </div> <!-- end of side list tab -->
+        <div class="mask modal" ui-if="listFilter && listFilterIndex == 1" ng-click="filterToggle(0)" ></div>
+      </div> <!-- end of drop down group -->
+
+ 
+    
+      <div class="drop_down_group" ui-state="listFilter" ui-show="listFilter  && listFilterIndex == 2">
+        <div class="side_list_tab">
+          <ui-state id="sideTab2" default="1"></ui-state>
+          <ul class="tabs">
+            <li class="tab tab_left"  
+              ng-class="{'selected': currentType==types}"
+              ng-click="selectType(types)"
+              ng-repeat="types in allTypes">{{::types.large_name}}</li>
+          </ul>
+          <div class="tab_contents">
+            <ul class="filter_choices" 
+              ng-show="currentType==types"
+              ng-repeat="types in allTypes">
+              <li ng-click="filterByType(types)">全部</li>              
+              <li ng-repeat="type in types.small_industry_list"
+                ng-click="filterByType(type)">{{::type.small_name}}</li>
+            </ul>
+          </div> <!-- end of tab contents -->
+        </div> <!-- end of side list tab -->
+        <div class="mask modal" ui-if="listFilter && listFilterIndex == 2" ng-click="filterToggle(0)" ></div>
+      </div> <!-- end of drop down group -->
+
+      <div class="drop_down_group" ui-state="listFilter" ui-show="listFilter && listFilterIndex == 3">
+       <div class="side_list_tab">
+          <ui-state id="sideTab3" default="1"></ui-state>
+          <div class="tab_contents sort_content">
+            <ul class="filter_choices " ui-if="sideTab3 == 1">
+                <li ng-click="filterByRank('query_key desc',  '默认排序')">默认排序</li>
+                <li ng-click="filterByRank('query_key desc',  '离我最近')">离我最近</li>
+              <li ng-click="filterByRank('star_level desc',   '星级最高')">星级最高</li>
+              <li ng-click="filterByRank('popular desc',      '人气最高')">人气最高</li>
+             
+            </ul>
+          </div> <!-- end of tab contents -->
+        </div> <!-- end of side list tab -->
+        <div class="mask modal" ui-if="listFilter && listFilterIndex == 3" ng-click="filterToggle(0)" ></div>
+      </div> <!-- end of drop down group -->
+    </div>
+    
+     <div class="scrollable-content content-top" mobile-infinite-scroll on-reach-bottom="showLoading(); getList()">
+
+    <div ng-show="loading" class="ng-hide">
+      <i class="fa fa-spinner fa-spin loading-spinner"></i>
+    </div>
+
+    
+      <!-- 无搜索结果 -->
+    <div class="no_search_result" 
+      ng-show="isEmpty" 
+      ng-include="'views/widget/no_search_result.html'">
+    </div>
+      
+    <ul class="thumb_list card_list">
+      <li ng-repeat="cardOffer in cardOfferList">
+        <a href="#/discount/card_offer/{{::cardOffer.id}}/{{'bank'}}" class="clearfix">
+          <img class="left"  ng-src="{{parseImageUrl(cardOffer.image_url)}}"  fallback-src="{{defaultImgUrl}}">
+          <div class="right indicator">
+            <div class="top large line_large">{{::cardOffer.promotions_title | limitTo: 12}}<span ng-show="cardOffer.promotions_title && cardOffer.promotions_title.length>12">...</span></div>
+            <div class="middle none"></div>
+            <div class="bottom small gray"><span>适用商户（</span><span class="red">{{::cardOffer.count}}家</span><span>）</span></div>
+          </div>
+        </a>
+      </li>
+    </ul>
+    
+</div>
+ <div class="loading_more_wrap" ng-show="e_row > 9 && mark">
+     <div class="loading_more" ng-show="loadingMore">加载更多...</div>
+     <div class="loading_more" ng-show="!loadingMore" >无更多数据...</div>
+</div>
+  </div>
+</div>

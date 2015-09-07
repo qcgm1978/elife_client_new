@@ -1,0 +1,155 @@
+.personal{
+  .header{
+    .close_icon{
+      left: 10px;
+    }
+  }
+  background-color: #efeff4;
+  .top{
+    height: 97px;
+    background: url(img/personal_top_bg.png) 0 0 no-repeat;
+    background-size: 375px 97px;
+    background-color: #c8000b;
+    overflow: hidden;
+    position: relative;
+
+    .avatar{
+
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      left: 36px;
+      top: 23px;
+      img{
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .personal_login{
+      font-size: 14px;
+      color:#fff;
+      border:solid 1px #fff;
+      padding:0.5px 5px;
+      border-radius: 5px;
+      position: absolute;
+      left:115px;
+      top:35px;
+    }
+
+    .name{
+      color: white;
+      font-size: 14px;
+      position: absolute;
+      left: 126px;
+      top: 36px;
+
+    }
+
+    .right{
+      position: absolute;
+      right: 30px;
+      height: 97px;
+      padding: 10px;
+
+      .score{
+        color: white;
+        font-size: 10px;
+        text-align: center;
+        em{
+          font-size: 12px;
+          color: #fddc01;
+          font-weight: normal;
+        }
+      }
+
+      .detail_btn{
+        width: 72px;
+        height: 26px;
+        line-height: 24px;
+        font-size: 12px;
+        border: 1px solid white;
+        border-radius: 13px;
+        color: white;
+        text-align: center;
+        margin: 10px auto;
+
+      }
+    }
+  }
+  .menu_list{
+    .divider{
+      height: 12px;
+      width: 100%;
+      @include retina_border_bottom(1px, solid, #c8c7cc);
+    }
+    
+    .item{
+      display: block;
+      height: 50px;
+      padding: 15px;
+      background-color: white;
+      position: relative;
+      @include retina_border_bottom(1px, solid, #c8c7cc);
+      .icon{
+        width: 27px;
+        height: 27px;
+        margin-top: -4px;
+        float: left;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-position: center;
+
+      }
+      .name{
+        margin-left: 35px;
+        color: #333;
+        font-size: 14px;
+      }
+      i{
+        line-height: 50px;
+        height: 50px;
+        color: $text_color_gray;
+        position: absolute;
+        right: 17px;
+        top: 0;
+        font-size: 16px;
+      }
+
+      .icon_order{
+        background-image: url(img/icon_menu_order.png);
+      }
+      .icon_offer{
+        background-image: url(img/icon_menu_offer.png);
+      }
+      .icon_certificate{
+        background-image: url(img/icon_menu_certificate.png);
+      }
+      .icon_star{
+        background-image: url(img/icon_menu_star.png);
+      }
+      .icon_comment{
+        background-image: url(img/icon_menu_comment.png);
+      }
+      .icon_detail{
+        background-image: url(img/icon_menu_detail.png);
+      }
+      .icon_credit{
+        background-image: url(img/icon_menu_credit.png);
+      }
+      .icon_more{
+        background-image: url(img/icon_menu_more.png);
+      }
+    }
+  }
+}
+.index_close_icon{
+  .myredback_arrow{
+        margin-top:6px;
+        background:url(img/back_arrow.png) no-repeat;
+        background-size:10px 16px;
+        height:20px;
+        width:20px;
+  }
+}

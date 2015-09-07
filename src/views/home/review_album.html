@@ -1,0 +1,42 @@
+<div class="scrollable page review_album">
+<div class="scrollable-content">
+  <!-- 页头 -->
+  <header class="header common_header business_info_header">
+    <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+    </a>
+    <div class="title">相册</div>
+    
+  </header>
+  <div class="album_body">
+    <div class="tabs" ui-state="activeTab" ui-default="1">
+      <div class="album_content clearfix">
+          <div class="album_photo_list clearfix">
+            <div class="col-xs-6" ng-repeat="img in imgs" ng-class="{'left_img' : $index%2 == 0,'right_img' : $index%2 == 1}">
+              <div class="img_box">
+                <img ng-click="showPhoto(img)" ui-turn-on="imageViewer" ng-src="{{parseImageUrl(img.review_image_url)}}" fallback-src="{{defaultImgUrl}}" class="album_img">
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+    
+<div ui-content-for="modals">
+  <!-- 相片弹出框 -->
+  <div class="modal image_modal" ui-if="imageViewer" ui-state="imageViewer">
+    <div class="modal-backdrop in" ui-turn-off="imageViewer"></div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <img ng-src="{{parseImageUrl(imgTemp.review_image_url)}}" class="album_img" fallback-src="{{defaultImgUrl}}">
+      </div>
+    </div>
+  </div>
+
+</div><!-- end of modal -->

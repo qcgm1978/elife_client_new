@@ -1,0 +1,24 @@
+<div class="scrollable page online_book">
+    <!-- 内容 -->
+    <div class="scrollable-content">
+
+        <header class="header common_header">
+            <a href="javascript:history.back();" class="return_btn">
+                <div class="back">
+                    <div class="back_arrow"></div>
+                    <div>返回</div>
+                </div>
+            </a>
+            <div class="title">预定时间</div>
+        </header>
+
+        <!-- 导航栏 -->
+        <div class="time_nav clearfix" ng-click="saveActive();">
+            <div class="today active_nav" ng-click="active = 1">今天<br><span>02-09</span></div>
+            <div class="tomorrow" ng-class="{active_nav: active == 2}" ng-click="active=2">明天<br><span>02-09</span></div>
+            <div class="beforeday" ng-class="{active_nav: active == 3}" ng-click="active=2">后天<br><span>02-09</span></div>
+            <div class="calender " ng-class="{active_nav: active == 4}" ng-click="active=2">日历<br> </div>
+        </div>
+    </div>
+</div>
+</div>

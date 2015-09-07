@@ -1,0 +1,11 @@
+.list_draw_title{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 14px;
+	color: #333;
+}
+.list_draw_table{
+	@include list_draw_table;
+}

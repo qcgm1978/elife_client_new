@@ -1,0 +1,60 @@
+<div class="scrollable page review_album">
+    <div class="scrollable-content">
+        <!-- 页头 -->
+        <header class="header common_header business_info_header">
+            <a href="javascript:history.back();" class="return_btn">
+                <div class="back">
+                    <div class="back_arrow"></div>
+                    <div>返回</div>
+                </div>
+                <a ng-click="toAddPhoto()" id="toAddPhoto" link-data="#/review/photo_added/{{id}}/{{currentAlbumId}}">
+                    <div class="confirm_btn">上传</div>
+                </a>
+            </a>
+            <div class="title">相册</div>
+        </header>
+
+        <div class="album_body">
+            <div class="tabs" ui-state="activeTab" ui-default="1">
+                <!-- 导航栏 -->
+                <div ng-show="albumList.length === 0">暂无图片</div>
+                <div class="album_nav_wrap" ng-show="albumList.length > 0">
+                    <div class="album_nav clearfix">
+                        <ul class="album_ul">
+                            <li ng-repeat="item in mainCategory">
+                                <a ng-click="getPhotoList(sub_item)" ng-repeat="sub_item in item.category" ui-set="{'activeTab': sub_item.tabIndex}">
+                                    <div class="album_nav_li" ui-class="{'active': activeTab == '{{sub_item.tabIndex}}'}"  ng-bind="::sub_item.aname">
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="album_content clearfix">
+                    <div class="album_photo_list clearfix">
+                        <div ng-repeat="img in photoList" class="col-xs-6 no_padding" class="img-box">
+                            <img ng-click="showPhoto(img)" ui-turn-on="imageViewer"  ng-src="{{parseImageUrl(img.purl)}}"  class="album_img" fallback-src="{{defaultImgUrl}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+   
+<div ui-content-for="modals">
+    <!-- 预览弹出框 -->
+    <div class="modal image_modal" ui-if="imageViewer" ui-state="imageViewer">
+        <div class="modal-backdrop in" ui-turn-off="imageViewer"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="info">
+                    <div class="desc">{{imgTemp.time}}</div>
+                </div>
+                <img ng-src="{{parseImageUrl(imgTemp.purl)}}" class="album_img" fallback-src="{{defaultImgUrl}}">
+                <div class="type">{{imgTemp.pdesc}}</div>
+            </div>
+        </div>
+    </div>
+</div><!-- end of modal -->

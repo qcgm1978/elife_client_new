@@ -1,0 +1,278 @@
+// 逸，闪，工小标签
+.icon_yi{
+  background:url(img/icon_yi.png) center no-repeat;
+}
+.icon_fen{
+  background:url(img/icon_fen.png) center no-repeat;
+}
+.icon_ji{
+  background:url(img/icon_ji.png) center no-repeat;
+}
+.icon_shan{
+  background:url(img/icon_shan.png) center no-repeat;
+}
+.icon_gong{
+  background:url(img/icon_gong.png) center no-repeat;
+}
+.icon_tuan{
+  background:url(img/icon_tuan.png) center no-repeat;
+}
+.icon_cu{
+  background:url(img/icon_cu.png) center no-repeat;
+}
+.icon_ka{
+  background:url(img/icon_ka.png) center no-repeat;
+}
+.icon_ding{
+  background:url(img/icon_ding.png) center no-repeat;
+}
+
+//星星图标
+.icon_star_full{
+   background:url(img/icon_star_full.png) center no-repeat;
+}
+.icon_star_half{
+   background:url(img/icon_star_half.png) center no-repeat;
+}
+
+
+// 地点坐标
+.icon_location{
+  background-image:url(img/location.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+.right_arrow{
+  background-image:url(img/right_arrow.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+//电话图标
+.telephone_icon{
+  background-image:url(img/telephone.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+// 融e联图标
+.e_financial_icon{
+  background-image:url(img/e_financial.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+
+//三角形“订”字图标
+.icon_ding_t{
+   background-image:url(img/icon_ding_t.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+//三角形“付”字图标
+.icon_fu_t{
+   background-image:url(img/icon_fu_t.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+//三角形“工”字图标
+.icon_gong_t{
+   background-image:url(img/icon_gong_t.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+//三角形“卡”字图标
+.icon_ka_t{
+   background-image:url(img/icon_ka_t.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+//三角形“团”字图标
+.icon_tuan_t{
+   background-image:url(img/icon_tuan_t.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+
+//汽车图标
+.icon_car{
+  background-image:url(img/icon_car.png);
+  background-position: 0px 0px;
+  background-repeat:no-repeat;
+}
+
+.icon_car_gray{
+  background-image:url(img/icon_car_gray.png);
+  background-position: 0px 0px;
+  background-repeat:no-repeat;
+}
+
+//笔记本图标
+.icon_pc{
+  background-image:url(img/icon_pc.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+.icon_pc_gray{
+  background-image:url(img/icon_pc_gray.png);
+  background-position: center;
+  background-repeat:no-repeat;
+
+}
+
+//银行卡图标
+.icon_bank_card{
+  background-image:url(img/icon_bank_card.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+.icon_bank_card_gray{
+  background-image:url(img/icon_bank_card_gray.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+//向下箭头
+.down_arrow{
+  background-image:url(img/down_arrow.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+//窄的向下箭头
+.narrow_down_arrow{
+  background-image:url(img/narrow_down_arrow.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+//红色窄的向下箭头
+.narrow_down_arrow_red{
+  background-image:url(img/narrow_down_arrow_red.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+@mixin category_icon($img){
+
+  background-image:url($img);
+  background-position: center;
+  background-repeat:no-repeat;
+  background-size: 100% 100%;
+}
+
+//首页分类导航图标
+.icon_category_dish{
+  @include category_icon('img/icon_dish.png');
+}
+.icon_category_food{
+  @include category_icon('img/icon_food.png');
+}
+.icon_category_drink{
+  @include category_icon('img/icon_drink.png');
+}
+.icon_category_more{
+  @include category_icon('img/icon_more.png');
+}
+.icon_category_yidai{
+  @include category_icon('img/icon_yidai.png');
+}
+.icon_category_icbc{
+  @include category_icon('img/icon_icbc.png');
+}
+.icon_category_district{
+  @include category_icon('img/icon_group.png');
+}
+.icon_category_discount{
+  @include category_icon('img/icon_discount.png');
+}
+//全部分类热门图标
+.icon_all_category_hot{
+  background-image:url(img/icon_all_category_hot.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+//全部分类美食图标
+.icon_all_category_food{
+  background-image:url(img/icon_all_category_food.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+//全部分类小吃图标
+.icon_all_category_snack{
+  background-image:url(img/icon_all_category_snack.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+.icon_category_food{
+  background-image:url(img/icon_food.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+// 团购页面属性打钩形状图标
+.customers_check_icon{
+  background-image:url(img/customers_check_icon.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+// 团购页面点赞图标
+.customers_praise_icon{
+  background-image:url(img/customers_praise_icon.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+//收藏打钩图标
+.favor_check_icon{
+  background-image:url(img/favor_check_icon.png);
+  background-position: 10px 25px;
+  background-repeat:no-repeat;
+}
+
+.favor_uncheck_icon{
+  background-image:url(img/favor_uncheck_icon.png);
+  background-position: 10px 25px;
+  background-repeat:no-repeat;
+}
+
+// 我的团购里面radio图标
+.customers_check{
+  background-image:url(img/customers_check.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+.customers_uncheck{
+  background-image:url(img/customers_uncheck.png);
+  background-position: center;
+  background-repeat:no-repeat;
+}
+
+// 抽奖
+
+ .draw_label{
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: 45px;
+  height: 45px;
+  background: url(img/draw_label.png) no-repeat;
+  background-size: 45px 45px;
+    p{
+      color: #fff;
+      font-size: 12px;
+      transform: rotate(-43deg);
+      margin: 4px 1px 0 0;
+    }
+ }
+  .draw_redlabel{
+  background: url(img/draw_redlabel.png) no-repeat;
+ }
+

@@ -1,0 +1,137 @@
+.my_favorites{
+  // 导航栏
+  .my_favor_navi{
+    margin-top:7px;
+    border-radius: 5px;
+    font-size: 15px;
+    @include retina_border(1px,solid,$text_color_red);
+    margin-left: 50%;
+    color: $text_color_red;
+    list-style: none;
+    width: 162px;
+    height: 30px;
+    position: relative;
+    left: -80px;
+    overflow: hidden;
+    li.active{
+      background-color: $text_color_red;
+      border: 0px;
+      padding: 0px;
+      color: #fff;
+   
+    }
+    li{
+      float: left;
+      width: 80px;
+      height: 28px;
+      line-height: 30px;
+      color: $text_color_red;
+    }
+  }
+  
+// 搜索
+  .my_favorites_search{
+    background: transparent;
+    border-bottom: 0px;
+
+    .search_input{
+      background-color: #fff;
+      margin-left: 60px;
+      input{
+        background-color: #fff;
+      }
+    }
+  }
+  .list_filter_wrap{
+    background-color: #fff;
+  }
+
+   //列表中打钩选择的图标样式
+  .favor_list_check{
+    display: none;
+    margin-left: -10px;
+    background-size: 20px 20px;
+    width: 40px;
+    height: 66px;
+    padding: 0px 10px;
+    float: left;
+  }
+
+// 删除取消按钮
+  .favor_delete_btn{
+    display: none;
+    position: absolute;
+    bottom: 60px;
+    left: 15px;
+    right: 15px;
+  }
+  .favor_cancel_btn{
+    display: none;
+    margin-top: 15px;
+    bottom: 10px;
+  }
+
+  .favor_delete_modal{
+    .bottom{
+      padding:0px;
+      position: relative;
+      div{
+        padding: 12px 0;
+        float: left;
+        width: 50%;
+      }
+      div:first-child{
+        @include retina_border_right(1px,solid, $text_color_red);
+      }
+    }
+  }
+
+  //删除元素
+  .hide_item{
+    height: 0px;
+    padding: 0px;
+    content:"";
+    visibility: hidden;
+  }
+
+
+  //优惠收藏
+  .discount_list{
+    @include retina_border_top;
+  }
+
+  // 列表统一样式
+  .thumb_list{
+    li{
+      background-color: #fff;
+      padding-left: 10px;
+      .left{
+        margin-left: 0px;
+      }
+    }
+    .stars{
+      position: relative;
+      top: -3px;
+    }
+    .icon_yi{
+      width: 17px;
+      background-size: 17px 17px;
+    }
+  }
+  .f_list {
+    padding-bottom: 130px;
+  }
+
+//点击右上角删除之后的样式
+  .delete_list{
+    .favor_list_check{
+      display: block;
+    }
+    .favor_delete_btn{
+      display: block;
+    }
+    .right{
+      margin-left: 137px;
+    }
+  }
+}

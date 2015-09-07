@@ -1,0 +1,69 @@
+
+.at-multirange-slider {
+  height: 40px;
+  padding-top: 10px;
+  font-size: 0;
+
+  .slider {
+    height: 2px;
+  }
+
+  .slider-range {
+    
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    height: 2px;
+    background-color: #cccccc;
+
+    &:last-child {
+      .slider-handle{
+          display: none;
+      }
+
+      .slider-label{
+        display: none;
+      }
+    }
+
+    &:nth-child(even){
+      background-color: $text_color_red;
+    }
+    
+  }
+
+  .slider-handle {
+    z-index: 100;
+    margin-top: -10px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: $text_color_red;
+
+    &:active{
+      background-color: #ccc;
+    }
+    .circle_handle{
+      width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      background-color: $text_color_red;
+
+      &:active{
+        background-color: #ccc;
+      }
+    }
+  }
+  .slider-label {
+    text-align: right;
+    font-size: 12px;
+    margin-right: -10px;
+    margin-top: -30px;
+  }
+  .slider-label-top{
+    margin-top: -30px;
+  }
+}
+

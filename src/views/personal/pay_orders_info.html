@@ -1,0 +1,44 @@
+<div class="scrollable page pay_orders">
+<!-- 内容 -->
+  <div class="scrollable-content">
+    
+    <header class="header common_header">
+      <a href="javascript:history.back();">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="title">app支付</div>
+    </header>
+
+    <div class="menu_list">
+       <div>
+        <div class="item">
+          <div class="name">消费总金额</div>
+          <div class="price">¥{{list.total_amount}}元</div>
+        </div>
+      </div>
+
+      <a href="#/personal/pay_e_coupon">
+        <div class="item">
+          <div class="name"><div class="icon favor_check_icon"></div>电子券</div>
+          <div class="price">¥-3.10元</div>
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </a>
+      <div>
+        <div class="item">
+          <div class="name">还需支付</div>
+          <div class="price">¥{{list.total_amount-3.10}}元</div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="red_confirm_btn pay_btn">提交订单</div>
+    
+  </div><!--  scrollable content -->
+</div>

@@ -1,0 +1,132 @@
+<div class="scrollable page district_list">
+  <div class="scrollable-content">
+    <header class="header common_header">
+     <a href="javascript:history.back();">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+    </a>
+    
+    <div class="confirm_btn">确定</div>
+    <div class="title">地区列表</div>
+    </header>
+
+    <!-- 显示地区列表tab -->
+   <!--  <div class="list_body" ui-state="district_list_tab" ui-default='1'>
+     
+       <ul class=" tab_title_area">
+          <li ui-class="{'active': district_list_tab == 1)}">
+            <a ui-set="{'district_list_tab': 1}">全部区域</a>
+          </li>
+          <li ui-class="{'active': district_list_tab == 2)}">
+            <a ui-set="{'district_list_tab': 2}">朝阳区</a>
+          </li>
+       </ul>
+
+
+       <ul class="tab_content_area"> 
+         <li ui-if="district_list_tab == 1"></li>
+         <li ui-if="district_list_tab == 2"></li>
+       </ul>
+
+      
+
+    </div> -->
+<div class="list_body">
+  <ul class="tab_title_area" ui-state='district_list_Tab' ui-default='110149' >
+     <!--<a><li ui-class="{'active': district_list_Tab == 1}" ui-set="{'district_list_Tab': 1}" class="tab_title">全部地区</li></a>-->
+     <a ng-repeat='district in citys'><li  ui-class="{'active': district_list_Tab == {{district.district_code}} }" 
+        ui-set="{'district_list_Tab': district.district_code}" class="tab_title"> {{::district.district_name}}</li></a>
+     <!--<a><li ui-class="{'active': district_list_Tab == 3}" ui-set="{'district_list_Tab': 3}" class="tab_title">西城区</li></a>
+     </a>-->
+  </ul>
+
+  <ul class="tab_content_area">
+    <!--<li ui-if="district_list_Tab == 1">
+      <ul>
+        <li>
+          <div class="tab_content_title"><div>A</div></div>
+          <ul class="tab_content_ul">
+            <li class="tab_content_item" ng-click="setErrorDistrict(1,'安贞')">安贞</li>
+            <li class="tab_content_item" ng-click="setErrorDistrict(1,'安华桥')">安华桥</li>
+          </ul>
+        </li>
+        <li>
+          <div class="tab_content_title"><div>B</div></div>
+          <ul class="tab_content_ul">
+            <li class="tab_content_item" ng-click="setErrorDistrict(1,'安贞')">安贞</li>
+            <li class="tab_content_item" ng-click="setErrorDistrict(1,'安华桥')">安华桥</li>
+          </ul>
+        </li>
+        <li>
+          <div class="tab_content_title"><div>C</div></div>
+          <ul class="tab_content_ul">
+            <li class="tab_content_item" ng-click="setErrorDistrict(1,'安贞')">安贞</li>
+            <li class="tab_content_item" ng-click="setErrorDistrict(1,'安华桥')">安华桥</li>
+          </ul>
+        </li>
+      </ul>
+    </li>-->
+
+    <li ng-repeat="district in citys" ui-show="district_list_Tab == {{::district.district_code}}" >
+      <ul>
+        <li>
+          <!--<div class="tab_content_title"><div>A</div></div>-->
+          <ul class="tab_content_ul" >
+            <li class="tab_content_item" ng-repeat="subRegion in district.community_list" ng-click="setErrorDistrict(subRegion.community_code,subRegion.community_name)">
+              {{::subRegion.community_name}}
+            </li>
+            <!--<li class="tab_content_item">鞍山</li>-->
+          </ul>
+        </li>
+        <!--<li>
+          <div class="tab_content_title"><div>B</div></div>
+          <ul class="tab_content_ul">
+            <li class="tab_content_item">安防</li>
+            <li class="tab_content_item">鞍山</li>
+          </ul>
+        </li>
+        <li>
+          <div class="tab_content_title"><div>C</div></div>
+          <ul class="tab_content_ul">
+            <li class="tab_content_item">安防</li>
+            <li class="tab_content_item">鞍山</li>
+          </ul>
+        </li>-->
+      </ul>
+    </li>
+
+    <li ui-if="district_list_Tab == 3">
+      <ul>
+        <li>
+          <div class="tab_content_title"><div>A</div></div>
+          <ul class="tab_content_ul">
+            <li class="tab_content_item">安静</li>
+            <li class="tab_content_item">安逸</li>
+          </ul>
+        </li>
+        <li>
+          <div class="tab_content_title"><div>B</div></div>
+          <ul class="tab_content_ul">
+            <li class="tab_content_item">安静</li>
+            <li class="tab_content_item">安逸</li>
+          </ul>
+        </li>
+        <li>
+          <div class="tab_content_title"><div>C</div></div>
+          <ul class="tab_content_ul">
+            <li class="tab_content_item">安静</li>
+            <li class="tab_content_item">安逸</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+</div>
+
+
+
+  </div>
+</div>

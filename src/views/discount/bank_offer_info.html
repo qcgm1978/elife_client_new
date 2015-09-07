@@ -1,0 +1,103 @@
+<div class="scrollable page card_offer">
+<!-- 内容 -->
+  <div class="scrollable-content">
+
+  <!-- 头部栏 -->
+  <header class="header common_header">
+    <a href="javascript:history.back();">
+      <div class="back">
+        <div class="back_arrow"></div>
+        <div>返回</div>
+      </div>
+    </a>
+
+    <div class="favorite" ng-click="addBankFavor()"></div>
+    <div class="share" ng-click="share({'pft_code':'{{id}}','share_type':'bankdiscount'})"></div>
+    <div class="title">银行优惠活动详情</div>
+  </header>
+    
+  <!-- 顶部广告图片 -->
+  <div class="top_face">
+    <img  ng-src="{{bankInfo.image_url)}}"  alt="" fallback-src="{{defaultImgUrl}}">
+  </div>
+ 
+  <!-- 优惠电子券 -->
+  <div class="coupon">
+    <div class="container">
+      <div class="title">{{bankInfo.promotions_title}}</div>
+      <div class="info">有效期：{{bankInfo.start_time}}-{{bankInfo.start_end}}</div>
+      <div class="info">{{bankInfo.desc}}</div>
+      <a href="#/discount/comment"><div class="coupon_button">点评</div></a>
+    </div>
+  </div>
+  <div class="coupon_desc">
+      <p>使用须知</p>
+      <p>1、本券有效期为{{bankInfo.start_time}}-{{bankInfo.start_end}}。</p>
+      <p ng-show="bankInfo.use_explain">2、{{bankInfo.use_explain}}。</p>
+  </div>
+
+  <!-- 网友点评 -->
+  <div class="title_section review">
+    <a href="#/review/index">
+      <div class="section_header">
+        <div class="title">网友点评（{{::commentCount}}）</div>
+        <div class="right_arrow"></div>
+        <div class="clearfix"></div>
+      </div>
+    </a>
+    <div class="content">
+      <div class="img_wrap" ng-repeat-start="cList in commentList | limitTo:1">
+        <img  ng-src="{{parseImageUrl(cList.image_url)}}" fallback-src="{{defaultImgUrl}}">
+      </div>
+      <div class="right" ng-repeat-end>
+        <div class="title">{{::cList.nick_name}}</div>
+          <span class="star_full"></span><span class="star_full"></span><span class="star_full"></span><span class="star_full"></span><span class="star_half"></span>
+
+          <div class="desc">{{::cList.review_content}}</div>
+          <ul>
+            <li><img ng-src="{{parseImageUrl(cList.review_image_list.review_image_url)}}"  alt="" fallback-src="{{defaultImgUrl}}"></li>
+          </ul>
+        </div>
+      </div>
+  </div>
+
+    <div class="title_section apply_store">
+      <a href="#/business/bank_available_store">
+        <div class="section_header">
+          <div class="title">适用门店（{{bankStoreList.length}}家）</div>
+          <div class="right_arrow"></div>
+        </div>
+      </a>
+        <ul class="thumb_list"  >
+        <li >
+          <a href="#/business/index/{{bankStoreList[0].store_code}}">
+            <img class="left" ng-src="{{parseImageUrl(bankStoreList[0].image_url)}}" fallback-src="{{defaultImgUrl}}">
+            <div class="right">
+              <div class="top large"
+                ng-bind="bankStoreList[0].store_name"></div>
+              <div class="middle">
+                <div class="stars">
+                 <div ng-repeat="star in bankStoreList[0].levels" class="star_{{star.type}}"></div>
+                </div>
+              </div>
+              <div class="bottom small gray">
+                {{::bankStoreList[0].district_name}} {{::bankStoreList[0].small_name}}
+              </div>
+              <div class="right_bottom small light_gray" >{{bankStoreList[0].distance}}km</div>
+              <div class="other_info">
+                <div ng-repeat= "role in bankStoreList[0].discount_role" class="top discount_icon {{role}}" >
+                  </div>
+                 
+                <div class="middle small avg_price">{{bankStoreList[0].average_price||127}}元/人</div>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+      
+    </div>
+
+</div>
+</div>
+
+

@@ -1,0 +1,111 @@
+<div class="scrollable page my_orders">
+<!-- 内容 -->
+  <div class="scrollable-content">
+    
+    <header class="header common_header">
+      <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="confirm_btn" ng-click="edit()" ng-show="((active==1&&unpaidOrders!=null)&&unpaidOrders.length!=0)||((active==2&&paidOrders!=null)&&paidOrders.length!=0)">删除</div>
+
+      <div class="title">二维码支付订单</div>
+    </header>
+
+    <!-- 导航栏 -->
+    <div class="my_orders_nav clearfix">
+      <div class="unpaid" ng-class="{active_nav: active ==1 || !active}" ng-click="active =1">未付款</div>
+      <div class="paid " ng-class="{active_nav: active ==2}" ng-click="active=2">已付款</div>
+    </div>
+    <!-- 列表展示 -->
+    <div class="my_orders_list">
+
+
+
+    <!-- 未付款列表 -->
+      <div class="unpaid_list" ng-show="active ==1 || !active">
+        <ul class="thumb_list">
+ 
+          <li class="my_comment" ng-class="{delete_discount_item: discount_select[1]}" ng-repeat="order in unpaidOrders">
+            <a href="#/personal/pay_orders/2/{{order.shop_id}}/{{order.order_id}}/{{order.total_amount}}/undefined" class="clearfix">
+              <div class="check_icon" ng-show="isEditing" ng-class="{check_icon_on: isSelect(order,{{$index}})}" ng-click=" $event.preventDefault()"></div>
+
+              <img class="left"  lazy-img="{{parseImageUrl(order.store_log)}}"  alt="暂无图片" src="{{defaultImgUrl}}">
+              <div class="right">
+                <div class="top large w-b-a">{{order.store_name}}</div>
+                <div class="middle small"><span>支付金额：{{order.total_amount | currency:'¥'}}元</span></div>
+                <div class="bottom small gray">生成订单日期：{{order.order_date}}</div>
+              </div>
+            </a>
+            <a href="#/personal/pay_orders/2/{{order.shop_id}}/{{order.order_id}}/{{order.total_amount}}/-1"><div class="pay_btn">付款</div></a>
+            <div class="check_mask" ng-click="select(order)" style="display:block;" ng-show="isEditing"></div>
+
+          </li>
+        </ul>
+      </div>
+
+    
+    <!-- 已付款列表 -->
+      <div class="paid_list" ng-show="active ==2">
+        <ul class="thumb_list">
+
+
+          <li ng-class="{delete_discount_item: discount_select[1]}" ng-repeat="order in paidOrders"  class="my_comment">
+            <a href="#/personal/order_detail/{{order.shop_id}}/{{order.order_id}}" class="clearfix">
+              <div class="check_icon" ng-show="isEditing" ng-class="{check_icon_on: isSelect(order,{{$index}})}" ng-click=" $event.preventDefault()"></div>
+
+              <img class="left"  lazy-img="{{parseImageUrl(order.store_log)}}"  alt="暂无图片" src="{{defaultImgUrl}}">
+              <div class="right">
+                <div class="top large w-b-a">{{order.store_name}}</div>
+                <div class="middle small"><span>支付金额：{{order.total_amount | currency : '¥'}}元</span></div>
+                <div class="bottom small gray">生成订单日期：{{order.order_date}}</div>
+              </div>
+            </a>
+                        <div class="check_mask" ng-click="select(order)" style="display:block;" ng-show="isEditing"></div>
+
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    
+  </div><!--  scrollable content -->
+    <div class="scrollable-footer" ng-show="isEditing&&(((active==1&&unpaidOrders!=null)&&unpaidOrders.length!=0)||((active==2&&paidOrders!=null)&&paidOrders.length!=0))">
+        <div class="red_confirm_btn delete_btn" ng-click="preDelete()">删除</div>
+        <div class="gray_confirm_btn" ng-click="cancel()">取消</div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <!-- 删除order确认 -->
+    <div class="modal confirm_modal ng-scope" ui-if="comment_del_modal" ui-state="comment_del_modal" >
+        <div class="modal-backdrop in" ui-turn-off="comment_del_modal"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="top">
+                    <div>你确定删除选中的订单吗？</div>
+                </div>
+                <div ui-turn-off="comment_del_modal" class="bottom clearfix">
+                    <div  ui-turn-off="comment_del_modal">取消</div>
+                    <div ng-click="delete()" ui-turn-off="comment_del_modal">确定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 删除评论错误提示 -->
+    <div class="modal confirm_modal ng-scope" ui-if="comment_error_modal" ui-state="comment_error_modal" >
+        <div class="modal-backdrop in" ui-turn-off="comment_error_modal"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="top">
+                    <div>请选择要删除的订单</div>
+                </div>
+                <div ui-turn-off="comment_error_modal" class="bottom clearfix">
+                    <div ui-turn-off="comment_error_modal">取消</div>
+                    <div ui-turn-off="comment_error_modal">确定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

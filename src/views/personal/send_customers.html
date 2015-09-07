@@ -1,0 +1,54 @@
+
+<div class="scrollable page send_customers">
+<!-- 内容 -->
+  <div class="scrollable-content">
+    
+    <header class="header common_header search_header">
+      <a href="javascript:history.back();">
+      <div class="back">
+        <div class="back_arrow"></div>
+        <div>返回</div>
+      </div>
+      </a>
+      <div class="title">发送团购券</div>
+    </header>
+    <div class="send_customers_body">
+      <div class="tel">
+        <span>手机号</span>
+        <form name="myForm" >
+        <input type="number"  name="input" class="num" ng-model="num1" placeholder="请输入手机号"/>
+        </form>
+        <span class="error" ng-show="!myForm.input.$valid" >请输入正确的手机号码</span>
+      </div>
+
+      <div class="shop_title">请选择使用门店</div>
+      <ul class="shop_list">
+        <li class="shop_list_item">
+          <div class="title">海底捞</div>
+          <div class="subtitle">西单君太平百货</div>
+          <div class="radio_btn customers_uncheck" ng-class="{customers_check:send_check==0}" ng-click="send_check=0"></div>
+        </li>
+
+        <li class="shop_list_item">
+          <div class="title">海底捞</div>
+          <div class="subtitle">西单君太平百货</div>
+          <div class="radio_btn customers_uncheck" ng-class="{customers_check:send_check==1}" ng-click="send_check=1"></div>
+        </li>
+
+        <li class="shop_list_item">
+          <div class="title">海底捞</div>
+          <div class="subtitle">西单君太平百货</div>
+          <div class="radio_btn customers_uncheck" ng-class="{customers_check:send_check==2}" ng-click="send_check=2"></div>
+        </li>
+      
+      </ul>
+
+     
+    </div>
+
+  </div>
+
+  <div class="scrollable-footer">
+     <div class="send_btn red_confirm_btn">发送</div>
+  </div>
+</div>

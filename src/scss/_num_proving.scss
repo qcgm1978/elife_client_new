@@ -1,0 +1,41 @@
+.num_proving{
+	.order_state{
+		font-size:13px;
+		text-align:center;
+		height:41px;
+		line-height:41px;
+		color:#999;
+	}
+	.order_detail{
+		margin-bottom:20px;
+		background:#fff;
+		ul{
+			padding:0px 8px;;
+			border-bottom:solid 1px #ccc;
+			li{
+				float:left;
+				font-size:16px;
+				line-height:55px;
+				input{
+					height:50px;
+					padding-left:5px;
+					width:155px;
+				}
+			}
+
+			.prov_num{
+				width: 100px;
+				text-align: right;
+				border-left: solid 1px #ccc;
+				color:#C7000A;
+			}
+		}
+	}
+	.btn{
+		width:98%;
+		margin:0 1%;
+		a{
+			@extend .red_btn;
+		}
+	}
+}

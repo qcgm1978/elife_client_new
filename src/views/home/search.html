@@ -1,0 +1,135 @@
+<div class="scrollable" page-title="搜索">
+  <div class="scrollable-content page search">
+
+    <header class="header common_header search_header">
+      <div ng-click="return_btn($event)">
+        <div class="search_cancel_btn" >
+          取消
+        </div>
+      </div>
+      <div class="search_input">
+        <form>
+          <input type="search" title="" placeholder="请输入商户名、地点" ng-model="searchHeaderValue" autocomplete="off"
+          ng-keydown="keypress($event)">
+          <!-- <input type="search" title="" placeholder="请输入商户名、地点" ng-model="searchHeaderValue" autocomplete="off"
+          ng-click="keyboard()"> -->
+
+          <!-- 关键字搜索 -->
+          
+
+        </form>
+
+        <div class="close_icon" ng-show="searchHeaderValue" ng-click="searchHeaderValue=''"></div>
+      </div>
+    </header>
+
+
+
+      <div class="search_history_record">
+
+
+        <a ng-show="searthResultKeys[0]" ng-href="#/home/search_result/0/{{searthResultKeys[0]}}/" >
+          <div ng-bind="searthResultKeys[0]"  id="{{searthResultKeys[0]}}"></div>
+        </a>
+
+        <a ng-show="searthResultKeys[1]" ng-href="#/home/search_result/0/{{searthResultKeys[1]}}/" >
+          <div ng-bind="searthResultKeys[1]"  id="{{searthResultKeys[1]}}"></div>
+        </a>
+        <a ng-show="searthResultKeys[2]" ng-href="#/home/search_result/0/{{searthResultKeys[2]}}/" >
+          <div ng-bind="searthResultKeys[2]"  id="{{searthResultKeys[2]}}"></div>
+        </a>
+
+        <a ng-show="searthResultKeys[3]" ng-href="#/home/search_result/0/{{searthResultKeys[3]}}/" >
+          <div ng-bind="searthResultKeys[3]"  id="{{searthResultKeys[3]}}"></div>
+        </a>
+        <a ng-show="searthResultKeys[4]" ng-href="#/home/search_result/0/{{searthResultKeys[4]}}/" >
+          <div ng-bind="searthResultKeys[4]"  id="{{searthResultKeys[4]}}"></div>
+        </a>
+
+        <a ng-show="searthResultKeys[5]" ng-href="#/home/search_result/0/{{searthResultKeys[5]}}/" >
+          <div ng-bind="searthResultKeys[5]"  id="{{searthResultKeys[5]}}"></div>
+        </a>
+        <a ng-show="searthResultKeys[6]" ng-href="#/home/search_result/0/{{searthResultKeys[6]}}/" >
+          <div ng-bind="searthResultKeys[6]"  id="{{searthResultKeys[6]}}"></div>
+        </a>
+
+        <a ng-show="searthResultKeys[7]" ng-href="#/home/search_result/0/{{searthResultKeys[7]}}/" >
+          <div ng-bind="searthResultKeys[7]"  id="{{searthResultKeys[7]}}"></div>
+        </a>
+        <a ng-show="searthResultKeys[8]" ng-href="#/home/search_result/0/{{searthResultKeys[8]}}/" >
+          <div ng-bind="searthResultKeys[8]"  id="{{searthResultKeys[8]}}"></div>
+        </a>
+
+        <a ng-show="searthResultKeys[9]" ng-href="#/home/search_result/0/{{searthResultKeys[9]}}/" >
+          <div ng-bind="searthResultKeys[9]"  id="{{searthResultKeys[9]}}"></div>
+        </a>
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="search_body">
+      <div class="search_section_title">热门搜索</div>
+      <div class="clearfix">
+        <a ng-href="#/home/search_result/0/{{item.search_name}}"
+          ng-repeat="item in hotKeywords">
+          <div class="col-xs-4 "
+            ng-class="{
+              tag_left: $index % 3 == 0,
+              tag_mid: $index % 3 == 1,
+              tag_right: $index % 3 ==2
+            }">
+            <div ng-bind="item.search_name" class="text_overflow" ng-click="setHistory($event)"></div>
+          </div>
+        </a>
+      </div>
+      
+
+    <!--  <div class="search_section_title">热门搜索</div>
+    <div class="clearfix">
+      <a ng-href="#/home/search_result/0/{{item.city_name}}"
+        ng-repeat="item in hotKeywords">
+        <div class="col-xs-4"
+          ng-class="{
+            tag_left: $index % 3 == 0,
+            tag_mid: $index % 3 == 1,
+            tag_right: $index % 3 ==2
+          }">
+          <div ng-bind="item.city_name"></div>
+        </div>
+      </a>
+    </div> -->
+     
+
+      <div class="search_section_title search_history">搜索历史
+      <span ng-click="clearHistory()">清除历史记录</span>
+      </div>
+    </div>
+    <div class="search_history_record" ng-show="showHistory">
+      <a ng-href="#/home/search_result/0/{{item}}/" ng-repeat="item in history | limitTo: 10">
+      <div ng-bind="item"  id="{{item}}"></div>
+      </a>
+    </div>
+    <!-- <button ng-click="testCall()">测试</button> -->
+
+    <!-- <div ng-bind="test1"></div> -->
+  </div>
+</div>

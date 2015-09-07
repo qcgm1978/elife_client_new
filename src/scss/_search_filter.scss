@@ -1,0 +1,302 @@
+//筛选
+.search_filter{
+  height: 100%;
+  width: 100%;
+  padding: 12px 15px;
+  padding-left: 0px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+
+  //自定义 filter sidebar 
+  &.filter_sidebar_in{
+    .filter_side_pane{
+      transform: translateX(-100%);
+      -webkit-transform: translateX(-100%);
+    }
+    
+  }
+  .mask{
+    width: 10%;
+    height: 100%;
+  }
+  .filter_side_pane{
+    height: 100%;
+    background-color: #fff;
+    padding: 12px 15px;
+    z-index:1000;
+    position: absolute;
+    top: 0;
+    width: 90%;
+    left: 100%;
+    transition: ease all 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    overflow: auto;
+  }
+  
+  //顶部确认按钮
+  .filter_confirm{
+    a{
+      color: $text_color_red;
+      font-size: 14px;
+      padding: 15px 10px 15px 15px;
+
+    }
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    text-align: right;
+    line-height: 18px;
+    
+  }
+  .filter_title{
+    position: relative;
+    height: 26px;
+    // margin-top: 15px;
+    font-size: 17px;
+    @include retina_border_bottom();
+    .filter_title_name{
+      float: left;
+      color: $text_color_red;
+      line-height: 12px;
+    }
+    
+    .extend_area{
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+    }
+   
+    
+    //删选旁边的问号
+    .question{
+      width: 16px;
+      height: 16px;
+      font-size: 16px;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 16px;
+      color: #fff;
+      float: left;
+      margin-left: 5px;
+      background-color: #cccccc;
+      border-radius: 8px;
+      position:relative;
+      top: -2px;
+    }
+  }
+  .filter_category_section{
+  	padding-bottom:9px;
+  	@include retina_border_bottom(); 
+  }
+  
+  //筛选类别模块
+  .filter_category_item{
+  	height: 26px;
+  	line-height: 26px;
+  	vertical-align: middle;
+  	margin-top: 15px;
+  	position: relative;
+  
+  //类别模块名字
+  	.category_name{
+  		font-size: 15px;
+  		float:left;
+  	}
+  	.icon_area{
+  		position: absolute;
+  		left:105px;
+  		.category_icon{
+  			height: 26px; 
+  			width: 22px;
+  			float: left;
+  			margin-right: 5px;
+        background-size:22px 22px;
+  		}
+  	}
+
+//打钩选择图标
+  	.icon_check{
+  		width: 26px;
+  		height: 26px;
+  		float: right;
+  		background:url(img/icon_uncheck.png) 0 0 no-repeat;
+  		background-size:26px 26px;
+  	}
+  	.check_active{
+  		background:url(img/icon_check.png) 0 0 no-repeat;
+  		background-size:26px 26px;
+  	}
+  }
+
+//全部类别
+  .category_all{
+  		margin-top:9px; 
+  }
+
+//人均消费
+  .avg_consume_title, .map_choice, .map_choice_title{
+  	position:relative;
+  	height: 44px;
+  	font-size: 17px;
+  	color: $text_color_red;
+  	line-height: 44px;
+  	vertical-align: middle;
+  }
+  .avg_consume_title small{
+    color: $text_color_gray;
+  }
+  .avg_consume_range{
+  	height: 75px;
+  	@include retina_border_bottom();
+  }
+ .map_choice{
+  @include retina_border_bottom();
+ 	p{
+ 	  color: #000;
+ 	  float: left;
+ 	}
+ 	.switch.active{
+ 		background-color: $red_header_bgcolor;
+ 		border:1px solid $red_header_bgcolor;
+ 		.switch-handle{
+ 			top: 1px;
+ 			left: -12px;
+ 			width: 26px;
+ 			height: 26px;
+ 			border: $red_header_bgcolor;
+ 		}
+ 	}
+ 	.switch{
+ 		float: right;
+ 		top: 7px;
+    width: 50px;
+    height: 30px;
+   .switch-handle{
+   	top: 1px;
+   	left: -1px;
+   	width: 26px;
+	    height: 26px;
+   }
+ 	}
+ }
+ 
+  .at-multirange-slider{
+    margin-top: 20px;
+  }
+} 
+.slide{
+  background-color:red;
+  animation: slideRight  0.5s;
+   -webkit-animation: slideRight  0.5s;
+}
+.fadeIn{
+  animation: fadeIn  0.2s;
+   -webkit-animation: fadeIn  0.2s;
+}
+@keyframes slideRight{
+  0%{
+   -webkit-transform: translate(400px,0px);
+            transform: translate(400px,0px);
+  }
+  100%{
+   -webkit-transform: translate(0px,0px);
+            transform: translate(0px,0px);
+  }
+}
+@-webkit-keyframes slideRight{
+  0%{
+   -webkit-transform: translate(400px,0px);
+            transform: translate(400px,0px);
+  }
+  100%{
+   -webkit-transform: translate(0px,0px);
+            transform: translate(0px,0px);
+  }
+}
+@keyframes fadeIn{
+  0%{
+    opacity:0;
+    filter:alpha(opacity=0);       /* IE */
+    -moz-opacity:0;              /* 老版Mozilla */
+    -khtml-opacity:0;
+  }
+  100%{
+    opacity:1;
+    filter:alpha(opacity=1);       /* IE */
+    -moz-opacity:1;              /* 老版Mozilla */
+    -khtml-opacity:1;
+  }
+}
+@-webkit-keyframes fadeIn{
+  0%{
+    opacity:0;
+    filter:alpha(opacity=0);       /* IE */
+    -moz-opacity:0;              /* 老版Mozilla */
+    -khtml-opacity:0;
+  }
+  100%{
+    opacity:1;
+    filter:alpha(opacity=1);       /* IE */
+    -moz-opacity:1;              /* 老版Mozilla */
+    -khtml-opacity:1;
+  }
+}
+
+
+//图标解释overlay
+
+/* 二级遮罩 */
+  .inner_mask{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    
+  }
+.filter_overlay{
+  overflow: auto;
+  box-shadow: -1px -1px 10px #000;
+  border-radius: 25px;
+  top: 20px;
+}
+.filter_modal{
+  width: 275px;
+  margin: auto;
+  margin-top: 10%;
+
+  .modal-body{
+    padding-bottom: 20px;
+  }
+  @at_root{
+    .filter_modal_section{
+      margin-top: 20px;
+      height: 22px;
+      font-size: 12px;
+      line-height: 20px;
+      vertical-align: middle;
+      .filter_modal_section_icon{
+        width: 22px;
+        height: 22px;
+        float: left;
+        background-size:22px 22px;
+      }
+      .filter_modal_section_content{
+        float: left;
+        margin-left: 5px;
+      }
+    }
+    .filter_modal_body{
+      padding-bottom: 35px;
+      .filter_modal_close{
+        position:relative;
+        top: -6px;
+      }
+    }
+  }
+ }
+.bg-f{background-color:#fff}

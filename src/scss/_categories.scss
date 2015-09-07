@@ -1,0 +1,52 @@
+.categories_body{
+
+  font-size: 13px;
+  list-style: none;
+  padding: 0 10px;
+  .ategories_item{
+    position: relative;
+  }
+  .categories_item_head{
+    padding: 15px 0;
+    position:relative;
+    .head_icon{
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      background-size: 20px 20px;
+      float: left;
+    }
+    .head_title{
+      margin-left: 10px;
+      display: inline-block;
+      line-height: 21px; 
+      float: left; 
+    }
+  }
+  .categories_item_body{
+    @extend .clearfix;
+ 
+    li{
+    @include retina_border_right;
+    @include retina_border_bottom;
+    padding: 10px 0px;
+    background-color: #fff;
+    text-align: center;
+    min-height: 42px;
+    
+    }
+    .left_border{
+      @include retina_border_left;
+    }
+    .top_border{
+      @include retina_border_top;
+    }
+    .fa{
+      @include transition( 0.2s all linear );
+    }
+    .active_list .fa{
+      @include transform(rotate(180deg));
+    }
+
+  }
+}

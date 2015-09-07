@@ -1,0 +1,45 @@
+<div class="page other_store">
+  <header class="header common_header">
+      <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="title">适用门店</div>
+    </header>
+    
+   <div class="title_section apply_store">
+   <ul class="thumb_list"  >
+        <li ng-repeat="busiStore in businessStoreList">
+          <a href="#/business/index/{{busiStore.store_code}}">
+            <img class="left"
+              lazy-img="{{parseImageUrl(busiStore.image_url)}}" src="{{defaultImgUrl}}">
+            <div class="right">
+              <div class="top large">{{busiStore.store_name | limitTo :10}}<span ng-show="busiStore.store_name.length>10">...</span></div>
+              <div class="middle">
+                <div class="stars">
+                 <div ng-repeat="star in busiStore.levels" class="star_{{star.type}}"></div>
+                </div>
+              </div>
+              <div class="bottom small gray">
+                {{busiStore.bottomContent}}
+              </div>
+              <div class="right_bottom small light_gray" ng-show="busiStore.distance!=0.0">{{busiStore.distance}}{{busiStore.unit}}</div>
+              <div class="other_info">
+                <div ng-repeat= "role in busiStore.new_discount_role" class="top discount_icon {{role}}" >
+                  </div>
+                 
+                <div class="middle small avg_price" ng-bind="busiStore.average_price">元/人</div>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <div class="loading_more_wrap" ng-show="e_row > 10 && mark">
+          <div class="loading_more" ng-show="loadingMore">加载更多...</div>
+          <div class="loading_more" ng-show="!loadingMore">无更多数据...</div>
+        </div>
+      </div>
+
+</div>

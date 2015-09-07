@@ -1,0 +1,17 @@
+.yidai_business{
+  @extend .brand_result;
+  @extend .search_result;
+  // 列表统一样式
+  .thumb_list{
+    li{
+      .icon_yi,.icon_fen,.icon_ji,.icon_shan,.icon_gong,.icon_tuan,.icon_cu,.icon_ka,.icon_ding{
+        float:right;
+        margin: 4px 6px 0 0;
+        width: 17px;
+        height: 17px;
+        background-size: 17px 17px;
+      }
+
+    }
+  }
+}

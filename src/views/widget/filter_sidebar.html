@@ -1,0 +1,98 @@
+<div class="scrollable-content search_filter"
+     ng-controller="SearchFilterCtrl"
+     ui-state="showSidebar"
+     ui-show="showSidebar"
+     ui-class="{'filter_sidebar_in':showSidebar}" style="z-index: 1000;">
+
+    <div class="mask"></div>
+
+    <div class="filter_side_pane">
+        <div class="filter_title">
+            <div class="filter_title_name">筛选标准</div>
+            <a href="javascript:void(0);" ui-turn-on="modal1" class="clearfix extend_area">
+                <div class="question">?</div>
+            </a>
+
+            <div class="filter_confirm">
+                <a href="javascript:void(0)" ui-turn-off="showSidebar"
+                   ng-click="storeFilter(check_icbc, check_discount, isMapModel)">确定</a></div>
+
+        </div>
+
+        <!-- 选择类型部分 -->
+        <div class="filter_category_section">
+            <div class="filter_category_item category_all" ng-click="check_toggle_all()">
+                <div class="category_name">全部类型</div>
+                <a href="">
+                    <div class="icon_check" ng-class="{check_active:check_icbc&&check_discount}"></div>
+                </a>
+            </div>
+            <!-- 工行 -->
+            <div class="filter_category_item " ng-click="check_icbc=!check_icbc">
+                <div class="category_name">工行服务商户</div>
+                <div class="icon_area">
+                    <div ui-turn-on="modal1" class="category_icon icon_yi"></div>
+                    <div ui-turn-on="modal1" class="category_icon icon_fen"></div>
+                    <div ui-turn-on="modal1" class="category_icon icon_ji"></div>
+                    <div ui-turn-on="modal1" class="category_icon icon_shan"></div>
+                </div>
+                <a href="javascript:void(0)">
+                    <div class="icon_check" ng-class="{check_active: check_icbc}"></div>
+                </a>
+            </div>
+            <!-- 优惠商户-->
+            <div class="filter_category_item " ng-click="check_discount=!check_discount">
+                <div class="category_name">优惠商户</div>
+                <div class="icon_area">
+                    <div ui-turn-on="modal1" class="category_icon icon_gong"></div>
+                    <div ui-turn-on="modal1" class="category_icon icon_tuan"></div>
+                    <div ui-turn-on="modal1" class="category_icon icon_cu"></div>
+                </div>
+                <a href="">
+                    <div class="icon_check" ng-class="{check_active: check_discount}"></div>
+                </a>
+            </div>
+            <!-- 预定商户 -->
+            <!--<div class="filter_category_item " ng-click="check_reserve=!check_reserve">
+              <div class="category_name">预定商户</div>
+               <div class="icon_area">
+                <div class="category_icon icon_ding"></div>
+              </div>
+              <a href="">
+                <div class="icon_check" ng-class="{check_active: check_reserve}" ></div>
+              </a>
+            </div>-->
+        </div>
+        <div class="avg_consume_title">
+            <p>人均消费
+                <small>（单位：元）</small>
+            </p>
+        </div>
+        <div class="avg_consume_range">
+<span style="
+    position: absolute;
+    right: 0;
+">+</span>
+            <slider floor="0" ceiling="1000" step="50" precision="0" ng-model-low="position.min"
+                    ng-model-high="position.max"></slider>
+
+        </div>
+
+        <div class="map_choice_title">
+            <p>地图模式</p>
+        </div>
+        <div class="map_choice" ng-click="isMapModel = !isMapModel">
+            <p>是否切换为地图模式</p>
+
+            <div class="switch ng-isolate-scope switch-transition-enabled ng-valid" ng-class="{active: isMapModel}">
+                <div class="switch-handle"></div>
+            </div>
+        </div>
+    </div>
+
+<!--<script>-->
+    <!--alert(1);-->
+<!--</script>-->
+<!--<script src="http://api.map.baidu.com/api?ak=rYiHdeGPLQu0FnB1wR8K3Gjj&v=2.0"></script>-->
+</div>
+<!--end of scrollable content -->

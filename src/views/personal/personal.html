@@ -1,0 +1,90 @@
+<div class="scrollable">
+  <div class="scrollable-content personal">
+
+    <header class="header common_header">
+      <div class="title">我的</div>
+      <a href="javascript:history.back();" class="index_close_icon close_icon" ng-hide="isElifeClient"><div class="myredback_arrow"></div></a>
+    </header>
+    <div class="top">
+      <a ng-click="verifyLogin('#/personal/personal_info')">
+        <div class="avatar">
+          <img ng-src="{{parseImageUrl(img)}}" alt="" fallback-src="{{defaultImgUrl}}">
+        </div>
+      </a>
+      <a href="javascript:void(0);" ng-click="verifyLogin('')" class="personal_login" ng-show="!isLogin">登录/注册</a>
+      <div class="name" ng-show="isLogin" ng-bind="nickname"></div>
+    </div>
+    <div class="menu_list">
+      <a ng-click="verifyLogin('#/personal/orders')" class="item">
+        <div class="icon icon_order"></div>
+        <div class="name">我的订单</div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+      <!--个人信息内的我的团购-->
+      <a ng-click="verifyLogin('#/personal/my_customers')" class="item">
+        <div class="icon icon_offer"></div>
+        <div class="name">我的团购</div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+
+      <!--个人信息内的我的电子卷-->
+      <a ng-show="mark" ng-ng-click="verifyLogin('')"href="javascript:newWebview('')e_coupon_url" class="item">
+        <div class="icon icon_certificate"></div>
+        <div class="name">我的电子券</div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+
+       <a ng-click="verifyLogin('#/personal/e_coupon')" class="item">
+       <div class="icon icon_certificate"></div>
+       <div class="name">我的电子券</div>
+       <i class="fa fa-angle-right"></i>
+     </a> 
+
+      <div class="divider"></div>
+      <a ng-click="verifyLogin('#/personal/my_favorites')" class="item">
+        <div class="icon icon_star"></div>
+        <div class="name">我的收藏</div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+
+      <a ng-click="verifyLogin('#/personal/my_comment')" class="item">
+        <div class="icon icon_comment"></div>
+        <div class="name">我的评价</div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+      <a ng-click="verifyLogin('#/personal/trade')" class="item">
+        <div class="icon icon_detail"></div>
+        <div class="name">我的交易明细</div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+      <a ng-click="verifyLogin('#/personal/credit')" class="item">
+        <div class="icon icon_credit"></div>
+        <div class="name">我的工行积分</div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+      <div class="divider about_us_border" ng-hide="isElifeClient"></div>
+      <a ng-click="verifyLogin('#/more/index')" class="item about_us" ng-hide="isElifeClient">
+        <div class="icon icon_more"></div>
+        <div class="name">关于</div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </div>
+
+  </div><!--  end of scrollable-content -->
+  <div class="scrollable-footer foot" ng-hide="isElifeClient">
+    <div class="tab_bar">
+      <a href="#/home/index" class="tab">
+        <div class="icon tab_home"></div>
+        <div class="name">首页</div>
+      </a>
+      <a href="#/discount/index" class="tab">
+        <div class="icon tab_discount" ></div>
+        <div class="name">优惠</div>
+      </a>
+      <a href="#/personal/index" class="tab active"> 
+        <div class="icon tab_profile"></div>
+        <div class="name">我的</div>
+      </a>
+    </div>
+  </div><!--  end of scrollable-footer -->
+</div>

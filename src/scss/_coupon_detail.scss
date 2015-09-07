@@ -1,0 +1,40 @@
+.coupon{
+ .left{
+	float:left;
+}
+.large{
+	font-size:14px;
+	font-weight:bold;
+}
+.right_bottom{
+	span{
+	padding-left:4px;
+	}
+}
+
+
+.busiStore{
+	background:#fff;
+	padding:10px 10px;
+	border-bottom:solid 1px #ccc;
+
+	.right{
+		margin-left:90px;
+		background-image: url(img/list_arrow_right.png);
+	    background-repeat: no-repeat;
+	    background-position: 100% 50%;
+	    background-size: 10px 18px;
+	   }
+}
+
+.coupon_desc{
+	p{
+	color:#999;
+	}
+}
+
+.line_break{
+	color:#999;
+}
+
+}

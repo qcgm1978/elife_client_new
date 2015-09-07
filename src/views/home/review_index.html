@@ -1,0 +1,106 @@
+<div class="scrollable page review_index">
+    <!-- 内容 -->
+    <div class="scrollable-content" >
+
+    <header class="header common_header">
+        <a href="javascript:history.back();" class="return_btn">
+            <div class="back">
+                <div class="back_arrow"></div>
+                <div>返回</div>
+            </div>
+        </a>
+        <div class="title">全部点评</div>
+    </header>
+    
+    <!-- 全部点评导航栏 -->
+    <div class="list_filter_wrap review_list_filter_wrap">
+        <div class="list_filter review_top_navi" ui-state="listFilterIndex">
+            <div class="list_filter_category"  ng-click="filterToggle(2)" ui-class="{'selected':listFilterIndex == 2 && listFilter}">
+                <div class="name" ng-bind="starFilter || '星级' "></div>
+                <i class="fa fa-caret-down"></i>
+            </div>
+            <div class="list_filter_category"  ng-click="filterToggle(3)" ui-class="{'selected':listFilterIndex == 3 && listFilter}">
+                <div class="name" ng-bind="sortContent || '排序' "></div>
+                <i class="fa fa-caret-down"></i>
+            </div>
+        </div>
+
+        <div class="drop_down_group" ui-state="listFilter" ui-show="listFilter  && listFilterIndex == 2">
+            <div class="side_list_tab">
+                <ui-state id="sideTab3" default="1"></ui-state>
+                <div class="tab_contents sort_content">
+                    <ul class="filter_choices " ui-if="sideTab3 == 1">
+                        <li ng-click="doGetAllComment()">全部</li>
+                        <li ng-click="doGetAllComment(5)">五星级</li>
+                        <li ng-click="doGetAllComment(4)">四星级</li>
+                        <li ng-click="doGetAllComment(3)">三星级</li>
+                        <li ng-click="doGetAllComment(2)">二星级</li>
+                        <li ng-click="doGetAllComment(1)">一星级</li>
+                    </ul>
+                </div> <!-- end of tab contents -->
+            </div> <!-- end of side list tab -->
+            <div class="mask modal" ui-if="listFilter && listFilterIndex == 2" ng-click="filterToggle(0)" ></div>
+        </div> <!-- end of drop down group -->
+
+        <div class="drop_down_group" ui-state="listFilter" ui-show="listFilter  && listFilterIndex == 3">
+            <div class="side_list_tab">
+                <ui-state id="sideTab4" default="1"></ui-state>
+                <div class="tab_contents sort_content">
+                    <ul class="filter_choices " ui-if="sideTab4 == 1">
+                        <li ng-click="sortByTime(1)">时间倒序</li>
+                        <li ng-click="sortByTime(2)">时间正序</li>
+                    </ul>
+                </div> <!-- end of tab contents -->
+            </div> <!-- end of side list tab -->
+            <div class="mask modal" ui-if="listFilter && listFilterIndex == 3" ng-click="filterToggle(0)" ></div>
+        </div> <!-- end of drop down group -->
+    </div>
+     <!-- 点评列表 -->
+     <div class="review_list">
+      <img ng-if="noResultlmg" src="images/no_assess.jpg"/>
+    </div>
+     <div mobile-infinite-scroll on-reach-bottom="showLoading(); getAllComment()">
+        <div ng-show="loading" class="ng-hide">
+            <i class="fa fa-spinner fa-spin loading-spinner"></i>
+        </div>
+    
+      <div class="review_list_item" ng-class="{open_item:showText==$index}" ng-repeat="cList in reviews track by $index">
+        <div class="title_section review">
+          <div class="content">
+            <div class="img_wrap">
+              <img fallback-src="{{defaultImgUrl}}" ng-src="{{parseImageUrl(cList.image_url)}}">
+            </div>
+            <div class="right">
+              <div class="title">{{::cList.nick_name}}</div>
+              <div class="star_area">
+              <!-- <span class="star_full"></span><span class="star_full"></span><span class="star_full"></span><span class="star_full"></span><span class="star_half"></span> -->
+              <span class="star_full star" ng-class="{star_gray:cList.level < 1}"></span>
+              <span class="star_full star" ng-class="{star_gray:cList.level < 2}"></span>
+              <span class="star_full star" ng-class="{star_gray:cList.level < 3}"></span>
+              <span class="star_full star" ng-class="{star_gray:cList.level < 4}"></span>
+              <span class="star_full star" ng-class="{star_gray:cList.level < 5}"></span>
+              <span class="price" ng-show="cList.avg_price">{{cList.avg_price}}元/人</span>
+              </div>
+              <div class="desc" ><!-- {{::cList.review_content}}</span>
+               <span class="blue" ng-click="GetText($index)"><span ng-show="showText!=$index" >查看全文</span><span ng-show="showText==$index">收起</span><i class="fa fa-chevron-down"></i></span> -->
+                <span ng-bind="::cList.content" class="line_break"></span>
+                <span ng-show="showContent" ng-bind="::cList.more" class="line_break">..</span>
+                  <span class="light_blue_text" ng-show="cList.longEnough" ng-click="showContent = !showContent"><span ng-show="!showContent" >查看全文</span><span ng-show="showContent">收起</span><i class="fa fa-chevron-down transition" ng-class="{rotate180:showContent}"></i></span>
+              <a href="javascript:void(0);" ng-click="toAblum(cList.review_image_list);">
+                <ul>
+                  <li ng-repeat="img in cList.review_image_list | limitTo:3" ng-class="{list_last_img:$index == 2}"><img  ng-src="{{parseImageUrl(img.review_image_url)}}"  fallback-src="{{defaultImgUrl}}">
+                    <div class="rest_img_num" ng-show="cList.review_image_list.length>3&&($index == 2)">还剩{{cList.review_image_list.length-3}}张</div></li>
+                </ul>
+              </a>
+              </div>
+            </div>
+          </div>
+        </div>
+    <!--end of review_list  -->
+    </div>
+    <div class="loading_more" ng-show="e_row > 10 && mark && loadingMore">加载更多...</div>
+    <div class="loading_more" ng-show="e_row > 10 && mark && !loadingMore" >无更多数据...</div>
+    </div>
+    <!-- 底部分割 -->
+  </div>
+</div> 

@@ -1,0 +1,114 @@
+.locator{
+  .gps_location{
+    height: 40px;
+    line-height: 40px;
+    background-color: white;
+
+    .city{
+      font-size: 14px;
+      display: inline-block;
+      margin-left: 8px;
+    }
+    .tip{
+      font-size:10px; 
+      display: inline-block;
+      color: $text_color_gray;
+      margin-left: 4px;
+    }
+  }
+  // 快速导航条宽度
+  $sibe_nav_width: 26px;
+  .content_main{
+    margin-right: $sibe_nav_width;
+  }
+
+  .side_bar{
+    width: $sibe_nav_width;
+    color: $text_color_blue;
+    text-align: center;
+    background-color: white;
+    position: absolute;
+    right: 0;
+    top: 134px;
+    span{
+      display: block;
+      width: $sibe_nav_width;
+      height: 14px;
+      font-size: 10px;
+
+    }
+  }
+  .hot_city{
+    @extend %fast_search_pane;
+
+    .title{
+       font-size: 14px;
+       color: $search_secction_title;
+       text-align: left; 
+       line-height: 20px;
+       margin-bottom: 8px;
+     }
+  }
+
+  
+  .city_search_list{
+
+    .letter{
+      height: 20px;
+      line-height: 20px;
+      background-color: #cccccc;
+      color: white;
+      font-size: 12px;
+      padding-left: 8px;
+    }
+    ul{
+      li{
+        height: 40px;
+        line-height: 40px;
+        overflow: hidden;
+        padding-left: 8px;
+        background-color: white;
+
+        @include retina_border_bottom();
+
+        &:last-child{
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  // 搜索结果
+  #city_search_result{
+    .search_history_record{
+      margin-left: 8px;
+      margin-right: 8px;
+      position: relative;
+
+
+      div{
+        font-size: 15px;
+        width: 100%;
+        height: 42px;
+        line-height: 42px;
+        vertical-align: middle;
+        text-align: left; 
+        @include retina_border_bottom();
+      }
+    }
+    .city_search_result ul li {
+      height: 40px;
+      line-height: 40px;
+      overflow: hidden;
+      padding-left: 8px;
+      background-color: white;
+
+      @include retina_border_bottom();
+
+      &:last-child{
+        border-bottom: none;
+      }
+    }
+  }
+
+}

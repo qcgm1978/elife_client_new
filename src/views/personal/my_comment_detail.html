@@ -1,0 +1,61 @@
+<div class="scrollable page my_comment">
+<!-- 内容 -->
+  <div class="scrollable-content">
+    
+    <header class="header common_header">
+      <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <a href="#/review/comment_personal/{{id}}/{{comment.small_type}}" class="confirm_btn" >修改</a>
+      <div class="title">点评详情</div>
+    </header>
+
+    <div class="comment_list" ng-class="{edit:isEditing}">
+      <div class="title_section review comment">
+        
+        <div class="section_header">
+          <div class="title" ng-bind="::comment.mer_name"></div>
+        </div>
+        <div class="content">
+          <div class="star_area">
+            <span class="star" 
+              ng-class="{
+                star_gray: comment.dcmt_level<1
+              }"></span>
+            <span class="star" 
+              ng-class="{
+                star_gray: comment.dcmt_level<2
+              }"></span>
+            <span class="star" 
+              ng-class="{
+                star_gray: comment.dcmt_level<3
+              }"></span>
+            <span class="star" 
+              ng-class="{
+                star_gray: comment.dcmt_level<4
+              }"></span>
+            <span class="star" 
+              ng-class="{
+                star_gray: comment.dcmt_level<5
+              }"></span>
+          </div>
+          <div class="avgPrice" ng-show="comment.big_type=='Store' && comment.avg_price">{{comment.avg_price}}元/人</div>
+          <div class="time" ng-bind="::comment.dcmt_time"></div>
+          <div class="comment_info" ng-show="comment.dcmt_list">
+          口味<span ng-bind="::comment.dcmt_list.flavor"></span>（<span ng-bind="::des[comment.dcmt_list.flavor-1]"></span>）
+          环境<span ng-bind="::comment.dcmt_list.ambient"></span>（<span ng-bind="::des[comment.dcmt_list.ambient-1]"></span>）
+          服务<span ng-bind="::comment.dcmt_list.service"></span>（<span ng-bind="::des[comment.dcmt_list.service-1]"></span>）</div>
+          <div class="text line_break" ng-bind="::comment.dcmt_content"></div>
+        </div>
+        <ul class="album" ng-show="comment.image_list">
+          <li ng-repeat="image in imgs">
+            <img  ng-src="{{parseImageUrl(image.image_url)}}" fallback-src="{{defaultImgUrl}}">
+          </li>
+        </ul>
+      </div>
+    </div>  
+  </div><!--  scrollable content -->
+</div>

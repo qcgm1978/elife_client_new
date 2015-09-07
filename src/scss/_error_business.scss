@@ -1,0 +1,19 @@
+.error_business {
+  .detail_infos{
+    padding: 0 10px;
+    background-color: #fff;
+  }
+  .detail_title{
+    border-bottom: 1px solid $border_color_light_gray;
+    padding: 10px 0;
+    position: relative;
+    .detail_subtitle{
+      float:right;
+      margin-right: 25px;
+    }
+  }
+  .error_input {
+    width: 100%;
+  }
+
+}

@@ -1,0 +1,64 @@
+<div class="scrollable" page-title="搜索">
+  <div class="scrollable-content page search">
+
+    <header class="header common_header search_header">
+      <div ng-click="return_btn($event)">
+        <div class="search_cancel_btn" >
+          取消
+        </div>
+      </div>
+      <div class="search_input">
+        <form>
+          <input type="search" title="" placeholder="请输入优惠标题" ng-model="searchHeaderValue" autocomplete="off"
+          ng-keydown="keypress1($event)">
+        </form>
+        <div class="close_icon" ng-show="searchHeaderValue" ng-click="searchHeaderValue=''"></div>
+      </div>
+    </header>
+    
+        <div class="search_result_section">
+      <div class="result_title"></div>
+    </div>
+
+    <div class="offer_list_filter_wrap">
+      <div class="offer_list_filter">
+        <div class="offer_list_filter_category1" ng-click="filterByOfferType(1)">
+          <div class="name1">工行卡优惠</div>
+        </div>
+        <div class="offer_list_filter_category2">
+          <div class="name2" ng-click="filterByOfferType(2)">商户优惠(团购)</div>
+        </div>
+      </div>
+    
+    
+    <div class="search_body">
+      <div class="search_section_title">热门搜索</div>
+      <div class="clearfix">
+        <a ng-href="#/discount/search_result/0/{{item.search_name}}/{{search_type}}"
+          ng-repeat="item in hotKeywords">
+          <div class="col-xs-4"
+            ng-class="{
+              tag_left: $index % 3 == 0,
+              tag_mid: $index % 3 == 1,
+              tag_right: $index % 3 ==2
+            }">
+            <div ng-bind="item.search_name" class="text_overflow"></div>
+          </div>
+        </a>
+      </div>
+     
+
+      <div class="search_section_title search_history">搜索历史
+      <span ng-click="clearHistory1()" style="position:absolute;right:0px">清除历史记录</span>
+      </div>
+    </div>
+    <div class="search_history_record" ng-show="showHistory">
+      <a ng-href="#/discount/search_result/0/{{item}}/{{search_type}}" ng-repeat="item in history1 | limitTo :10">
+      <div ng-bind="item" class="text_overflow"></div>
+      </a>
+    </div>
+    <!-- <button ng-click="testCall()">测试</button> -->
+
+    <!-- <div ng-bind="test1"></div> -->
+  </div>
+</div>

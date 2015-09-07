@@ -1,0 +1,77 @@
+<div class="scrollable">
+  <div class="scrollable-content page categories">
+      <header class="header common_header search_header">
+        <a href="javascript:history.back();" class="return_btn">
+          <div class="back">
+            <div class="back_arrow"></div>
+            <div>返回</div>
+          </div>
+        </a>
+       <div class="title">全部分类</div>
+      </header>
+      <ul class="categories_body">
+         <li class="categories_item clearfix" ng-repeat="largeCategory in categoryInfo">
+          <div class="categories_item_head clearfix">
+            <div class="head_icon icon_all_category_food"></div>
+            <div class="head_title">{{largeCategory.large_name}}</div>
+          </div> 
+          <div class="categories_item_body">
+            <ul class="categories_item_list" ng-class="{active_list: showList[$index]}" ng-repeat="ms in largeCategory.small_industry_list | limitTo: 7">
+
+                <li class="list_item col-xs-3" ng-click="setErrorType(ms.small_code,ms.small_name)" ng-bind="ms.small_name" ng-class="{ left_border: $index % 4 == 0, top_border: $index < 4 }"></li>
+
+            </ul>
+            <div ng-show="showList[$index]">
+              <ul class="categories_item_list" ng-repeat="ms in  largeCategory.small_industry_list">
+                <a href="javascript:void(0);" ng-click="setErrorType(ms.small_code,ms.small_name)">
+                  <li class="list_item col-xs-3" ng-bind="ms.small_name" ng-show="$index > 6"></li>
+                </a>
+              </ul>
+            </div>
+            <ul class="categories_item_list" ng-show=" largeCategory.small_industry_list.length >= 8">
+              <li class="list_item col-xs-3" ng-click="showList[$index]=!showList[$index]">
+                <i class="fa fa-angle-down" ng-show="!showList[$index]"></i>
+                <i class="fa fa-angle-up" ng-hide="!showList[$index]"></i>
+              </li>
+            </ul>
+
+
+
+            <!-- <ul class="categories_item_list" ng-class="{active_list: showList[0]}">
+              <li class="list_item col-xs-3" ng-repeat="ms in list1 | limitTo: 7" ng-bind="ms.small_name" ng-class="{ left_border: $index % 4 == 0, top_border: $index < 4 }"></li>
+              <div ng-show="showList[0]"  >
+              <li class="list_item col-xs-3" ng-repeat="ms in list1" ng-show="$index > 6"></li>
+              </div>
+               <li class="list_item col-xs-3" ng-show="list1.length >= 8" ng-click="showList[0]=!showList[0]"><i class="fa fa-angle-down"></i></li>
+            </ul> -->
+          </div>     
+        </li>
+         <!--<li class="categories_item clearfix">
+          <div class="categories_item_head clearfix">
+            <div class="head_icon icon_all_category_snack"></div>
+            <div class="head_title">小吃</div>
+          </div> 
+          <div class="categories_item_body">
+            <ul class="categories_item_list" ng-class="{active_list: showList[1]}" ng-repeat="">
+              <li class="list_item col-xs-3"></li>
+              <!-- <li class="list_item col-xs-3">景点</li>
+              <li class="list_item col-xs-3">咖啡厅</li>
+              <li class="list_item col-xs-3">美发</li>
+              <li class="list_item col-xs-3">火锅</li>
+              <li class="list_item col-xs-3">西餐</li>
+              <li class="list_item col-xs-3">小吃</li>
+                <div ng-show="showList[1]">
+              <li class="list_item col-xs-3">小吃</li>
+              <li class="list_item col-xs-3">足疗</li>
+              <li class="list_item col-xs-3">景点</li>
+              <li class="list_item col-xs-3">咖啡</li>
+              <li class="list_item col-xs-3">美发</li>
+              <li class="list_item col-xs-3">火锅</li>
+              <li class="list_item col-xs-3">西餐</li> -->
+               <!--<li class="list_item col-xs-3"  ng-click="showList[1]=!showList[1]"><i class="fa fa-angle-down"></i></li>-->
+            </ul>
+          </div>     
+        </li>-->
+      </ul>
+  </div>
+</div>

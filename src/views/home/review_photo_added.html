@@ -1,0 +1,63 @@
+<div class="scrollable page review_photo_added">
+    <!-- 内容 -->
+    <div class="scrollable-content" id="top">
+        <header class="header common_header">
+            <a href="javascript:void(0);" class="return_btn" ng-click="back()">
+                <div class="back">
+                  <div class="back_arrow"></div>
+                  <div>返回</div>
+                </div>
+            </a>
+            <div class="confirm_btn" ng-click="submitImage()">确定</div>
+            <div class="title">相册</div>
+        </header>
+
+        <div class="album_photo_list clearfix">
+            <a href="javascript:void(0);" ng-click="toPhotoEdit(img.id,img.url)" ng-repeat="img in imgs track by $index">
+                <div class="col-xs-6" ng-class="{'left_img' : $index%2 == 0,'right_img' : $index%2 == 1}" >
+                    <div class="img_box">
+                        <!-- <img  ng-src="{{parseImageUrl(img.url)}}"  class="album_img" fallback-src="{{defaultImgUrl}}"> -->
+                        <img ng-src="{{parseImageUrl(img.url)}}" class="album_img" fallback-src="{{defaultImgUrl}}">
+                        <div class="photo_description">{{img.desc}}</div>
+                    </div>
+                </div>
+            </a>
+            <div class="col-xs-6 left_img" id="addPhotoBtn">
+                <div class="img_box" ng-click="getPhoto('album')">
+                    <img src="images/add_photo.png" class="album_img">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div ui-content-for="modals">
+        <div class="modal alert_modal ng-scope" ui-if="success_modal" ui-state="success_modal">
+            <div class="modal-backdrop in" ng-click="goBack()"></div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="top">
+                        <div class="icon icon_praise"></div>
+                        <div>上传成功</div>
+                    </div>
+                    <div ng-click="goBack()" class="bottom">确定</div>
+                </div>
+            </div>
+        </div>
+  
+        <div class="modal alert_modal ng-scope" ui-if="back_modal" ui-state="back_modal">
+            <div class="modal-backdrop in" ui-turn-off="back_modal"></div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="top">
+                        <div>是否确定放弃上传?</div>
+                    </div>
+                    <div ui-turn-off="back_modal" class="bottom1">
+                        <span ui-turn-off="back_modal" class="bottom_cancel">取消</span>
+                        <span class="split"> | </span>
+                        <span ui-turn-off="back_modal" ng-click="goBack()" class="bottom_confirm">确定</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- end of modal -->

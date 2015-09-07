@@ -1,0 +1,160 @@
+.personal_info{
+  .personal_info_item{
+    @extend .clearfix;
+    background-color: #fff;
+    position: relative;
+    padding: 15px 10px;
+    @include retina_border_bottom;
+    .user_icon{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+   
+    }
+    .right{
+      margin-right: 50px;
+      float: right;
+    }
+
+    .fa{
+      position: absolute;
+      top: 15px;
+      right: 10px;
+      font-size: 20px;
+      color: $text_color_light_gray;
+
+    }
+    .icon{
+      position: relative;
+      top: 15px;
+    }
+    .icon_fa{
+      top: 30px;
+    }
+  }
+
+  .personal_info_bottom{
+    margin-top: 15px;
+    @include retina_border_top;
+  }
+
+}
+
+// 修改昵称
+.personal_change_nickname{
+  .input_block{
+    padding: 12px 10px;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+    input[type="text"] {
+      width: 90%;
+      width: 230px;
+      height: 40px;
+      line-height: normal;
+      @include placeholder_style(left);
+    }
+  }
+
+    .close_icon{
+    width: 15px;
+    height: 15px;
+    background-image: url(img/icon_search_cancel.png);
+    background-size: 15px 15px;
+    position:absolute;
+    right: 10px;
+    top:15px;
+   }
+}
+
+// 修改手机
+.personal_change_tel{
+  .change_tel_item{
+    position: relative;
+    padding: 10px 10px;
+    background-color: #fff;
+    overflow: hidden;
+    @include retina_border_bottom;
+
+    input{
+      position: absolute;
+      left: 80px;
+      top: 0;
+      width: 230px;
+      height: 40px;
+      line-height: normal;
+      @include placeholder_style(left);
+    }
+    .old_phone {
+      background: #fff;
+    }
+    .disabled_btn {
+      background: #aaa;
+      color: #fff;
+    }
+  }
+ .light_blue_text{
+    margin-right: 10px;
+  }
+
+  // 第二步
+  .verification_code{
+    position:absolute;
+    right: 0px;
+    width: 100px;
+    @include retina_border_left;
+    top: 0px;
+    height: 41px;
+    line-height: 41px;
+    text-align: center;
+  }
+  .error{
+    color: $text_color_red;
+    display: block;
+    margin-left: 70px;
+  }
+
+}
+// 修改密码
+.personal_change_passwd{
+  .change_passwd_item{
+    position: relative;
+    padding: 10px 10px;
+    background-color: #fff;
+    overflow: hidden;
+    @include retina_border_bottom;
+    
+    input{
+      position: absolute;
+      left: 80px;
+      top: 0;
+      width: 230px;
+      height: 40px;
+      line-height: normal;
+      @include placeholder_style(left);
+    }
+  }
+  .change_passwd_body{
+    margin-top: 10px;
+    background-color: #fff;
+  }
+}
+//添加退出当前帐户按钮
+$bgcolor:#c7010a;
+$textAlign:center;
+$color:#fff;
+$borderRadius:4px; 
+$border:1px solid #da5f65; 
+$padding: 12px 8px;
+$margin:20px 10px 0px;
+.personal_info_return{ 
+  background-color: $bgcolor;
+  text-align: $textAlign;
+  color:$color;
+  border-radius: $borderRadius;
+  border: $border;
+  padding: $padding;
+  margin:$margin;
+}
+
+

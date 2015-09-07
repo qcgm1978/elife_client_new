@@ -1,0 +1,53 @@
+<div class="scrollable page business_district">
+    <div class="scrollable-content">
+        <header class="header common_header">
+            <a href="javascript:history.back();" class="return_btn">
+                <div class="back">
+                    <div class="back_arrow"></div>
+                    <div>返回</div>
+                </div>
+            </a>
+
+            <div class="title">商区</div>
+        </header>
+
+        <!-- 热门地区 -->
+        <div class="district_title hot_district">热门</div>
+        <div class="white_block_3_columns">
+            <div class="col-xs-4" ng-repeat="topDist in topDistrict"
+                 ng-class="{tag_left: $index%3==0, tag_mid:$index%3==1, tag_mid:$index%3==2 }">
+                <a ng-href="{{'#/home/search_result/'+topDist.community_code+'/'+topDist.community_name.replace('/','|') }}/{{topDist.district_code}}">
+                    <div><span>{{topDist.community_name | limitTo:6}}</span><span ng-show="topDist.community_name.length>6">...</span></div>
+                </a>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="district_title all_district">全部</div>
+
+        <!-- 所有地区 -->
+        <div class="all_district_list">
+            <div class="all_district_item" ng-repeat="district in districtInfo">
+                <div class="item_header">
+                    <div class="item_title" ng-bind="district.district_name"></div>
+                    <div class="item_subtitle">
+                        <div class="item_subtitle_content">{{district.subRegionContent}}
+                            </span> </div>
+                    </div>
+                    <div class="distritct_list_arrow" ng-class="{distritct_list_arrow_red:showItem0}"
+                         ng-click="showItem0 = !showItem0"><i class="fa fa-chevron-down"></i></div>
+                </div>
+                <div class="white_block_3_columns" ng-show="showItem0">
+                    <div class="col-xs-4" ng-repeat="subregion in district.community_list"
+                         ng-class="{'tag_left': $index % 3 == 0,'tag_mid': $index % 3 == 1,'tag_right': $index % 3 == 2}">
+                        <a ng-href="#/home/search_result/{{subregion.community_code}}/{{subregion.community_name.replace('/','|')}}/{{district.district_code}}"><div><span>{{subregion.community_name | limitTo:6}}</span><span ng-show="subregion.community_name.length>6">...</span></div></a>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

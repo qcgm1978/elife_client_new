@@ -1,0 +1,53 @@
+<div class="scrollable page business_info" mobile-infinite-scroll on-reach-bottom="showLoading(); getList(0)">
+  <div class="scrollable-content">
+    <!-- 页头 -->
+    <header class="header common_header everyday_draw_header">
+      <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <a href="#/draw/mydraw"><div class="my_draw">我的抽奖</div></a>
+      <div class="title">万一中了呢</div>
+    </header>
+    <section class="draw_con1" ng-repeat="detail in details">
+      <a href="#/draw/drawinfo/{{detail.drawCode}}">
+    	<div ng-class="{'everyday_draw_label':'0' == detail.state, 'draw_label_grey':'2' == detail.state}"><p>{{detail.labelState}}</p></div>
+      <div class="clearfix">
+      	<img  lazy-img="{{parseImageUrl(detail.telePhone_url)}}"  alt="" class="mydraw_moble pull-left" src="{{defaultImgUrl}}">
+      	<div class="mydraw_txt_box pull-left">
+      		<h4 class="mydraw_txt_title">{{detail.phoneTitle}}</h4>
+  	    	<p>{{detail.number}}</p>
+      	</div>
+      </div>
+      <h5 ng-class="{'biglabel' : '2' == detail.drawType, 'biglabel1' : '1' == detail.drawType, 'biglabel2' : '3' == detail.drawType}">{{detail.periods}}
+          <span ng-class="{'pull-right' : true, 'collapse' : '2' == detail.state}" ng-show="angular.isNumber(detail.countDown)">
+          <div class="digital" ng-bind="detail.countDown.hour">0</div>
+              <div class="digital" ng-bind="detail.countDown.hourUpper">0</div>
+              <div class="colon">:</div>
+              <div class="digital" ng-bind="detail.countDown.minute">0</div>
+              <div class="digital" ng-bind="detail.countDown.minuteUpper">0</div>
+              <div class="colon">:</div>
+              <div class="digital" ng-bind="detail.countDown.second">0</div>
+              <div class="digital" ng-bind="detail.countDown.secondUpper">0</div>
+          </span>
+      </h5>
+      </a>
+      </section>
+        <div class="loading_more_wrap" ng-show="e_row > 10 && mark">
+         <div class="loading_more" ng-show="loadingMore">加载更多...</div>
+         <div class="loading_more" ng-show="!loadingMore" >无更多数据...</div>
+        </div>
+
+    <div ng-show="loading" class="ng-hide">
+      <i class="fa fa-spinner fa-spin loading-spinner"></i>
+    </div>
+
+    <!-- 无搜索结果 -->
+    <div class="no_search_result" 
+      ng-show="isEmpty" 
+      ng-include="'views/widget/no_search_result.html'">
+    </div>
+   </div>
+</div>

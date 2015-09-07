@@ -1,0 +1,82 @@
+﻿http://localhost:8080/OFSTCUST/luckydraws/modifyLuckCusOrgetLuckCusInfo.action
+
+参数1：code=9bc64a7a1cc144fc94840090b852c44b&c_no=AA&t_k=10004&if_win=1&real_name=1&phone=1&card_no=1
+参数2：code=9bc64a7a1cc144fc94840090b852c44b&if_win=0
+
+/****
+	 * 录入中奖人员的信息或者查看中奖名单
+	 * @param code   活动的ID
+	 * @param c_no=AA&t_k=10004  用户
+	 * @param real_name  真实的名称
+	 * @param phone  手机号
+	 * @param card_no 身份证号
+	 * @param if_win 中奖的状态  如果 是0 的话 则进行很查询中奖的人员名单 如果是1的话 则进行数据的录入
+	 * @param
+	 */	
+
+注意：			100007 用户没有中奖 确去填写中奖信息了
+ 			100006 重复提交中奖信息， 改用户已经填写了中奖信息
+
+sql：  中奖后的人员信息录入
+update OFST_TW_BASE_LUC_CAN t set  t.real_name='',t.phone='',t.card_no=''  where t.can_luc_id='200001' AND t.if_win='1' AND t.cust_id='12315'
+
+    {
+        "res": "0"
+        1000002//exception
+    }
+
+
+sql:  查询本次活动人员的获奖名单
+select q.can_luc_id,
+       q.cust_name,
+       q.phone,
+       q.if_win,
+       d.luc_luck_hd,
+       d.luc_luck_jo
+  from OFST_TW_BASE_LUC_CAN q
+  inner join OFST_TW_SUB_LUCKRAW c
+  on q.can_luc_id = c.sub_luc_id
+ inner join OFST_TW_BASE_LUCKDRAW d
+    on d.luc_id = c.luc_id
+ where q.can_luc_id = '9bc64a7a1cc144fc94840090b852c44b'
+   AND q.if_win = '1'
+
+
+
+
+code 就是 活动的ID  if_win 是是否中奖的码
+
+
+
+
+    {
+        "res": "0",
+        "data":
+        [
+            {
+                "activityName": "天天抽  第2期",
+                "code": "200001",
+                "cust_name": "wang",
+                "if_win": "1",
+                "phone": "1",
+                "remaining_time": "2000"
+            },
+            {
+                "activityName": "天天抽  第2期",
+                "code": "200001",
+                "cust_name": "wxt",
+                "if_win": "1",
+                "phone": "12012012011",
+                "remaining_time": "2000"
+            }
+        ]
+    }
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+.review_album{
+  .album_body{
+    .album_nav_wrap{
+      height: 44px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .album_nav{
+      height: 54px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      // margin-top: 10px;
+      padding:0px 10px;
+      @include retina_border_top;
+      @include retina_border_bottom;
+      line-height: 22px;
+      vertical-align: middle;
+      text-align: center;
+      position: relative;
+      background-color:#fff;
+      font-size: 17px;
+      .album_ul{
+        list-style: none;
+        width: 100%;    
+        white-space: nowrap;
+        .album_nav_li{
+          display: inline-block;
+          text-align: center;
+          height: 42px;
+          padding: 10px 12px;
+        }
+        .active{
+          border-bottom: 4px solid $text_color_red;
+
+        }
+      }
+    }
+    
+  }
+}
+

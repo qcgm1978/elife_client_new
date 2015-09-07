@@ -1,0 +1,29 @@
+
+<div class="scrollable page business_info">
+  <div class="scrollable-content">
+    <!-- 页头 -->
+    <header class="header common_header check_draw_header">
+      <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="title">{{title || '天天开 20150313期'}}</div>
+    </header>
+    <section class="draw_content">
+    	<p class="list_draw_title">中奖名单</p>
+    	<table class="list_draw_table">
+    		<tr>
+    			<th>用户昵称</th>
+    			<th>手机号码</th>
+    			<th>中奖奖品</th>
+    		</tr>
+    		<tr ng-repeat="detail in details">
+    			<td>{{detail.cust_name}}</td>
+    			<td>{{detail.phone}}</td>
+    			<td>{{detail.prizeName}}</td>
+    		</tr>
+    	</table>
+    </section>
+</div>

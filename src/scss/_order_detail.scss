@@ -1,0 +1,38 @@
+.order_detail{
+	.order_state{
+		width:150px;
+		margin:0 auto;
+		height:41px;
+		line-height:41px;
+		background:url(img/customers_praise_icon.png) no-repeat left center;
+		background-size:25px 25px;
+	}
+	.order_state span{
+		font-size:16px;
+		padding-left:38px;
+	}
+
+	.order_detail{
+		margin-bottom:20px;
+		background:#fff;
+		ul{
+			padding:0px 8px;;
+			border-bottom:solid 1px #ccc;
+			li{
+				float:left;
+				font-size:16px;
+				line-height:55px;
+			}
+			.li_two{
+				margin-left:66px;
+			}
+		}
+	}
+	.btn{
+		width:98%;
+		margin:0 1%;
+		a{
+			@extend .white_btn;
+		}
+	}
+}

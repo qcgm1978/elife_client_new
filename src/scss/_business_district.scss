@@ -1,0 +1,84 @@
+.business_district{
+
+  // 块头部样式
+  .district_title{
+    font-size: 15px;
+    padding:20px 10px;
+    padding-bottom:15px;
+    color: $text_color_gray;
+  }
+
+  // 白色三块列布局
+  .white_block_3_columns{
+    text-align: center;
+    .col-xs-4{
+      padding: 5px 10px;
+      font-size: 12px;
+      a:active{
+        div{
+          background-color: $text_color_light_gray;
+        }
+      }
+      div{
+        padding-top: 8px;
+        padding-bottom:8px;
+        background-color: #fff;
+      }
+    }
+  }
+
+  // 所有地区
+  .all_district{
+    padding-top: 15px;
+    @include retina_border_bottom;
+  }
+
+  // 所有地区列表
+  .all_district_item{
+    padding: 8px 0;
+    @include retina_border_bottom;
+
+    .item_header{
+      margin-left: 10px;
+      margin-bottom: 8px;
+      position: relative;
+      .item_subtitle{
+        font-size: 10px;
+        color: $text_color_gray;
+        padding-top: 17px;
+        position: relative;
+        .item_subtitle_content{
+          position: absolute;
+          top: 0px;
+        }
+      }
+
+      // 向下箭头
+      .distritct_list_arrow{
+        position: absolute;
+        right: 10px;
+        top: 15px;
+        height: 100%;
+        width: 34px;
+        text-align: center;
+
+        i{
+          color:#ccc;
+          @include transition(-webkit-transform 0.3s);
+        }
+      }
+      .distritct_list_arrow_red i{
+        color: $text_color_red;
+        @include transform(rotate(180deg));
+      }
+    }
+  }
+}
+.item_title{
+      font-size: 15px;
+      color: #333;
+      }
+.all_district_list{
+   background-color: white;
+}
+.all_district_list .white_block_3_columns .col-xs-4 div{ background-color:#efefef;}

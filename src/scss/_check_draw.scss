@@ -1,0 +1,33 @@
+
+.favorite_draw{
+	@extend .favorite_draw;
+  }
+ .draw_content{
+ 	@include draw_content;
+ }
+ .check_draw_label{
+ 	@extend .draw_label;
+ }
+ .draw_moble{
+ 	@include draw_moble;
+ }
+ .draw_txt_box{
+ 	margin: 30px 0 0 10px;
+ 	p{
+ 		color: #666;
+ 		margin-top: 12px;
+ 	}
+ }
+ .draw_button{
+ 	@include draw_button;
+ }
+ .draw_text{
+ 	width: 100%;
+ 	color: #666;
+ 	font-size: 12px;
+ 	padding: 10px;
+ 	.draw_text_title{
+		width: 100%;
+ 		text-align: center;
+ 	}
+ }

@@ -1,0 +1,90 @@
+<div class="scrollable page special_offer">
+    <!-- 内容 -->
+    <div class="scrollable-content">
+
+        <header class="header common_header search_header">
+            <a href="javascript:history.back();" class="return_btn">
+                <div class="back">
+                    <div class="back_arrow"></div>
+                    <div>返回</div>
+                </div>
+            </a>
+
+            <div class="title">精选优惠</div>
+        </header>
+        <!-- 所有商家 -->
+        <div class="content clearfix">
+            <ul class="thumb_list">
+
+                <li ng-repeat="item in merchantsList">
+                    <!-- 精选优惠 -->
+                    <a class="clearfix"
+                       ng-href="#/discount/business_offer/{{::item.store_code}}/{{::item.pft_code}}/store"
+                       ng-if="item.pft_code&&item.distance">
+                        <img class="left" ng-src="{{parseImageUrl(item.image_url)}}" fallback-src="{{defaultImgUrl}}">
+
+                        <div class="right">
+                            <div class="top large"
+                                 ng-bind="::item.store_name"></div>
+
+                            <div class="middle small red"
+                                 ng-bind="::item.title"></div>
+                                 
+                            <div class="bottom small gray">
+                                <span ng-bind="::item.district_name2"></span>
+                                &nbsp;&nbsp;
+                                <span ng-bind="::item.small_name2"></span>
+                                <span ng-bind="::item.small_name1"></span>
+
+                            </div>
+                            <div class="right_top small light_gray" ng-show="::item.distance != 0.0">{{::item.distance}} </div>                                          
+                            <div class="right_bottom small light_gray">
+                                 已浏览<span ng-bind="::item.view_count"></span>次
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <!--   <li ng-repeat="item in groupList"> -->
+                <!-- 团购 -->
+                <!-- <a class="clearfix"
+                  ng-href="#/discount/customers"
+                  ng-if="item.group_code">
+                  <img class="left"  ng-src="{{parseImageUrl(item.group_image_url)}}" src="{{defaultImgUrl}}"  src="{{defaultImgUrl}}">
+                  <div class="right">
+                    <div class="top large"
+                      ng-bind="::item.group_title"></div>
+                    <div class="middle small gray"
+                      ng-bind="::item.group_pft"></div>
+                    <div class="prices">
+                      <div class="price_now">¥{{::item.n_price}}元</div>
+                      <div class="price_before">¥{{::item.old_price}}元</div>
+                    </div>
+                    <div class="right_bottom small light_gray"
+                      ng-bind="::item.distance">m</div>
+                  </div>
+                </a>
+              </li>
+              <li ng-repeat="item in bankList"> -->
+                <!-- 工行卡优惠 -->
+                <!--  <a class="clearfix"
+                 ng-href="#/discount/card_offer"
+                 ng-if="item.pft_code">
+                   <img class="left"
+                   ng-src="{{item.image_url}}" src="{{defaultImgUrl}}">
+                   <div class="right">
+                     <div class="top large"
+                       ng-bind="::item.title"></div>
+                     <div class="middle none"></div>
+                     <div class="bottom small gray"><span>适用商户（</span><span class="red">{{::item.count}}家</span><span>）</span></div>
+                     <div class="right_bottom small light_gray"
+                       ng-bind="::item.distance"></div>
+                   </div>
+                   </div>
+                 </a>
+               </li> -->
+
+            </ul>
+        </div>
+        <!-- end of content -->
+
+    </div>

@@ -1,0 +1,24 @@
+<div class="scrollable page navigation-location">
+    <div class="scrollable-content">
+        <div class="scrollable-header">
+            <header class="header common_header">
+                <a href="javascript:history.back();" class="return_btn">
+                    <div class="back">
+                        <div class="back_arrow"></div>
+                        <div>返回</div>
+                    </div>
+                </a>
+                <div class="title">导航</div>
+            </header>
+        </div>
+
+        <div class="location">
+            <input type="text" placeholder="从哪里出发：" ng-model="origin"/>
+            <input type="text" readonly ng-model="destination" />
+        </div>
+        <div class="confirm">
+            <button class="btn-confirm" ng-click="confirm()">确认</button>
+        </div>
+
+    </div>
+</div>

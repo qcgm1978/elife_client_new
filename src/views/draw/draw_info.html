@@ -1,0 +1,82 @@
+<div class="scrollable page business_info">
+    <div class="scrollable-content">
+        <!-- 页头 -->
+        <header class="header common_header check_draw_header">
+            <a href="javascript:history.back();" class="return_btn">
+                <div class="back">
+                    <div class="back_arrow"></div>
+                    <div>返回</div>
+                </div>
+            </a>
+
+            <div class="favorite_draw"></div>
+            <div class="title">{{detail.title}}</div>
+        </header>
+        <section class="draw_content clearfix">
+            <div ng-class="{'everyday_draw_label':'0' == detail.state, 'draw_label_grey':'2' == detail.state}">
+                <p>{{detail.labelState}}</p></div>
+            <img lazy-img="{{parseImageUrl(detail.phone_url)}}" alt="" class="draw_moble pull-left"
+                 src="{{defaultImgUrl}}">
+
+            <div class="draw_txt_box pull-left">
+                <h4 class="draw_txt_title">{{detail.phoneName}}</h4>
+
+                <p>{{detail.number}}</p>
+
+                <p class="time"><i ng-show="detail.state == '1'" class="draw_clock"></i>
+                    <span ng-show="detail.state =='2'">已结束</span>
+            <span ng-show="detail.state == '1'" ng-class="{'pull-right' : true, 'collapse' : '2' == detail.state}">
+          <div class="digital inline" ng-bind="countDown.hour">0</div>
+              <div class="digital inline" ng-bind="countDown.hourUpper">0</div>
+              <div class="colon inline" ng-show="countDown.hourUpper">:</div>
+              <div class="digital inline" ng-bind="countDown.minute">0</div>
+              <div class="digital inline" ng-bind="countDown.minuteUpper">0</div>
+              <div class="colon inline" ng-show="countDown.minuteUpper">:</div>
+              <div class="digital  inline" ng-bind="countDown.second">0</div>
+              <div class="digital inline" ng-bind="countDown.secondUpper">0</div>
+          </span>
+                </p>
+            </div>
+            <div class="clearfix"></div>
+            <a href="javascript:;" ng-class="{'draw_button': detail.red,'draw_button_already':!detail.red}"
+               ng-click="drawButton()">{{detail.btnContent}}</a>
+
+            <div class="draw_text">
+                <p class="draw_text_title">活动介绍</p>
+
+                <p>{{detail.drawDetail}}</p>
+                <!--<p>奖品介绍</p>
+                <p>{{detail.introduce}}</p>
+                <p>活动细则</p>
+                <p>{{detail.rule}}</p>-->
+            </div>
+        </section>
+        <div ui-content-for="modals">
+            <div class="modal  ng-scope alert_modal " ui-if="test_modal" ui-state="test_modal"
+                 ng-controller="fillInAwardForm">
+                <div class="modal-backdrop in"></div>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="popup_draw_title">您中奖了
+                            <a ng-click="Ui.turnOff('test_modal');" class="draw_close"></a>
+                        </div>
+                        <div class="popup_draw_point">请留下您的身份信息，以便我们核对后为您发送奖品</div>
+                        <div class="popup_draw_message clearfix">
+                            <div class="massage_td pull-left">姓名 <span class="crumb">*</span></div>
+                            <input type="text pull-left" placeholder="请输入您的姓名" ng-model="winnerName">
+                        </div>
+                        <div class="popup_draw_message clearfix">
+                            <div class="massage_td pull-left">手机号 <span class="crumb">*</span></div>
+                            <input type="text pull-left" placeholder="请输入您的手机号码" ng-model="winnerNumber">
+                        </div>
+                        <div class="popup_draw_message clearfix">
+                            <div class="massage_td pull-left">身份证号 <span class="crumb">*</span></div>
+                            <input type="text pull-left" placeholder="请输入您的身份证号" ng-model="winnerId">
+                        </div>
+                        <div class="popup_draw_bottom" ng-click="submitInfo()">确认</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

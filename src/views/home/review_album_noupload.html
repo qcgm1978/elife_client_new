@@ -1,0 +1,59 @@
+<div class="scrollable page review_album">
+<div class="scrollable-content">
+  <!-- 页头 -->
+  <header class="header common_header business_info_header">
+    <a href="javascript:history.back();">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+    </a>
+    <div class="title">相册</div>
+    
+  </header>
+  <div class="album_body">
+    <div class="tabs" ui-state="activeTab" ui-default="1">
+
+    <!-- 导航栏 -->
+  
+   <!--    <div class="btn-group nav-tabs">
+        <a ui-set="{'activeTab': 1}" ui-class="{'active': activeTab == 1}" class="btn btn-default  active">Tab 1</a>
+
+        <a ui-set="{'activeTab': 2}" ui-class="{'active': activeTab == 2}" class="btn btn-default">Tab 2</a>
+
+        <a ui-set="{'activeTab': 3}" ui-class="{'active': activeTab == 3}" class="btn btn-default">Tab 3</a>
+      </div> -->
+      <div class="album_content clearfix">
+    
+     
+          <div class="album_photo_list clearfix">
+           <div class="col-xs-6 left_img" ><div class="img_box"><img ui-turn-on="imageViewer" src="images/photo_drink.jpg" class="album_img"></div></div>
+           <div class="col-xs-6 right_img"><div class="img_box"><img src="images/photo_drink.jpg" class="album_img"></div></div>
+           <div class="col-xs-6 left_img"><div class="img_box"><img src="images/photo_drink.jpg" class="album_img"></div></div>
+           <div class="col-xs-6 right_img"><div class="img_box"><img src="images/photo_drink.jpg" class="album_img"></div></div>
+          </div>
+      
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+    
+<div ui-content-for="modals">
+  <!-- 电话弹出框 -->
+  <div class="modal image_modal" ui-if="imageViewer" ui-state="imageViewer">
+    <div class="modal-backdrop in" ui-turn-off="imageViewer"></div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="info">
+          <div class="name">ABC.jpg</div>
+          <div class="time">2015-04-10</div>
+        </div>
+        <img src="images/photo_drink.jpg" class="album_img">
+        <div class="desc">饮品</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end of modal -->

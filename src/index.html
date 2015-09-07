@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title ui-yield-to="title">e生活</title>
+    <link rel="stylesheet" href="../bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-hover.min.css"/>
+    <link rel="stylesheet" href="../bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-base.min.css"/>
+    <link rel="stylesheet" href="../bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-desktop.min.css"/>
+    <link rel="stylesheet" href="../bower_components/angular-carousel/dist/angular-carousel.min.css"/>
+    <link href="css/main.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../bower_components/angular-slider/slider.css">
+    <link rel="icon" href="favicon.ico">
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/angular-touch/angular-touch.js"></script>
+    <script src="../bower_components/angular-route/angular-route.min.js"></script>
+    <!-- ||2015.5.4|| -->
+    <script src="../bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="../bower_components/angular-carousel/dist/angular-carousel.min.js"></script>
+    <script src="../bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js"></script>
+    <script src="../bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.core.js"></script>
+    <!-- Required to use $swipe, $drag and Translate services -->
+    <script src="../bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.min.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <!--<script src="../bower_components/angular-multirange-slider/dist/multirange-slider.js"></script>-->
+    <!--<script src="../lib/multirange-slider.js"></script>-->
+    <script src="../bower_components/angular-slider/slider.js"></script>
+    <!-- 上拉刷新 -->
+    <script src="../bower_components/angular-mobile-infinite-scroll/src/angular-mobile-infinite-scroll.js"></script>
+    <script src="../bower_components/angular-lazy-img/release/angular-lazy-img.min.js"></script>
+    <script src="icbc_core.js"></script>
+    <script src="js/elife.js"></script>
+    <script src="hybrid_app.js"></script>
+    <script src="icbc_client_core.js"></script>
+    <script src="js/elife-s.js"></script>
+	    <script type="text/javascript">
+
+	(function(i, s, o, g, r, a, m) {
+    i['DataInAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+    	(i[r].q = i[r].q || []).push(arguments)
+    },
+	    i[r].l = 1 * new Date();
+	    a = s.createElement(o),
+	    m = s.getElementsByTagName(o)[0];
+	    a.async = 1;
+	    a.src = g;
+	    m.parentNode.insertBefore(a, m)
+		})	(window, document, 'script', 'http://pv.elife.icbc.com.cn/OFSTPV/utm.js', 'dataIn');
+		dataIn("set",'originate',ICBCUtil.isElifeAndroid()?"elife_moblie_android":ICBCUtil.isElifeIos()?"elife_moblie_ios":ICBCUtil.isIPhone()?"ICBCiPhoneBS":"ICBCAndroidBS");
+    </script>
+
+</head>
+
+<body class="index" ng-app="elife" ng-controller="MainController">
+<div class="app">
+    <div class="app-body" ng-class="{loading: loading}">
+        <div ng-show="loading" class="app-content-loading ng-hide">
+            <i class="fa fa-spinner fa-spin loading-spinner"></i>
+        </div>
+        <div class="app-content">
+            <ng-view></ng-view>
+        </div>
+    </div>
+</div>
+<div ui-yield-to="modals"></div>
+<div class="toast toast_modal" ng-bind="toastContent"
+     ng-show="toastShow" id="toast_content" ng-cloak></div>
+<!-- app交互弹窗 -->
+<div class="toastApp toast_modal" id="toast" ng-cloak></div>
+<!--<script>-->
+    <!--function load_script() {-->
+        <!--var s=document.createElement('script');-->
+        <!--s.src = 'http://api.map.baidu.com/api?ak=rYiHdeGPLQu0FnB1wR8K3Gjj&v=2.0';-->
+        <!--document.getElementsByTagName('head')[0].appendChild(s);-->
+    <!--}-->
+
+    <!--if (typeof BMap === 'undefined') {-->
+        <!--//$rootScope.toast('不能加载地图');-->
+        <!--//return;-->
+        <!--load_script();-->
+    <!--}-->
+    <!--console.log(this);-->
+<!--</script>-->
+ <!--<script src="http://api.map.baidu.com/api?ak=rYiHdeGPLQu0FnB1wR8K3Gjj&v=2.0"></script>-->
+</body>
+  <!--<script src="debuggap.js?192.168.2.61:11111" type="text/javascript"></script>-->
+</html>

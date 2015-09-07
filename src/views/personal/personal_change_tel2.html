@@ -1,0 +1,51 @@
+<div class="scrollable page personal_change_tel">
+  <div class="scrollable-content">
+  <!-- 页头 -->
+    <header class="header common_header ">
+      <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+        <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="confirm_btn red_text" ng-click="changeTel()">提交</div>
+      <div class="title">修改手机号</div>
+    </header>
+    <!-- 第二步 -->
+    <div class="second_step">
+      <div class="change_tel_item">
+        <div>手机号</div>
+        <form name="myForm1" >
+        <input type="number"  name="input1" class="num1" id="n_phone" ng-model="num2" placeholder="请输入手机号"/>
+        </form>
+       
+      </div>
+
+      <div class="change_tel_item">
+        <input type="number" ng-model="verifyNumber" id="verifyNumber" placeholder="请输入验证码"/>
+        <div>验证码</div>
+
+        <div class="red_text verification_code" ng-click="getVerifyNumber()" ng-bind="initSecond || '获取验证码'" ng-class="{'disabled_btn':btnDisabled}"></div>
+      </div>
+    
+
+    </div>
+  </div>
+
+  <div ui-content-for="modals">
+    <div class="modal  ng-scope alert_modal " ui-if="modify_success_modal" ui-state="modify_success_modal" >
+      <div class="modal-backdrop in" ui-turn-off="modify_success_modal"></div>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="top" ng-click="goBack()">
+            <div class="customers_praise_icon praise_icon "></div>
+            <div>修改成功</div>
+          </div>
+          <a href="#/personal/personal_info">
+          <div class="bottom " ui-turn-off="modify_success_modal">确定</div></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

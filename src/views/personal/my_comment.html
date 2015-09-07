@@ -1,0 +1,114 @@
+<div class="scrollable page my_comment">
+<!-- 内容 -->
+    <!-- 内容 -->
+    <div class="scrollable-content">
+  <!--<div class="scrollable-content">-->
+    <!--<div class="scrollable-header">-->
+      <header class="header common_header">
+        <a href="javascript:history.back();" class="return_btn">
+          <div class="back">
+            <div class="back_arrow"></div>
+            <div>返回</div>
+          </div>
+        </a>
+        <div class="confirm_btn" ng-click="edit()" ng-show="reviews && reviews.length > 0">删除</div>
+        <div class="title">我的点评</div>
+      </header>
+    <!--</div>-->
+
+    <div ng-show="loading" class="ng-hide">
+      <i class="fa fa-spinner fa-spin loading-spinner"></i>
+    </div>
+    <div ng-show="notip">您还未评价!</div> 
+    <div class="comment_list" ng-class="{edit:isEditing}" mobile-infinite-scroll on-reach-bottom="showLoading(); getCommentList()">
+        <div ng-show="loading" class="ng-hide">
+            <i class="fa fa-spinner fa-spin loading-spinner"></i>
+        </div>
+      <div class="title_section review comment"
+      ng-repeat="comment in reviews">
+        
+        <a href="#/{{comment.detailPath2}}" class="section_header">
+          <div class="check_icon"
+            ng-class="{check_icon_on: isSelect(comment,{{$index}})}"></div>
+          <div class="title" ng-bind="::comment.mer_name"></div>
+          <div class="subtitle">
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </a>
+        <a href="#/personal/my_comment/{{comment.Id}}/{{comment.detailPath}}">
+          <div class="content">
+            <div class="star_area">
+              <span class="star" ng-class="{star_gray: comment.dcmt_level<1}"></span>
+              <span class="star" ng-class="{star_gray: comment.dcmt_level<2}"></span>
+              <span class="star" ng-class="{star_gray: comment.dcmt_level<3}"></span>
+              <span class="star" ng-class="{star_gray: comment.dcmt_level<4}"></span>
+              <span class="star" ng-class="{star_gray: comment.dcmt_level<5}"></span>
+            </div>
+            <div class="price" ng-show="comment.big_type=='Store' && comment.avg_price">{{comment.avg_price}}元/人</div>
+            <div class="time" ng-bind="::comment.dcmt_time"></div>
+            <div class="text line_break">
+            <span ng-bind="::comment.content"></span>
+            <span ng-show="showText" ng-bind="::comment.more">..</span>
+            
+            
+              <span class="light_blue_text" ng-show="comment.longEnough" ng-click="showText = !showText"><span ng-show="!showText" >查看全文</span><span ng-show="showText">收起</span><i class="fa fa-chevron-down transition" ng-class="{rotate180:showText}"></i></span>
+            
+            
+
+            </div>
+            <a href="javascript:void(0);" ng-click="toAblum(comment.image_list);">
+              <ul class="album" ng-show="comment.image_list">
+                <li ng-repeat="image in comment.image_list | limitTo:3" ng-class="{list_last_img1:$index == 2,list_last_img:$index == 2}">
+                  <img  ng-src="{{parseImageUrl(image.image_url)}}" fallback-src="{{defaultImgUrl}}">
+                  <div class="rest_img_num" ng-show="$index == 2 && comment.image_list.length>3">还剩{{comment.image_list.length-3}}张</div>
+                </li>
+              </ul>
+            </a>
+          </div>
+        </a>
+        <div class="check_mask" ng-click="select(comment)"></div>
+      </div>
+    </div>  
+  <div class="get_more_content" class="loading_more_wrap" ng-show="e_row > 10 && mark">
+      <div class="loading_more" ng-show="e_row > 10 && loadingMore">加载更多...</div>
+      <div class="loading_more" ng-show="!loadingMore">无更多数据...</div>
+  </div>
+  </div><!--  scrollable content -->
+  
+  <div class="scrollable-footer" ng-show="isEditing">
+    <div class="red_confirm_btn delete_btn" ng-click="preDelete()">删除</div>
+    <div class="gray_confirm_btn" ng-click="cancel()">取消</div>
+  </div>
+</div>
+<div ui-content-for="modals">
+  <!-- 删除评论确认 -->
+  <div class="modal confirm_modal ng-scope" ui-if="comment_del_modal" ui-state="comment_del_modal" >
+    <div class="modal-backdrop in" ui-turn-off="comment_del_modal"></div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="top">
+          <div>你确定删除选中的评价吗？</div>
+        </div>
+         <div ui-turn-off="comment_del_modal" class="bottom clearfix">
+            <div  ui-turn-off="comment_del_modal">取消</div>
+            <div ng-click="delete()" ui-turn-off="comment_del_modal">确定</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 删除评论错误提示 -->
+  <div class="modal confirm_modal ng-scope" ui-if="comment_error_modal" ui-state="comment_error_modal" >
+    <div class="modal-backdrop in" ui-turn-off="comment_error_modal"></div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="top">
+          <div>请选择要删除的点评</div>
+        </div>
+         <div ui-turn-off="comment_error_modal" class="bottom clearfix">
+            <div ui-turn-off="comment_error_modal">取消</div>
+            <div ui-turn-off="comment_error_modal">确定</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

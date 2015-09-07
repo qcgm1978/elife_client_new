@@ -1,0 +1,80 @@
+<div class="scrollable page customers_info">
+<div class="scrollable-content">
+  <!-- 页头 -->
+  <header class="header common_header ">
+    <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+          <div class="back_arrow"></div>
+            <div>返回</div>
+        </div>
+    </a>
+    <div class="title">订单提交</div>
+  </header>
+  <form action="" id="gppForm" method="post">
+    <input type="hidden" name="gpp_act_id" ng-value="gppActId"/>
+    <input type="hidden" name="total_amt" ng-value="totalAmt"/>
+    <input type="hidden" name="pay_amt" ng-value="payAmt"/>
+    <input type="hidden" name="store_code" ng-value="storeId"/>
+    <input type="hidden" name="tran_way" ng-value="tranWay"/>
+    <input type="hidden" name="t_k" id="t_k" ng-value="tokenNo">
+    <input type="hidden" name="c_no" id="c_no" ng-value="channelId">
+    <input type="hidden" name="user_tel" ng-value="userTel">
+    <input type="hidden" name="gpp_count" ng-value="gppCount">
+    <input type="hidden" name="gpp_price" ng-value="gppPrice">
+    
+  <div class="add_order_item">
+    单价
+    <div class="red_price">¥{{price}}</div>
+  </div>
+
+  <div class="add_order_item ">
+    <div class="fl">数量</div>     
+    <div class="num_selector clearfix">
+      <div class="minus" ng-click="Minus()" ng-class="{gray_border: num<2 }">-</div>
+      <!-- <form name="myForm" > -->
+        <input type="number" class="num" ng-model="num" max="99" min="1" value="1" ng-blur="default($event)"/>
+      <!-- </form> -->
+      <div class="plus" ng-click="Plus()" ng-class="{gray_border: num>99}">+</div>
+      <!-- <span class="error" ng-show="!myForm.input.$valid">请输入正确数字</span> -->
+    </div>
+  </div>
+  <div class="add_order_item">
+    总价
+    <div class="red_price">¥<span ng-bind="Total()"></span></div>
+  </div>
+  
+  <!-- 手机号码  -->
+  <div class="add_order_item user_tel">
+     请输入您的手机号码
+    <input class="order_item_right" ng-model="userTel" id="userTel" autocomplete="off"></input>
+  </div>
+
+  <div class="submit_order_btn red_confirm_btn" ng-click="submitOrder()" >
+    提交订单
+  </div>
+  </form>
+
+<div ui-content-for="modals">
+<div class="modal alert_modal ng-scope" ui-if="submit_order_error_modal" ui-state="submit_order_error_modal">
+  <div class="modal-backdrop in" ui-turn-off="submit_order_error_modal"></div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="top">
+        <div>抱歉，此团购券不足，请您减少数量或选择其他团购</div>
+      </div>
+       <div ui-turn-off="submit_order_error_modal" class="bottom">
+           确定
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+</div>
+</div>
+
+
+

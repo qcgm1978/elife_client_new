@@ -1,0 +1,61 @@
+.order_sub{
+	.order_state{
+		width:150px;
+		margin:0 auto;
+		margin-top:28px;
+		height:25px;
+		background:url(img/customers_praise_icon.png) no-repeat left center;
+		background-size:25px 25px;
+	}
+	.order_state span{
+		font-size:16px;
+		padding-left:38px;
+	}
+	.order_remain{
+		margin-top:20px;
+		font-size:12px;
+		p{
+			line-height:12px;
+			text-align:center;
+		}
+		.remain_last{
+			margin:35px 12px;;
+		}
+	}
+
+	.order_detail{
+		margin:20px 0;
+		background:#fff;
+		ul{
+			padding:0px 8px;;
+			border-bottom:solid 1px #ccc;
+			li{
+				float:left;
+				font-size:16px;
+				line-height:55px;
+			}
+			.li_two{
+				margin-left:66px;
+			}
+		}
+	}
+	.btn{
+		width:98%;
+		margin:0 1%;
+		a{
+			@extend .red_btn;
+		}
+	}
+}
+
+.fl{
+	float:left;
+}
+
+.fr{
+	float:right !important;
+}
+
+.bor_top{
+	border-top:solid 1px #ccc;
+}

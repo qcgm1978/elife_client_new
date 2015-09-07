@@ -1,0 +1,53 @@
+<div class="scrollable page personal_change_passwd">
+  <div class="scrollable-content">
+  <!-- 页头 -->
+    <header class="header common_header ">
+      <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+        <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+ 
+      <div class="confirm_btn red_text" ng-click="changePwd()">提交</div>
+      <div class="title">修改密码</div>
+    </header>
+    <!-- req_type,t_k,c_no,pwd,n_pwd,s_pwd,passwdRule,passwdChangeRule,newPwdRule,newPwdChangRule,surePwdRule,surePwdChangeRule -->
+    <div class="change_passwd_body">
+      <div class="change_passwd_item">
+        <input class="password_icon_uni" type="password" data-type="safeKeyBoard" data-name="pwd" name="pwdtmp" id="pwd" value="" placeholder="请输入原密码" maxlength="30" />
+        <!-- <input type="text" placeholder="请输入原密码" ng-click="safeKeyboard()" /> -->
+        <div>原密码</div>
+      </div>
+
+      <div class="change_passwd_item">
+        <input class="password_icon_uni" type="password" data-type="safeKeyBoard" data-name="n_pwd" name="n_pwdtmp" id="n_pwd" value="" placeholder="请输入新密码" maxlength="30" />
+        <!-- <input type="password" placeholder="请输入新密码" ng-click="safeKeyboard()" /> -->
+        <div>新密码</div>
+      </div>
+
+      <div class="change_passwd_item">
+        <input class="password_icon_uni" type="password" data-type="safeKeyBoard" data-name="s_pwd" name="s_pwdtmp" id="s_pwd" value="" placeholder="请再次输入新密码" maxlength="30" />
+        <!-- <input type="password" placeholder="请再次输入新密码" ng-click="safeKeyboard()" /> -->
+        <div>再次输入</div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div ui-content-for="modals">
+    <div class="modal  ng-scope alert_modal " ui-if="modify_success_modal" ui-state="modify_success_modal" >
+      <div class="modal-backdrop in" ui-turn-off="modify_success_modal"></div>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="top" ui-turn-off="modify_success_modal">
+            <div class="customers_praise_icon praise_icon "></div>
+            <div>修改成功</div>
+          </div>
+          <div class="bottom " ui-turn-off="modify_success_modal">确定</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

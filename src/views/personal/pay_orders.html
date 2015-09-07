@@ -1,0 +1,49 @@
+<div class="scrollable page pay_orders">
+<!-- 内容 -->
+  <div class="scrollable-content">
+    
+    <header class="header common_header">
+      <a  ng-click="clearScope()">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="title">app支付</div>
+    </header>
+    <!-- 此处是高强提供的后台action -->
+    <form action="" method="post"  name="payForm" id="payForm"> 
+      <div class="sum-wrap">
+        <div class="i">¥</div>
+        <div class="input-wrap">
+          <input type="text" ng-model="total_money" id="totalMoney" ng-disabled="isSecondOrder || isQROrder" placeholder="请输入服务人员提供的消费金额" ng-blur="getEcoupon()" autocomplete="off" maxlength="10" />
+        </div>
+      </div>
+
+      <div class="menu_list">
+        <a href="#/personal/pay_e_coupon/{{::storeId}}"  ng-hide="entry == 2"><!-- 二次支付不允许使用电子券 -->
+          <div class="item" >
+            <div class="name"><div class="icon favor_check_icon"></div>电子券</div>
+            <div class="price"><span ng-show="!ECoupons.length || !ecoupon" ng-bind="::noECoupons"></span><span ng-show="ECoupons && ecoupon">¥{{ecoupon.Effect_price}}元</span></div>
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </a>
+        <div>
+          <div class="item">
+            <div class="name">还需支付</div>
+            <div class="price">¥{{total_money-ecoupon.Effect_price || 0}}元</div>
+          </div>
+        </div>
+      </div>
+      <input type="hidden" name="t_k" id="t_k" ng-value="tokenNo">
+      <input type="hidden" name="c_no" id="c_no" ng-value="channelId">
+      <input type="hidden" name="store_code" id="store_code" ng-value="storeId">
+      <input type="hidden" name="order_id" id="order_id" ng-value="orderId">
+      <input type="hidden" name="pay_amt" ng-value="payAmt" value="" ng-show="0" id="payAmt">
+      <input type="hidden" name="tran_way" id="tran_way" ng-value="tranWay">
+      <input type="hidden" name="total_amt" id="totalAmt">
+      <input type="hidden" name="ecoupon_id" id="ecoupon_id" ng-value="{{ecoupon_code}}">
+      <input type="button" class="red_confirm_btn pay_btn" ng-click="submitOrder()" value="提交订单">
+    </form>
+  </div><!--  scrollable content -->
+</div>

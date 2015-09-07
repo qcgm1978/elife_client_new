@@ -1,0 +1,220 @@
+.search_result{
+  background-color:#f7f7f7;
+  pointer-events: auto;
+
+  .gray {
+    color: #848484;
+  }
+  .list_product_item{
+    margin-top: 0px;
+    border-top: 0px;
+    border-bottom:0px;
+  }
+  .offer_search_header{
+    // @extend .index_search_result;
+  }
+  .search_input_section{
+  padding:0px 33px;
+  width: 100%;
+  height: 48px;
+  padding-top: 10px;
+  background-color: $bg_color;
+  @include retina_border_bottom();
+
+  .search_input_area{
+    width: auto;
+    height: 28px;
+    background-color: #fff;
+    border-radius: 14px;
+    position: relative;
+    padding: 0px 14px;
+
+    input{
+      width: 100%;
+      height: 100%;
+      outline: none;
+      border: none;
+      font-size: 12px;
+    }
+     @include placeholder_style(center);
+   }
+  }
+
+
+
+  //品牌搜索 ，商户下的所有的商品 继承自 猜你喜欢
+  .brand_products{
+    @extend .guess_like;
+    background-color: white;
+    margin-top: 0px;
+    border-top: 0px;
+
+    .product_list{
+      @extend .guess_like_list;
+      
+      .list_product_item{
+        @extend .list_like_item;
+        .title{
+          font-weight: normal;
+          font-style: 16px;
+          line-height: 33px;
+        }
+        .prices{
+          line-height: 18px;
+          margin-top: 10px;
+        }
+        .red{
+          color: red;
+        }
+      }
+
+    }
+
+  }
+
+  .more{
+    height: 32px;
+    font-size: 12px;
+    color:#999999;
+    line-height: 32px;
+    text-align: center;
+    margin-top: -1px;
+
+    @include retina_border_top();
+  }
+  .more.expended{
+    i{
+      @include transform(rotate(180deg));
+    }
+  }
+} /* end of search_result */
+
+  // 文本优惠列表
+  .text_offer{
+    @extend .brand_products;
+    background-color: white;
+    .product_list{
+
+      .list_product_item{
+
+        .title{
+          color: $text_color_red;
+          font-size: 16px;
+        }
+      }
+  }
+}
+
+
+// 商家过滤搜索  可以抽离
+.list_filter_wrap{
+  position: relative;
+}
+.list_filter{
+  height: 42px;
+  padding: 7px;
+  @include retina_border_bottom(1px, solid, #cccccc);
+  @include retina_border_top(1px, solid, #cccccc);
+  &_category{
+    &.selected{
+      i{
+        color: $text_color_red;
+        @include transform(rotate(180deg));
+      }
+    }
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    float: left;
+    width: 1/3 * 100%;
+    @include retina_border_right(1px, solid, #cccccc);
+
+    &:last-child{
+      border-right: none;
+    }
+    .name{
+      display: inline-block;
+    }
+    i{
+      font-size: 16px;
+      transition: linear all 0.2s;
+    }
+  }
+
+}
+.drop_down_group{
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  overflow: hidden;
+  background-color: rgba(0,0,0,0.5);
+  @include transition(linear all 0.2s);
+  height: 1000px;
+  .mask{
+    width: 100%;
+    height: 1000px;
+    position: absolute;
+    top: 200px;
+  }
+
+  .side_list_tab{
+    @include transition(linear all 2s);
+  }
+}
+.side_list_tab{
+  background-color: white;
+  position: relative;
+  z-index: 1111;
+  @include clearfix();
+  .tabs{
+    width: 1/3 * 100%;
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 200px;
+    overflow: auto;
+    background-color: #f7f7f7;
+
+    li{
+      height: 38px;
+      line-height: 38px;
+      text-align: left;
+      padding-left: 15px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      &.selected{
+        background-color: white;
+      }
+    }
+  }
+  .tab_contents{
+    margin-left: 1/3 * 100%;
+    background-color: white;
+    height: 200px;
+    overflow: auto;
+
+    .filter_choices{
+      padding-left: 24px;
+
+      li{
+        height: 35px;
+        line-height: 35px;
+        @include retina_border_bottom(1px, solid)
+      }
+    }
+  }
+  .sort_content{
+    margin-left: 0px;
+    .filter_choices{
+      padding:0 10px;
+    }
+  }
+}
+
+
+@keyframes slideDown {
+    0%        { transform: translateY(-100%); }
+    100%      { transform: translateY(0); }
+}

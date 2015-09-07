@@ -1,0 +1,242 @@
+<div class="scrollable page brand_result search_result">
+  <!-- 内容 -->
+  <div class="scrollable-header">
+    <header class="header common_header search_header">
+      <a href="javascript:history.back();" class="return_btn" >
+        <div class="back" ng-click="removeAllCookies()">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div ui-toggle="showSidebar" class="confirm_btn" ng-click="setPositionData();">筛选</div>
+      <div class="title">逸贷(分期)商户</div>
+    </header>
+    <div class="search_result_section">
+      <div class="result_title"></div>
+    </div>
+
+    <div class="list_filter_wrap">
+      <div class="list_filter" ui-state="listFilterIndex">
+        <div class="list_filter_category" ng-click="filterToggle(1)" ui-class="{'selected':listFilterIndex == 1 && listFilter}">
+          <div class="name" ng-bind="currentDistanceTitle || currentCityDistrict.district_name || currentDistrict.district_name || currentDistrict.community_name || '全部商区'"></div>
+          <input type="hidden" ng-model="currentDistrict.district_code">
+          <i class="fa fa-caret-down" ></i>
+        </div>
+        <div class="list_filter_category"  ng-click="filterToggle(2)" ui-class="{'selected':listFilterIndex == 2 && listFilter}">
+          <div class="name" ng-bind="currentLargeType.large_name || currentSmallType.small_name || '全部类别'"></div>
+          <input type="hidden" ng-model="currentType.small_code">
+          <i class="fa fa-caret-down"></i>
+        </div>
+        <div class="list_filter_category"  ng-click="filterToggle(3)" ui-class="{'selected':listFilterIndex == 3 && listFilter}">
+          <div class="name" ng-bind="order_name || '排序'"></div>
+          <i class="fa fa-caret-down"></i>
+        </div>
+      </div>
+      <div class="drop_down_group" ui-state="listFilter" ui-show="listFilter && listFilterIndex == 1">
+        <div class="side_list_tab">
+          <div ui-state="sideTab1" default="1"></div>
+          <ul class="tabs scrollable-content">
+            <li class="tab tab_left selected" ui-set="{'sideTab1': 1}" ui-class="{'selected': sideTab1==1}">附近</li>
+            <li class="tab tab_left" ui-set="{'sideTab1': 2}" ui-class="{'selected': sideTab1==2}">热门商区</li>
+            <li class="tab tab_left" ng-repeat="district in citys" ui-set="{'sideTab1': district.district_code}" ui-class="{'selected': sideTab1=={{district.district_code}}}">{{::district.district_name}}</li>
+          </ul>
+          <div class="tab_contents">
+            <ul class="filter_choices" ui-if="sideTab1 == 1">
+              <li ng-click = "filterByDistance(500)">500米</li>
+              <li ng-click = "filterByDistance(1000)">1000米</li>
+              <li ng-click = "filterByDistance(2000)">2000米</li>
+            </ul>
+            <ul class="filter_choices" ui-if="sideTab1 == 2">
+              <li ng-repeat="city in hotCitys" ng-click = "filterByDistrict(city)">{{::city.community_name}}</li>
+            </ul>
+            <ul ng-repeat="district in citys" class="filter_choices" ui-show="sideTab1 == {{::district.district_code}}">
+              <li ng-click = "filterByDistrict(district)">全部</li>
+              <li ng-repeat="subRegion in district.community_list" ng-click = "filterByDistrict(subRegion)">
+                {{::subRegion.community_name}}
+              </li>
+            </ul>
+          </div> <!-- end of tab contents -->
+        </div> <!-- end of side list tab -->
+        <div class="mask modal" ui-if="listFilter && listFilterIndex == 1" ng-click="filterToggle(0)" ></div>
+      </div> <!-- end of drop down group -->
+
+      <div class="drop_down_group" ui-state="listFilter" ui-show="listFilter  && listFilterIndex == 2">
+        <div class="side_list_tab">
+          <ul class="tabs">
+            <li class="tab tab_left"
+                ng-class="{'selected': currentType==types}"
+                ng-click="selectType(types)"
+                ng-repeat="types in allTypes">{{::types.large_name}}</li>
+          </ul>
+          <div class="tab_contents">
+            <ul class="filter_choices"
+                ng-show="currentType==types"
+                ng-repeat="types in allTypes">
+              <li ng-click="filterByType(types)">全部</li>
+              <li ng-repeat="type in types.small_industry_list"
+                  ng-click="filterByType(type)">{{::type.small_name}}</li>
+            </ul>
+          </div> <!-- end of tab contents -->
+        </div> <!-- end of side list tab -->
+        <div class="mask modal" ui-if="listFilter && listFilterIndex == 2" ng-click="filterToggle(0)" ></div>
+      </div> <!-- end of drop down group -->
+
+      <div class="drop_down_group" ui-state="listFilter" ui-show="listFilter && listFilterIndex == 3">
+        <div class="side_list_tab">
+          <ui-state id="sideTab3" default="1"></ui-state>
+          <div class="tab_contents sort_content">
+            <ul class="filter_choices " ui-if="sideTab3 == 1">
+              <li ng-click="filterBySort('query_key desc',  '默认排序')">默认排序</li>                             <li ng-click="filterBySort('query_key desc',  '离我最近')">离我最近</li>
+              <li ng-click="filterBySort('star_level desc', '评价最高')">评价最高</li>
+              <li ng-click="filterBySort('popular desc',    '人气最高')">人气最高</li>
+              <li ng-click="filterBySort('avg_price asc',   '人均最低')">人均最低</li>
+              <li ng-click="filterBySort('avg_price desc',  '人均最高')">人均最高</li>
+            </ul>
+          </div> <!-- end of tab contents -->
+        </div> <!-- end of side list tab -->
+        <div class="mask modal" ui-if="listFilter && listFilterIndex == 3" ng-click="filterToggle(0)" ></div>
+      </div> <!-- end of drop down group -->
+    </div>
+
+  </div>
+
+  <div class="scrollable-content" mobile-infinite-scroll on-reach-bottom="showLoading(); getList()">
+
+    <div ng-show="loading" class="ng-hide">
+      <i class="fa fa-spinner fa-spin loading-spinner"></i>
+    </div>
+
+    <!-- 无搜索结果 -->
+    <div class="no_search_result" 
+      ng-show="isEmpty" 
+      ng-include="'views/widget/no_business_result.html'">
+    </div>
+
+    <!-- 所有商家 -->
+    <div class="list_product_item" ng-show="!mapFilter">
+      <div class="content clearfix">
+        <ul class="product_list thumb_list">
+        <li ng-repeat="item in list">
+        <a href="#/business/index/{{item.store_code}}"
+          data-store-code = "item.store_code">
+            <img class="left"  ng-src="{{parseImageUrl(item.image_url)}}"  fallback-src="{{defaultStoreImgUrl}}">
+            <div class="right">
+              <div class="top large text_overflow" ng-style="item.PRStyle">{{::item.store_name}}</div>
+              <div class="middle">
+                <div class="stars">
+                  <div ng-repeat="star in item.stars track by $index" class="star_{{star.type}}"></div>
+                </div>
+              </div>
+              <div class="bottom small gray" ng-show="item.showdistance=='0.0m'">
+                {{item.bottomContent | limitTo:17}} <span ng-show="item.bottomContent.length>17">...</span>
+              </div>
+              <div class="bottom small gray" ng-show="item.showdistance!='0.0m'">
+                {{item.bottomContent | limitTo:12}} <span ng-show="item.bottomContent.length>12">...</span>
+              </div>
+              <div class="right_bottom small light_gray" ng-show="item.showdistance!='0.0m'">{{item.showdistance}}</div>
+              <div class="other_info">
+              <div ng-repeat="icon in item.new_icons track by $index" class="top discount_icon {{icon}}" ></div>
+                <div class="middle small avg_price text_right" ng-show="item.average_price!=0 && item.average_price !=null">                                            {{item.average_price | number:0 }}元/人</div>
+              </div>
+            </div>
+           </a>
+          </li>
+        </ul>    
+        <div class="loading_more_wrap" ng-show="e_row > 10 && mark">
+         <div class="loading_more" ng-show="loadingMore">加载更多...</div>
+         <div class="loading_more" ng-show="!loadingMore" >无更多数据...</div>
+        </div>
+      </div> <!-- end of content -->
+    </div><!-- end of products-->
+
+    <div ng-show="mapFilter" class="map-container">
+      <div id="map">
+      </div>
+      <div id="header">第 {{mapStartIndex + 1}} - {{mapEndIndex}} 家</div>
+      <div id="pagination">
+        <i class="fa fa-angle-left" ng-click="mapPreviousPage()"></i><i class="fa fa-angle-right" ng-click="mapNextPage()"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- 侧边栏 -->
+  <ng-include src="'views/widget/filter_sidebar.html'">
+  </ng-include>
+</div>
+
+
+<!-- 弹窗 逸贷商户 -->
+<div ui-content-for="modals ">
+  <!-- 弹出框  商户图标解释-->
+
+  <div class="modal modal-overlay  filter_overlay icon_explain_modal" ui-if='modal1' ui-state='modal1'>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+        <button class="close filter_modal_close" ui-turn-off="modal1"><b>&times;</b></button>
+        <!-- 模板列表子块 -->
+         <div class="filter_modal_section">
+            <div class="filter_modal_section_icon icon_yi"></div>
+            <div class="filter_modal_section_content">商户支持逸贷业务</div>
+        </div>           
+        <div class="filter_modal_section">
+            <div class="filter_modal_section_icon icon_fen"></div>
+            <div class="filter_modal_section_content">商户支持分期付款</div>
+        </div>
+        <div class="filter_modal_section">
+            <div class="filter_modal_section_icon icon_ji"></div>
+            <div class="filter_modal_section_content">商户支持工行积分当钱用</div>
+        </div>
+        <div class="filter_modal_section">
+            <div class="filter_modal_section_icon icon_shan"></div>
+            <div class="filter_modal_section_content">支持“quickpass”银联卡快速支付</div>
+        </div>
+        <div class="filter_modal_section">
+            <div class="filter_modal_section_icon icon_gong"></div>
+            <div class="filter_modal_section_content">用工行卡在商户消费可享受优惠</div>
+        </div>
+        <div class="filter_modal_section">
+            <div class="filter_modal_section_icon icon_tuan"></div>
+            <div class="filter_modal_section_content">商户有团购优惠</div>
+        </div>
+        <div class="filter_modal_section">
+            <div class="filter_modal_section_icon icon_cu"></div>
+            <div class="filter_modal_section_content">商户有促销优惠</div>
+        </div>
+       <!-- <div class="filter_modal_section">
+            <div class="filter_modal_section_icon icon_ka"></div>
+            <div class="filter_modal_section_content">用商户会员卡可享受优惠</div>
+        </div>
+        <div class="filter_modal_section">
+          <div class="filter_modal_section_icon icon_ding"></div>
+          <div class="filter_modal_section_content">该商户支持预定</div>
+        </div>
+       -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="modal fadeIn" ui-if="yiModal" ui-state='yiModal' ui-turn-off="yiModal">
+    <div class="modal-backdrop in"></div>
+    <div class="modal-dialog yi_modal" >
+      <div class="modal-content">
+       
+        <div class="modal-body">
+          <div class="clearfix">
+            <button class="close" ui-turn-off="yiModal"><b>&times;</b></button>
+          </div>
+          
+          <!-- 逸贷商户 -->
+          
+          <div class="icon_yi"></div>
+          <div>此商户为逸贷支持商户，但需消费超过600，可进行逸贷。</div>
+        
+
+        </div> <!-- end of modal body -->
+       
+      </div>
+    </div>
+  </div>
+</div> <!-- end of modals -->

@@ -1,0 +1,34 @@
+
+<div class="scrollable page business_info">
+  <div class="scrollable-content">
+    <!-- 页头 -->
+    <header class="header common_header check_draw_header">
+      <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="favorite_draw"></div>
+      <div class="title">万一中了呢</div>
+    </header>
+    <section class="draw_content clearfix">
+    	<div class="draw_label_want"><p>HOT</p></div>
+    	<img src="images/draw_moble.png" alt="" class="draw_moble pull-left">
+    	<div class="draw_txt_box pull-left">
+    		<h4 class="draw_txt_title">{{detail.phoneName}}</h4>
+	    	<p>{{detail.number}}</p>
+	    	<p class="time"><i class="draw_clock"></i>{{detail.time}}</p>
+    	</div>
+    	<div class="clearfix"></div>
+	   	<a href="javascript:void(0);" class="draw_button_already">已参加抽奖</a>
+	   	<div class="draw_text">
+	   		<p class="draw_text_title">活动介绍</p>
+		   	<p>奖品介绍</p>
+		   	<p>{{detail.introduce}}</p>
+		   	<p>活动细则</p>
+		   	<p>{{detail.rule}}</p>
+	   	</div>
+    </section>
+   </div>
+</div>

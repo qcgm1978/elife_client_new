@@ -1,0 +1,295 @@
+<div class="scrollable page index" >
+  
+   
+      <div class="scrollable-header">
+        <header class="header index_header">          
+          <div class="index_close_icon index_close_icon2" ng-click="close_client()"><div class="close_arrow header_close_arrow"></div></div>
+          <a href="#/choose_locator">
+            <div class="img_btn header_btn_left location_btn" ng-show="location.length===3">{{location || "定位" | limitTo: 3}}</div>
+            <div class="img_btn header_btn_left location_btn" ng-show="location.length>2 && location.length!=3">{{location || "定位" | limitTo: 2}}<span ng-show="location && location.length>2">...</span></div>
+          </a>
+          <a href="#/home/search">
+            <div class="search">
+              <i class="icon_search"></i>
+              <span>输入商户名、地点</span>
+            </div>
+          </a>
+          <div class="img_btn qr_btn header_btn_right " ng-click="doScan()">扫一扫</div>
+        </header>
+       </div>
+   
+      
+       <div class="scrollable-content">
+        <div class="top_face">
+          <ul rn-carousel class="carousel" rn-carousel-auto-slide="4" rn-carousel-index="topFaceIndex">
+            <li class="clearfix" ng-repeat="banner in bannerInfo">
+              <a href="#/discount/card_offer/{{banner.pft_code}}/{{'bank'}}"><img fallback-src="{{defaultImgUrl}}" ng-src="{{parseImageUrl(banner.image_url)}}" alt="{{::banner.image_name}}" ></a>
+            </li>
+          </ul>
+          <div class="indicators">
+            <i class="dot" ng-repeat="banner in bannerInfo" ng-class="{'active':topFaceIndex == $index}"></i>
+          </div>
+        </div>
+         <div class="top_face" ng-show="isEmptyBanner"><img src="images/coming_soon_3.png"></div>
+        <div class="rect_banner category" class="clearfix">
+
+          <!-- <a href="#/home/food" class="circle_btn_group">
+            <div class="icon icon_category_dish"></div>
+            <div class="name">美食</div>
+          </a>
+          <a href="#/home/category/1/小吃快餐" class="circle_btn_group">
+            <div class="icon icon_category_food"></div>
+            <div class="name">小吃快餐</div>large_name
+          </a>
+          <a href="#/home/category/1/休闲娱乐" class="circle_btn_group">
+            <div class="icon icon_category_drink"></div>
+            <div class="name">休闲娱乐</div>
+          </a> -->
+
+          <a ng-href="#{{category.details}}" class="circle_btn_group"
+            ng-repeat="category in largeCategory">
+            <div class="icon_img">
+              <img fallback-src="{{defaultImgUrl}}" ng-src="{{parseImageUrl(category.image_url)}}">
+            </div>
+            <div class="name" ng-bind="::category.large_name | limitTo: 5"><span ng-show="category.large_name && category.large_name.length>5">...</span></div>
+          </a>
+        </div>
+        
+        <div class="rect_banner category_banner">
+
+          <ul rn-carousel class="carousel" rn-carousel-index="categoryIndex">
+            <li ng-repeat="item in ghService" class="clearfix">
+              <a href="#{{sub_item.details}}" class="circle_btn_group" ng-repeat="sub_item in item.services">
+                <div class="icon_img">
+                  <img fallback-src="{{defaultImgUrl}}" ng-src="{{parseImageUrl(sub_item.image_url)}}" alt="{{sub_item.image_url}}" >
+                </div>
+                <div class="name" ng-bind="::sub_item.func_name | limitTo: 5"><span ng-show="sub_item.func_name && sub_item.func_name.length>5">...</span></div>
+              </a>
+            </li>
+          </ul>
+          <div class="indicators">
+            <i class="dot" ng-repeat="service in ghService" ng-class="{'active':categoryIndex == $index}"></i>
+            <!--  <i class="dot" ng-show="ghService.length>1" ng-class="{'active':categoryIndex == 0}"></i>
+            <i class="dot" ng-show="ghService.length>2" ng-class="{'active':categoryIndex == 1}"></i>
+            <i class="dot" ng-show="ghService.length>3" ng-class="{'active':categoryIndex == 2}"></i>
+            <i class="dot" ng-show="ghService.length>4" ng-class="{'active':categoryIndex == 3}"></i> -->
+          </div>        
+        </div> 
+
+        <!--天天抽奖-->
+        <div class="rect_section lottery">
+          <a href="#/draw/drawlist">
+          <div class="timer_wrap">
+            <div>精选商品限时抽奖</div>
+            <div class="calendar_timer">
+              <div class="digital" ng-bind="details[details.length-1].countDown.hour">0</div>
+              <div class="digital" ng-bind="details[details.length-1].countDown.hourUpper">0</div>
+              <span class="colon">:</span>
+              <div class="digital" ng-bind="details[details.length-1].countDown.minute">0</div>
+             <div class="digital" ng-bind="details[details.length-1].countDown.minuteUpper">0</div>
+              <span class="colon">:</span>
+              <div class="digital" ng-bind="details[details.length-1].countDown.second">0</div>
+              <div class="digital" ng-bind="details[details.length-1].countDown.secondUpper">0</div>
+              <div class="mask"></div>
+            </div>
+          </div>
+
+          <div class="lottery_desc">
+           <div class="line1" ng-bind="details[0].periods">天天抽奖</div>
+            <div class="line2">万一中了呢</div>
+          </div>
+
+          <div class="lottery_img">
+            <img fallback-src="{{defaultImgUrl}}" ng-src="{{parseImageUrl(details[0].telePhone_url)}}" >
+          </div>
+
+          </a>
+
+        </div>
+
+        
+        <!-- 精选优惠 -->
+        <div class="title_section special_offer">
+          <div class="section_header">
+            <div class="title">精选优惠</div>
+            <a ng-show="specialOffer" href="#/business/special_offer"><div class="subtitle">更多</div></a>
+          </div>
+          <div class="content clearfix">
+            <div class="colums_layout colums_3">
+              <div class="col" ng-repeat="offer in specialOffer | limitTo: 3">
+              <a href="#/discount/business_offer/{{offer.store_code}}/{{offer.preferential_code}}/store">
+                <div class="product_sale_vertical">
+                  <div class="img_wrap">
+                    <img fallback-src="{{defaultImgUrl}}" ng-src="{{parseImageUrl(offer.image_url)}}">
+                  </div>
+                  <div class="name" ng-bind="::offer.pft_name"></div>
+                  <div class="prices" ng-show="offer.n_price">
+                      <div class="price_now">¥{{::offer.n_price}}元</div>
+                      <div class="price_before">¥{{::offer.o_price}}元
+                       <div class="red_line"></div>
+                      </div>
+                  </div>
+                </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div><!-- end of special offer-->
+
+
+        <!-- 推荐商户 -->
+        <div class="title_section recommand_business" ng-show="recommandStore.length!=0">
+          <div class="section_header">
+            <div class="title">推荐商户</div>
+            <a ng-show="moreRecommandStore.length>0" href="#/business/recommend"><div class="subtitle">更多</div></a>
+          </div>
+          <div class="content clearfix">
+            <div class="colums_layout colums_2">
+              <div class="col"
+                ng-repeat="store in recommandStore | limitTo: 2">
+                <a href="#/business/index/{{store.store_code}}">
+                <div class="business_horizontal clearfix">
+                  <div class="img_wrap">
+                    <img fallback-src="{{defaultImgUrl}}" ng-src="{{parseImageUrl(store.image_url)}}"  >
+                  </div>
+                  <div class="name">{{store.store_name | limitTo : 3}}</div>
+                  <div class="desc"
+                    ng-bind="::store.store_title||'值得信赖'"></div>
+                </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div><!-- end of recommand business -->
+        
+        <!-- 猜你喜欢 -->
+        <div class="title_section guess_like">
+          <div class="section_header">
+            <div class="title">猜你喜欢</div>
+          </div>
+          <div class="content">
+            <!-- <ul class="guess_like_list">
+              <li>
+                <a href="#/business/index/2001100001" class="list_like_item clearfix">
+                  <img src="{{defaultImgUrl}}" class="left" src="images/restaurant_qjn.jpg">
+                  <div class="right">
+                    <div class="title">俏江南（金融街店）</div>
+                    <div class="desc">代金卷一张，可叠加，不限时段</div>
+                    <div class="prices">
+                      <div class="price_now">¥120元</div>
+                      <div class="price_before">¥300元</div>
+                    </div>
+                    <div class="distance">0.7km</div>
+                    <div class="sold">已售732</div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#/business/index/2001100001" class="list_like_item clearfix">
+                  <img src="{{defaultImgUrl}}" class="left" src="images/restaurant_qjn.jpg">
+                  <div class="right">
+                    <div class="title">俏江南（金融街店）</div>
+                    <div class="desc">代金卷一张，可叠加，不限时段</div>
+                    <div class="prices">
+                      <div class="price_now">¥120元</div>
+                      <div class="price_before">¥300元</div>
+                    </div>
+                    <div class="distance">0.7km</div>
+                    <div class="sold">已售732</div>
+                  </div>
+                </a>
+              </li>
+            </ul> -->
+
+        <ul class="thumb_list">
+         <li ng-repeat="item in guessLike">
+          <a href="#/business/index/{{item.store_code}}" class="clearfix">
+            <img fallback-src="{{defaultStoreImgUrl}}" class="left" ng-src="{{parseImageUrl(item.image_url)}}" >
+            <div class="right">
+              <div class="top large text_overflow" ng-style="item.PRStyle">{{::item.store_name}}</div>
+              <div class="middle">
+                <div class="stars">
+                 <div ng-repeat="star in item.levels" class="star_{{star.type}}"></div>
+                </div>
+              </div>
+              <div class="bottom small gray" ng-show="item.showdistance==='0.0m'">
+                {{item.bottomContent | limitTo :17}}<span ng-show="item.store_name.length>17">...</span>
+              </div>
+              <div class="bottom small gray" ng-show="item.showdistance!='0.0m'">
+                {{item.bottomContent | limitTo :12}}<span ng-show="item.store_name.length>12">...</span>
+              </div>
+              <div class="right_bottom small light_gray" ng-show="item.showdistance && item.showdistance!='0.0m'">{{item.showdistance}} </div>
+              <div class="other_info">
+                <div ng-repeat= "role in item.new_discount_role" class="{{role}}" ng-show="role"></div>
+                <div class="middle small avg_price text_right" ng-show="item.average_price !=0 && item.average_price !=null">                                            {{item.average_price | number:0 }}元/人</div>
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="btn-more">
+         <a href="#/home/guess_u_like_list">查看更多</a>
+        </li>
+       </ul> 
+
+                <!--<ul class="product_list">
+                <li class="business_basic_info_section"
+                  ng-repeat="item in guessLike">
+                  <a ng-href="#/business/index/2001100001">
+                  <div class="business_brand">
+                    <div class="business_brand_icon">
+                      <img src="{{defaultImgUrl}}"  ng-src="{{parseImageUrl(item.image_url)}}"  >
+                    </div> 
+                    <div class="business_brand_num"></div>
+                  </div>
+                  <div class="business_brand_content">
+                    <div class="business_brand_content_name">
+                      <div>{{::item.mer_name}}</div>
+                      <div class="icon_yi" ng-show="item.is_yd"></div>
+                      <div class="icon_fen" ng-show="item.is_fq"></div>
+                      <div class="icon_ji" ng-show="item.is_jf"></div>
+                      <div class="icon_shan" ng-show="item.is_sk"></div>
+                      <div class="icon_gong" ng-show="item.is_gh"></div>
+                      <div class="icon_tuan" ng-show="item.is_tu"></div>
+                      <div class="icon_cu" ng-show="item.is_cx"></div>
+                      <div class="icon_ka" ng-show="item.is_ka"></div>
+                    </div>
+                    <div class="business_brand_content_star">
+                      <span class="star_full"
+                      ng-class="{star_gray: item.dcmt_level<1}"></span><span class="star_full"
+                      ng-class="{star_gray: item.dcmt_level<2}"></span><span class="star_full"
+                      ng-class="{star_gray: item.dcmt_level<3}"></span><span class="star_full"
+                      ng-class="{star_gray: item.dcmt_level<4}"></span><span class="star_full"
+                      ng-class="{star_gray: item.dcmt_level<5}"></span>
+                      <div class="business_consume_avg">{{::item.price}}元/人</div>
+                    </div>
+                    <div class="business_brand_content_num">
+                      <div>{{::item.address}} {{::item.small_type}}</div>
+                      <div class="distance" ng-bind="::item.distance"></div>
+                    </div>
+                    
+                  </div>
+                  </a>
+                </li>
+              </ul> -->
+          </div>
+        </div><!-- end of guess you like -->   
+  
+  </div><!--  end of scrollable-content -->
+  <div class="scrollable-footer">
+    <div class="tab_bar">
+      <a href="#/home/index" class="tab active">
+        <div class="icon tab_home"></div>
+        <div class="name">首页</div>
+      </a>
+      <a href="#/discount/index" class="tab">
+        <div class="icon tab_discount" ></div>
+        <div class="name">优惠</div>
+      </a>
+      <a href="#/personal/index" class="tab"> 
+        <div class="icon tab_profile"></div>
+        <div class="name">我的</div>
+      </a>
+    </div>
+  </div><!--  end of scrollable-footer -->
+    
+</div>

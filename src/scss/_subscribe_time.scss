@@ -1,0 +1,20 @@
+.online_book{
+	.time_nav{
+		width:100%;
+		background:#fff;
+		div{
+			float:left;
+			width:25%;
+			height:62px;
+			text-align:center;
+			border-bottom:solid 1px #ccc;
+			padding-top:10px;
+			border-right:solid 1px #ccc;
+			color:#333;
+		}
+		.active_nav{
+			border-bottom: 2px solid #c00 !important;
+			color:#999 !important;
+		}
+	}
+}

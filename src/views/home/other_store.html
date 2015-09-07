@@ -1,0 +1,88 @@
+<div class="scrollable page other_store">
+<!-- 内容 -->
+    <div class="scrollable-content" >
+    <header class="header common_header">
+        <a href="javascript:history.back();" >
+            <div class="back">
+                <div class="back_arrow"></div>
+                <div>返回</div>
+            </div>
+        </a>
+
+        <div class="title">其他分店</div>
+    </header>
+
+    <div class="content scrollable-content" mobile-infinite-scroll on-reach-bottom="showLoading(); getList(0)">
+         <div ng-show="loading" class="ng-hide">
+            <i class="fa fa-spinner fa-spin loading-spinner"></i>
+        </div>
+          <!-- 无搜索结果 -->
+
+      <img ng-show="isEmpty" src="images/no_otherstore.jpg"/>
+
+
+        <ul class="thumb_list">
+            <li ng-repeat="otherStore in otherStores ">
+                <a href="#/business/index/{{otherStore.store_code}}" class="clearfix">
+                    <img class="left" ng-src="{{parseImageUrl(otherStore.image_url)}}" fallback-src="{{defaultImgUrl}}">
+
+                    <div class="right">
+                        <div class="top large">{{otherStore.store_name | limitTo :8}}<span
+                                ng-show="otherStore.store_name.length>8">...</span></div>
+                        <div class="middle">
+                            <div class="stars">
+                                <div ng-repeat="star in otherStore.levels" class="star_{{star.type}}"></div>
+                            </div>
+                        </div>
+                        <div class="bottom small gray"> {{otherStore.bottomContent}}</div>
+                        <div class="right_bottom small light_gray">{{otherStore.showdistance}}</div>
+                        <div class="other_info">
+                            <div ng-repeat="role in otherStore.discount_role track by $index"
+                                 class="top none discount_icon {{role}}"></div>
+                            <div class="middle small avg_price"ng-show="otherStore.average_price !=0 && otherStore.average_price !=null">{{::otherStore.average_price}}元/人</div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+         <div class="loading_more_wrap" ng-show="e_row > 10 && mark">
+              <div class="loading_more" ng-show="loadingMore">加载更多...</div>
+              <div class="loading_more" ng-show="!loadingMore">无更多数据...</div>
+         </div>
+    </div>
+</div><!-- end of recommand business -->
+</div>
+</div><!--  end of scrollable-content -->
+
+<!--<div class="title_section apply_store">
+<a ng-repeat="otherStore in otherStores" href="#/business/index/{{otherStore.store_code}}">
+</a>
+</div>-->
+
+<!--顶部商户基本信息 -->
+<!--<div class="business_basic_info_section" ng-repeat="otherStore in otherStores">
+   <a href="#/business/album/{{otherStore.store_code}}">
+      <div class="business_brand">
+         <div class="business_brand_icon"> <img src="{{imgBaseUrl}}{{otherStore.image_url}}" alt="没有图片"></div>
+         <div class="business_brand_num business_brand_info_num">{{otherStore.view_count}}</div>
+     </div>
+   </a>
+
+   <div class="business_brand_content">
+      <div class="business_brand_content_name">
+      <div>{{otherStore.store_name}}</div>
+      <div ng-click="displayIconInfo(flag)" ng-repeat="flag in otherStore.flags" class="{{flag}}"></div>
+   </div>
+
+   <div class="business_brand_content_star">
+      <div ng-repeat="star in avg_stars" class="star star_{{star.type}}"></div>
+      <div class="consume-avg"><p>¥{{busiInfo.average_price}}元/人</p></div>
+   </div>
+   <div class="business_brand_content_num">
+      <div >人气：{{busiInfo.sentiment_count}}</div>
+      <div class="praise">点赞量：{{busiInfo.praise_count}}</div>
+   </div>
+   </div>
+ <div class="clearfix"></div>-->
+ </div>
+</div>

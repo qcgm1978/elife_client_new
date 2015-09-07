@@ -1,0 +1,60 @@
+
+<div class="scrollable page business_info">
+  <div class="scrollable-content">
+    <!-- 页头 -->
+    <header class="header common_header check_draw_header">
+      <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="favorite_draw"></div>
+      <div class="title">万一中了呢</div>
+    </header>
+    <section class="draw_content clearfix">
+    	<div class="draw_label_want"><p>HOT</p></div>
+    	<img  lazy-img="{{parseImageUrl(detail.phone_url)}}"  alt="" class="draw_moble pull-left" src="{{defaultImgUrl}}">
+    	<div class="draw_txt_box pull-left">
+    		<h4 class="draw_txt_title">{{detail.phoneName}}</h4>
+	    	<p>{{detail.number}}</p>
+	    	<p class="time"><i class="draw_clock"></i>{{detail.time}}</p>
+    	</div>
+    	<div class="clearfix"></div>
+	   	<a href="javascript:;" class="draw_button">我要抽奖</a>
+	   	<div class="draw_text">
+	   		<p class="draw_text_title">活动介绍</p>
+		   	<p>奖品介绍</p>
+		   	<p>{{detail.introduce}}</p>
+		   	<p>活动细则</p>
+		   	<p>{{detail.rule}}</p>
+	   	</div>
+    </section>
+    <div ui-content-for="modals">
+	    <div class="modal  ng-scope alert_modal " ui-if="test_modal" ui-state="test_modal" >
+	      <div class="modal-backdrop in"></div>
+	      <div class="modal-dialog">
+	        <div class="modal-content">
+		        <div class="popup_draw_title">您中奖了
+		        	<a href="javascript:void(0);" class="draw_close"></a>
+		        </div>
+		        <div class="popup_draw_point">请留下您的身份信息，以便我们核对后为您发送奖品</div>
+		        <div class="popup_draw_message clearfix">
+		        	<div class="massage_td pull-left">姓名 <span class="crumb">*</span></div>
+		        	<input type="text pull-left" placeholder="请输入您的姓名">
+		        </div>
+		         <div class="popup_draw_message clearfix">
+			         <div class="massage_td pull-left">手机号 <span class="crumb">*</span></div>
+			        	<input type="text pull-left" placeholder="请输入您的手机号码">
+			        </div>
+		        <div class="popup_draw_message clearfix">
+			        <div class="massage_td pull-left">身份证号 <span class="crumb">*</span></div>
+			        	<input type="text pull-left" placeholder="请输入您的身份证号">
+			        </div> 
+		        <div class="popup_draw_bottom" ng-click="backToPersonalInfo()">确认</div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+   </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="scrollable page personal_change_tel">
+  <div class="scrollable-content">
+  <!-- 页头 -->
+    <header class="header common_header ">
+      <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+        <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" ng-click="check_tel()">
+      <div class="confirm_btn red_text" >下一步</div></a>
+      <div class="title">修改手机号</div>
+    </header>
+  <!-- 第一步 -->
+    <div class="first_step">
+      <div class="change_tel_item">
+        <div>原手机号</div>
+        <form name="myForm" >
+        <input type="text"  name="input" class="old_phone num" id="o_phone" ng-model="oldPhone" disabled placeholder="请输入手机号"/>
+        </form>
+       
+      </div>
+
+      <div class="change_tel_item">
+        <input class="password_icon_uni" type="password" data-type="safeKeyBoard" data-name="pwd" name="pwdtmp" id="pwd" value="" placeholder="请输入密码" maxlength="30" />
+        <div>密码</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

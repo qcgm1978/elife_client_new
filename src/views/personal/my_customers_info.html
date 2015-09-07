@@ -1,0 +1,121 @@
+<div class="scrollable page customers_info my_customers_info">
+ <div class="scrollable-content">
+  <!-- 页头 -->
+  <header class="header common_header ">
+    <a href="javascript:history.back();">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+    </a>
+  
+    <div class="title">我的团购券</div>
+  </header>
+<!-- 顶部信息展示 -->
+   <ul class="thumb_list top_info">
+      <li >
+        <a href="#/discount/customers/{{myGroupDetail.gpp_actId}}" class="clearfix">
+          <div class="left">
+            <img class="left"  lazy-img="{{parseImageUrl(myGroupDetail.log_url)}}"  alt="暂无图片" src="{{defaultImgUrl}}">
+          </div>
+          <div class="right">
+            <div class="top large">
+              <div class="top_title">{{myGroupDetail.gpp_actName}}</div>
+            </div>
+            <div class="middle">
+              <div class="customers_attributes clearfix">
+                <div class="customers_attributes_item" ng-show="myGroupDetail.sst">
+                  <div class="customers_check_icon"></div>
+                  <div class="customers_attributes_item_content">随时退</div>
+                </div>
+              </div>
+            </div>
+            <div class="small total_price">价格：{{myGroupDetail.gpp_sum_price | currency:'¥'}}元</div>  
+            <div class="bottom small gray">有效期：{{myGroupDetail.s_date}}至{{myGroupDetail.e_date}}</div>
+            
+          </div>
+          <i class="fa fa-chevron-right"></i>
+        </a>
+      </li>
+    </ul>
+<!-- 团购券 -->
+<div class="my_customers_section">
+  <div class="my_customers_section_item">
+    <div class="my_customers_title">券号</div>
+    <div class="my_customers_state red_text">{{status[gpp_status]}}</div>
+    <div class="my_customers_num">{{gpp_code}}</div>
+  </div>
+</div>
+
+   <!-- 发送团购券 -->
+  <!-- <a href="#/personal/send_customers">
+    <div class="send_customers_block">
+      <div>发送团购券</div>
+      <i class="fa fa-chevron-right"></i>
+    </div>
+  </a> -->
+
+   <!-- 团购适用门店 -->
+   <div class="title_section apply_store">
+      <div class="section_header" ng-show="suitList.length===1">
+        <div class="title">适用门店</div>
+      </div>
+
+     <a href="#/business/business_available_store/{{gpp_actId}}/{{'GROUP'}}" ng-show="suitList.length > 1">
+        <div class="section_header">
+          <div class="customers_body_item_title">适用门店（<span ng-bind="suitList.length"></span>家）</div>
+          <div class="right_arrow"></div>
+        </div>
+      </a>
+      <ul class="thumb_list" ng-show="suitList.length>0">
+        <li>
+          <a href="#/business/index/{{suitStore.store_code}}" class="clearfix">
+            <div class="left"><img class="left" lazy-img="{{parseImageUrl(suitStore.image_url)}}"  alt="暂无图片" src="{{defaultImgUrl}}"/></div>
+            <div class="right">
+              <div class="top large">
+                <div class="top_title">{{suitStore.store_name | limitTo :10}}<span ng-show="suitStore.store_name.length>10">...</span></div>
+              <!--   <div class="icon_area"><div class="icon_yi"></div></div> -->
+              </div>
+              <div class="middle">
+                <div class="stars">
+                  <div ng-repeat="star in suitStore.levels" class="star_{{star.type}}"></div>
+                </div>
+                <div class="price">127元/每人</div>
+              </div>  
+              <div class="bottom small gray">
+                {{suitStore.bottomContent | limitTo: 20}}
+                <span ng-show="suitStore.bottomContent.length>20">...</span>
+              </div>
+              <div class="right_bottom small light_gray" ng-show="suitStore.distance!=0.0">{{suitStore.distance}}km</div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- 团购详情 -->
+  <div class="customers_body_item_title" ng-show="myGroupDetail.gpp_detail.length>0">团购详情</div>
+  <div class="customers_info_content">
+    {{myGroupDetail.gpp_detail}}
+  </div>
+
+ 
+  
+  <!-- 购买须知 -->
+  <div class="customers_body_item_title">购买须知</div>
+  <div class="buy_info left_10_padding">
+    <div class="light_gray">预约信息</div>
+    <div>{{myGroupDetail.pre_info}}</div>
+    <div class="light_gray">食堂外带</div>
+    <div>{{myGroupDetail.pre_takeout}}</div>
+    <div class="light_gray">使用规则</div>
+    <div>{{myGroupDetail.pre_rules}}</div>
+    <div class="light_gray">温馨提示</div>
+    <div>{{myGroupDetail.pre_prompt}}</div>
+  </div>
+  <a href="#/personal/customers_drawback"><div class="red_confirm_btn">申请退款</div></a>
+
+ </div>
+</div>
+
+
+

@@ -1,0 +1,116 @@
+<div class="scrollable page review_comment">
+<!-- 内容 -->
+  <div class="scrollable-content">
+    <header class="header common_header">
+      <a href="javascript:void(0);" ng-click="updateBack()">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="confirm_btn" ng-click="preUpdate()">确定</div>
+      <div class="title">点评详情</div>
+    </header>
+
+
+    <div class="comment_wrap">
+      <!-- 评价星级 -->
+      <div class="comment_stars">
+        <div class="comment global">
+          <div class="name">总体评价</div>
+          <div class="stars">
+            <div class="star" ng-click="globalStar=1" ng-class="{star_gray:globalStar < 1}"></div>
+            <div class="star" ng-click="globalStar=2" ng-class="{star_gray:globalStar < 2}"></div>
+            <div class="star" ng-click="globalStar=3" ng-class="{star_gray:globalStar < 3}"></div>
+            <div class="star" ng-click="globalStar=4" ng-class="{star_gray:globalStar < 4}"></div>
+            <div class="star" ng-click="globalStar=5" ng-class="{star_gray:globalStar < 5}"></div>
+          </div>
+          <div class="desc">
+            <span ng-bind="globalStar"></span>星
+          </div>
+        </div>
+        <div class="comment" ng-show="tasteFlag">
+          <div class="name">口味</div>
+          <div class="smiles">
+            <div class="smile" ng-click="tasteStar=1" ng-class="{smile_gray:tasteStar < 1}"></div>
+            <div class="smile" ng-click="tasteStar=2" ng-class="{smile_gray:tasteStar < 2}"></div>
+            <div class="smile" ng-click="tasteStar=3" ng-class="{smile_gray:tasteStar < 3}"></div>
+            <div class="smile" ng-click="tasteStar=4" ng-class="{smile_gray:tasteStar < 4}"></div>
+            <div class="smile" ng-click="tasteStar=5" ng-class="{smile_gray:tasteStar < 5}"></div>
+          </div>
+          <div class="desc">
+            <span ng-bind="des2[tasteStar-1]"></span>
+          </div>
+        </div>
+        <div class="comment" ng-show="environmentFlag">
+          <div class="name">环境</div>
+          <div class="smiles">
+            <div class="smile" ng-click="environmentStar=1" ng-class="{smile_gray:environmentStar < 1}"></div>
+            <div class="smile" ng-click="environmentStar=2" ng-class="{smile_gray:environmentStar < 2}"></div>
+            <div class="smile" ng-click="environmentStar=3" ng-class="{smile_gray:environmentStar < 3}"></div>
+            <div class="smile" ng-click="environmentStar=4" ng-class="{smile_gray:environmentStar < 4}"></div>
+            <div class="smile" ng-click="environmentStar=5" ng-class="{smile_gray:environmentStar < 5}"></div>
+          </div>
+          <div class="desc">
+            <span ng-bind="des2[environmentStar-1]"></span>
+          </div>
+        </div>
+        <div class="comment" ng-show="serviceFlag">
+          <div class="name">服务</div>
+          <div class="smiles">
+            <div class="smile" ng-click="serviceStar=1" ng-class="{smile_gray:serviceStar < 1}"></div>
+            <div class="smile" ng-click="serviceStar=2" ng-class="{smile_gray:serviceStar < 2}"></div>
+            <div class="smile" ng-click="serviceStar=3" ng-class="{smile_gray:serviceStar < 3}"></div>
+            <div class="smile" ng-click="serviceStar=4" ng-class="{smile_gray:serviceStar < 4}"></div>
+            <div class="smile" ng-click="serviceStar=5" ng-class="{smile_gray:serviceStar < 5}"></div>
+          </div>
+          <div class="desc">
+            <span ng-bind="des2[serviceStar-1]"></span>
+          </div>
+        </div>
+            
+      </div>
+
+      <!-- 评价输入框 -->
+      <div class="comment_box" ng-class="{typing: isTyping}">
+        <div class="placeholder ">
+          <span ng-if="!comment">亲，这家店如何，请评价评价吧。</span>
+          <span ng-bind="comment" class="wordBlack line_break"></span>
+        </div>
+        <textarea class="input" ng-model="comment" ng-focus="isTyping = true"  ng-blur="isTyping=false"></textarea>
+        <span class="maxWord"><span ng-show="comment==null">最少输入5字</span><span ng-show="comment.length>0 && comment.length<5">加油！还有{{5-comment.length}}字！</span><span ng-show="comment.length>=5">{{comment.length}}/500</span></span>
+        <div class="clearfix image_div" ng-hide="isTyping">
+          <div class="image_box" ng-repeat="img in imgList track by $index">
+            <img fallback-src="{{defaultImgUrl}}" ng-src="{{parseImageUrl(img.url || img.image_url)}}">
+          </div>
+          <div class="image_box">
+            <div class="image add_btn"  ng-click="getPhoto('comment')"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 人均 -->
+      <div class="avg_price" ng-hide="hideAvg">
+        <span>¥</span>
+        <input type="number" class="navg_price" placeholder="人均" ng-model="AvgMoney" />
+      </div>
+    </div>
+  </div>
+</div> 
+    
+<div ui-content-for="modals">
+  <div class="modal alert_modal ng-scope" ui-if="success_modal" ui-state="success_modal">
+    <div class="modal-backdrop in" ui-turn-off="success_modal"></div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="top">
+          <div class="icon icon_praise"></div>
+          <div>修改成功!</div>
+        </div>
+        <div ng-click="goBack()" class="bottom">
+          确定
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- end of modal -->

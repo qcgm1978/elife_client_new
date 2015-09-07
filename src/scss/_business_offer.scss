@@ -1,0 +1,15 @@
+
+// 优惠券部分
+.text_coupon{
+  @extend .coupon;
+  margin:10px 30px;
+  border:none;
+  border-left:40px solid transparent;
+  border-right:40px solid transparent;
+
+  border-image:url(img/coupon_text_border.png) 0 60 0 60 stretch;
+  .container{
+    padding :20px 0 10px 0;
+    background-color: #ffcc33;
+  }
+}

@@ -1,0 +1,34 @@
+<div class="scrollable page personal_change_nickname">
+  <div class="scrollable-content">
+  <!-- 页头 -->
+    <header class="header common_header ">
+      <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+        <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="confirm_btn red_text" ng-click="doSubmitNickname()">提交</div>
+      <div class="title">修改昵称</div>
+    </header>
+  <div class="input_block">
+    <input id="newName"  type="text" ng-model="new_nickname" value="" placeholder="您现在的昵称:{{personalInfo.nickname}}"/> 
+    <div class="close_icon" ng-click="doDeleteNickname()"></div>
+  </div>  
+
+  </div>
+   <div ui-content-for="modals">
+    <div class="modal  ng-scope alert_modal " ui-if="modify_success_modal" ui-state="modify_success_modal" >
+      <div class="modal-backdrop in"></div>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="top">
+            <div class="customers_praise_icon praise_icon"></div>
+            <div ng-bind="postmsg"></div>
+          </div>
+          <div class="bottom " ng-click="backToPersonalInfo()">确定</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

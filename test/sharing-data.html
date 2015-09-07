@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-app="testModule">
+<div ng-controller="navCtrl">
+    <span>{{user.name}}</span>
+    <div ng-controller="loginCtrl">
+        <span>{{user.name}}</span>
+        <input ng-model="user.name">
+    </div>
+</div>
+<script src="../bower_components/angular/angular.js"></script>
+<script >
+    var testModule=angular.module('testModule',[])
+    testModule.controller('navCtrl', ['$scope',function ($scope) {
+        $scope.user={
+            name:'foo'
+        }
+    }]).controller('loginCtrl', function () {
+
+    })
+</script>
+</body>
+</html>

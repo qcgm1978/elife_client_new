@@ -1,0 +1,122 @@
+<div class="scrollable page card_offer">
+    <div class="scrollable-content">
+
+        <header class="header common_header">
+            <div>
+                <div class="back" ng-click="return_btn($event)">
+                    <div class="back_arrow"></div>
+                    <div>返回</div>
+                </div>
+            </div>
+
+            <div ng-class="{'favorite':businessInfo.fav_status=='0', 'favorite_choose':businessInfo.fav_status=='1'}"
+                 ng-click="addBusinessFavor()"></div>
+            <div class="share" ng-click="share({'pft_code':'{{code}}','share_type':'storediscount'})"></div>
+            <div class="title">商户优惠详情</div>
+        </header>
+
+        <div class="top_face">
+            <img ng-src="{{parseImageUrl(businessInfo.image_url)}}" alt="暂无图片" fallback-src="{{defaultStoreImgUrl}}">
+        </div>
+
+        <div class="text_coupon">
+            <div class="container">
+                <div class="title">{{businessInfo.promotions_title}}</div>
+                <div class="info">有效期：{{businessInfo.start_time}}~{{businessInfo.end_time}}</div>
+                <div class="info">到店直接出示使用</div>
+                <a ng-click="validateLogin()" link-data="{{businessInfo.comment_url}}" id="comment">
+                    <div class="coupon_button">点评</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="coupon_desc">
+            <p ng-show="businessInfo.pro_promotions_content!=''">优惠内容</p>
+            <p ng-show="businessInfo.pro_promotions_content!=''">&nbsp;&nbsp;<span ng-bind-html="businessInfo.pro_promotions_content | to_trusted"></span></p>
+
+        </div>
+
+        <!-- 网友点评 -->
+        <div class="title_section review" ng-show="bcount>0">
+            <a href="#/review/index/{{code}}/StoreTxt">
+                <div class="section_header">
+                    <div class="title">网友点评（<span ng-bind="bcount"></span>）</div>
+                    <div class="right_arrow" ng-show="bcount > 1"></div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+
+            <div class="content line_break">
+                <div class="img_wrap">
+                    <img ng-src="{{parseImageUrl(businessList.image_url)}}" fallback-src="{{defaultImgUrl}}">
+                </div>
+                <div class="right">
+                    <div class="title" ng-bind="businessList.nick_name"></div>
+                    <span ng-repeat="star in stars" class="star_{{star.type}}"></span>
+
+                    <div class="desc">
+                        <span ng-bind="::businessList.content" class="line_break"></span>
+                        <span ng-show="showContent" ng-bind="::businessList.more" class="line_break">..</span>
+
+                        <span class="light_blue_text" ng-show="::businessList.longEnough"
+                              ng-click="showContent = !showContent"><span ng-show="!showContent">查看全文</span><span
+                                ng-show="showContent">收起</span><i class="fa fa-chevron-down transition"
+                                                                  ng-class="{rotate180:showContent}"></i></span>
+                    </div>
+                    <a href="#/review/album" ng-show="imagelist.length > 0">
+                        <ul>
+                            <li ng-repeat="image in imagelist | limitTo:3" ng-class="{list_last_img:$index == 2}"><img ng-src="{{parseImageUrl(image.review_image_url)}}" fallback-src="{{defaultImgUrl}}"><div class="rest_img_num" ng-show="imagelist.length>3&&($index == 2)">还剩{{imagelist.length-3}}张</div></li>
+                        </ul>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="title_section apply_store">
+            <div class="section_header" ng-show="businessStoreList.length == 1">
+                <div class="title">适用门店</div>
+            </div>
+
+            <a href="#/business/business_available_store/{{code}}/{{'STORE'}}" ng-show="businessStoreList.length != 1">
+                <div class="section_header">
+                    <div class="title">适用门店（<span ng-bind="businessStoreList.length"></span>家）</div>
+                    <div class="right_arrow" ng-show="businessStoreList.length>1"></div>
+                </div>
+            </a>
+            <ul class="thumb_list">
+                <li ng-repeat="busiStore in businessStoreList | limitTo: 1">
+                    <a href="#/business/index/{{busiStore.store_code}}">
+                        <img class="left" ng-src="{{parseImageUrl(busiStore.image_url)}}" fallback-src="{{defaultImgUrl}}">
+
+                        <div class="right">
+                            <div class="top large text_overflow" ng-style="busiStore.PRStyle">{{::busiStore.store_name}}</div>
+                            <div class="middle">
+                                <div class="stars">
+                                    <div ng-repeat="star in busiStore.levels" class="star_{{star.type}}"></div>
+                                </div>
+                            </div>
+                            <div class="bottom small gray">
+                                {{busiStore.bottomContent}}
+                            </div>
+                            <div class="right_bottom small light_gray" ng-show="busiStore.distance!=0.0">
+                                {{busiStore.distance}}{{busiStore.unit}}
+                            </div>
+                            <div class="other_info">
+                                <div ng-repeat="role in busiStore.new_discount_role"
+                                     class="top discount_icon {{role}}">
+                                </div>
+
+                                <div class="middle small avg_price"
+                                     ng-show="busiStore.average_price !=0 && busiStore.average_price !=null"> {{
+                                    busiStore.average_price + '元/人'}}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>

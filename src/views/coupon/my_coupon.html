@@ -1,0 +1,63 @@
+<div class="scrollable page coupon">
+    <!-- 内容 -->
+    <div class="scrollable-content">
+
+        <!-- 头部栏 -->
+        <header class="header common_header">
+            <div>
+                <div class="back" ng-click="return_btn($event)">
+                    <div class="back_arrow"></div>
+                    <div>返回</div>
+                </div>
+            </div>
+
+            <div class="confirm_btn" ng-click="edit()" ng-show="((active==1&amp;&amp;unpaidOrders!=null)&amp;&amp;unpaidOrders.length!=0)||((active==2&amp;&amp;paidOrders!=null)&amp;&amp;paidOrders.length!=0)">删除</div>
+            <div class="share"
+                 ng-click="share({'pft_code':'{{id}}','share_type':'bankdiscount'})"></div>
+            <div class="title">我的优惠券</div>
+        </header>
+        <div>
+            <ul>
+                 <li class="busiStore">
+                    <a href="#/business/index/{{busiStore.store_code}}">
+                        <img class="left" src="../images/photo.png" alt="等会加载">
+
+                        <div class="right">
+                            <div class="top large">工行卡优惠<!-- {{busiStore.store_name | limitTo :10}} --><span
+                                    ng-show="busiStore.store_name.length>10">...</span></div>
+                            <div class="bottom small gray">
+                               俏江南（店）
+                            </div>
+                            <div class="right_bottom small light_gray" ng-show="busiStore.distance !=0.0">
+                            <!-- {{busiStore.distance}}{{busiStore.unit}} -->有效期：2015-9-10至2015-5-9 <span>未使用</span></div>
+                            <div class="other_info">
+                                <div ng-repeat="role in busiStore.new_discount_role" class="top discount_icon {{role}}">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="busiStore">
+                    <a href="#/business/index/{{busiStore.store_code}}">
+                        <img class="left" src="../../../images/photo.png" alt="等会加载">
+
+                        <div class="right">
+                            <div class="top large">工行卡优惠<!-- {{busiStore.store_name | limitTo :10}} --><span
+                                    ng-show="busiStore.store_name.length>10">...</span></div>
+                            <div class="bottom small gray">
+                               俏江南（店）
+                            </div>
+                            <div class="right_bottom small light_gray" ng-show="busiStore.distance !=0.0">
+                            <!-- {{busiStore.distance}}{{busiStore.unit}} -->有效期：2015-9-10至2015-5-90 <span>已使用</span></div>
+                            <div class="other_info">
+                                <div ng-repeat="role in busiStore.new_discount_role" class="top discount_icon {{role}}">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+       
+    </div>
+</div>

@@ -1,0 +1,49 @@
+.district_list{
+  position: relative;
+  ul{
+    list-style: none;
+  }
+  .list_body{
+  
+    position: relative;
+    .tab_title_area{
+      width: 40%;
+      .tab_title{
+        font-size: 17px;
+        padding: 12px 10px;
+      }
+    }
+   .tab_content_area{
+      position: absolute;
+      width: 60%;
+      height: 100%;
+      background-color: #fff;
+      top: 0px;
+      left: 40%;
+     // padding-top:48px;
+      .tab_content_title{
+        font-size: 12px;
+        background-color:$text_color_light_gray;
+        div{
+          margin-left: 10px;
+          padding: 3px 0px;
+        }
+      } 
+      .tab_content_ul{
+        padding-left: 15px;
+      }
+      .tab_content_item{
+        font-size: 15px;
+        background-color:#fff;
+        padding:12px 0px;
+        @include retina_border_bottom;
+      }
+    }
+  }
+  
+  .active{
+    background-color: #fff;
+  }
+
+  
+}

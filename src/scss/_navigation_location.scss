@@ -1,0 +1,36 @@
+.navigation-location {
+  .location {
+    text-align: center;
+    padding-top: 10%;
+
+    input {
+      width: 60%;
+      padding: 2px 4px;
+      text-align: left;
+      line-height: 2em;
+      border: 1px solid rgb(121, 121, 121);
+    }
+
+    input::-ms-input-placeholder {
+      text-align: left;
+    }
+    input::-webkit-input-placeholder {
+      text-align: left;
+    }
+
+    input:last-child {
+      border-top: none;
+    }
+  }
+  .confirm {
+    text-align: center;
+    padding-top: 8%;
+
+    button.btn-confirm {
+      width: 60%;
+      border: none;
+      line-height: 2em;
+      background-color: rgb(255, 204, 102);
+    }
+  }
+}

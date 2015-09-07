@@ -1,0 +1,111 @@
+<div class="scrollable page personal_info">
+  <div class="scrollable-content">
+  <!-- 页头 -->
+    <header class="header common_header ">
+      <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+        <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="title">个人信息</div>
+    </header>
+
+    <div class="personal_info_body">
+      <ul>
+          
+          <!--点击头像触发的点击事件已打开-->
+          <li class="personal_info_item " ui-turn-on="change_icon_modal">
+            <div class="right"><img class="user_icon"  lazy-img="{{parseImageUrl(personalInfo.headuri)}}"  src="{{defaultImgUrl}}">
+            </div>
+            <div class="fl icon">头像</div>
+            <i class="fa fa-angle-right icon_fa"></i>
+          </li>
+       
+        <a href="#/personal/personal_change_nickname">
+          <li class="personal_info_item ">
+            <div class="fl">昵称</div>
+            <div class="right" ng-bind="personalInfo.nickname"></div>
+            <i class="fa fa-angle-right "></i>
+          </li>
+        <a>
+
+       
+          <li class="personal_info_item " ui-turn-on="gender_modal">
+            <div class="fl">性别</div>
+            <div class="right" ng-bind="personalInfo.gender"></div>
+            <i class="fa fa-angle-right "></i>
+          </li>
+        
+
+        <a href="#/locator/:u">
+          <li class="personal_info_item ">
+            <div class="fl">常住地</div>
+            <div class="right" ng-bind="personalInfo.address"></div>
+            <i class="fa fa-angle-right "></i>
+          </li>
+        <a>
+      </ul>
+
+      <ul class="personal_info_bottom">
+        <a href="#/personal/personal_change_tel">
+          <li class="personal_info_item ">
+            <div class="fl">修改手机号</div>
+            <div class="right" ng-bind="personalInfo.phone"></div>
+            <i class="fa fa-angle-right "></i>
+          </li>
+        <a>
+         <a href="#/personal/personal_change_passwd">
+          <li class="personal_info_item ">
+            <div class="fl">修改密码</div>
+            <i class="fa fa-angle-right "></i>
+          </li>
+        <a>
+        
+      </ul>
+      <p class="personal_info_return" ui-turn-on="exit_login" ng-hide="isREL">退出当前账号</p>
+    </div>
+  </div>
+  <!-- 性别 -->
+<div ui-content-for="modals">
+  <div class="modal  ng-scope check_modal gender_modal" ui-if="gender_modal" ui-state="gender_modal" >
+    <div class="modal-backdrop in" ui-turn-off="gender_modal"></div>
+    <div class="modal-dialog action_sheet">
+      <div class="modal-content">
+          <div ui-turn-off="gender_modal" ng-click="SetGender(0)" class="item">男</div>
+          <div ui-turn-off="gender_modal" ng-click="SetGender(1)" class="item">女</div>
+        <div class="item " ui-turn-off="gender_modal">取消</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 错误弹窗 -->
+
+<div class="modal  ng-scope check_modal change_icon_modal" ui-if="change_icon_modal" ui-state="change_icon_modal" >
+    <div class="modal-backdrop in" ui-turn-off="change_icon_modal"></div>
+    <div class="modal-dialog action_sheet">
+    <div class="modal-content">
+          <div ui-turn-off="change_icon_modal" class="item" ng-click="GetPhoto()">从相册选择</div>
+          <div ui-turn-off="change_icon_modal" class="item" ng-click="GetCamera()">拍照</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal alert_modal ng-scope" ui-if="exit_login" ui-state="exit_login">
+    <div class="modal-backdrop in" ui-turn-off="exit_login"></div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="top">
+          <div>是否退出当前账号?</div>
+        </div>
+       <div ui-turn-off="exit_login" class="bottom1">
+          <span ui-turn-off="exit_login" class="bottom_cancel">取消</span>
+          <span class="split"> | </span>
+          <span ui-turn-off="exit_login" ng-click="logout();" class="bottom_confirm">确定</span>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
+</div>
+

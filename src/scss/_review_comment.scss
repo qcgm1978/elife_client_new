@@ -1,0 +1,199 @@
+.review_comment{
+  
+  .comment_wrap{
+    position: relative;
+  }
+  /* 评价星级 */
+  .comment_stars{
+    background-color: white;
+    margin-top: 10px;
+    @include retina_border_top();
+    .comment{
+      height: 45px;
+      line-height: 45px;
+      vertical-align: middle;
+
+      @include retina_border_bottom();
+    }
+    .comment.global{
+      height: 50px;
+      line-height: 50px;
+    }
+    .name{
+      width: 100px;
+      display: inline-block;
+      font-size: 16px;
+      color: #333333;
+      padding: 0 10px;
+    }
+    .stars{
+      display: inline-block;
+      vertical-align: top;
+      font-size: 0;
+      .star{
+        display: inline-block;
+        width: 27px;
+        height: 27px;
+        background-image: url(img/icon_star_large.png);
+        background-size: 27px 27px;
+        margin-right: 2px;
+        vertical-align: middle
+      }
+      .star_gray{
+        background-image: url(img/icon_star_large_gray.png);
+      }
+      
+    }
+
+    .smiles{
+      display: inline-block;
+      vertical-align: top;
+      font-size: 0;
+      .smile{
+        display: inline-block;
+        width: 27px;
+        height: 27px;
+        background-image: url(img/icon_smile.png);
+        background-size: 21px 21px;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        margin-right: 2px;
+        vertical-align: middle
+      }
+      .smile_gray{
+        background-image: url(img/icon_smile_gray.png);
+      }
+    }
+
+    .desc{
+      float: right;
+      padding-right: 18px;
+      color: $text_color_gray;
+      font-size: 12px;
+    }
+  }
+  //评价输入框
+  .comment_box{
+    @include retina_border_top();
+    $pace: 15px;
+    $height: 136px;
+    background-color: white;
+    margin-top: 10px;
+    position: relative;
+    transition: ease all 0.2s;
+    .input{
+      width: 100%;
+      height: 80px;
+      line-height: 22px;
+      border: none;
+      resize: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-color: transparent;
+      opacity: 0;
+
+      &:focus{
+        border: none;
+        outline-style: none;
+      }
+    }
+    .maxWord {
+      opacity: 0;
+      margin-top:20px;
+    }
+
+    .placeholder{
+      color: $text_color_light_gray;
+      font-size: 14px;
+      position: absolute;
+      left: $pace;
+      top: $pace;
+
+      height: 60px;
+      overflow: hidden;
+      line-height: 24px;
+      padding-right: 10px;
+      width: 95%;
+      word-break: break-all;
+      .wordBlack {
+        color: #000;
+      }
+    }
+    .image_div {
+      margin-top: 50px;
+    }
+    .image_box{
+      height: 75px;
+      width: 75px;
+      white-space: nowrap;
+      float: left;
+      margin-top: 10px;
+      margin-left: 2px;
+
+      .image{
+        width: 75px;
+        height: 75px;
+        margin-right: $pace;
+      }
+      .add_btn{
+        background-color: #dddddd;
+        background:{
+          image: url(img/icon_camera.png);
+          position: center;
+          repeat: no-repeat;
+          size: 47px 32px;
+        }
+      }
+      img {
+        height: 75px;
+      }
+    }
+  }
+
+    //评价输入框 typing
+  .comment_box.typing{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    margin-top: 0;
+    .input{
+      height: 96px;
+      opacity: 1;
+    }
+    .maxWord {
+      position: absolute;
+      right: 5px;
+      top: 85px;
+      opacity: 1;
+    }
+    .placeholder{
+      display: none;
+    }
+    .image_box{
+
+    }
+  }
+  .avg_price{
+    background-color:#fff;
+    margin-top: 10px;
+    height: 44px;
+    span{
+      margin-left: 10px;
+      height: 44px;
+      line-height: 44px;
+    }
+    .navg_price{
+      height: 24px;
+      width: 90%;
+      top: 0px;
+      left: 26px;
+      line-height: 24px;
+    }
+    ::-webkit-input-placeholder { 
+      text-align:left; 
+    }
+  }
+}

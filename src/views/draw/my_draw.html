@@ -1,0 +1,41 @@
+<div class="scrollable page my_draw">
+  <div class="scrollable-content"  mobile-infinite-scroll on-reach-bottom="showLoading(); getList(0)">
+    <!-- 页头 -->
+    <header class="header common_header my_draw_header">
+      <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="title">我的抽奖</div>
+    </header>
+    <section class="draw_con1" ng-repeat="detail in details">
+      <a href="#/draw/drawinfo/{{detail.drawCode}}">
+    	<div ng-class="{'my_draw_label' : '1' == detail.isWin,'draw_label1' : '0' == detail.isWin}"><p>{{detail.labelstate}}</p></div>
+      <div class="clearfix">
+      	<img  lazy-img="{{parseImageUrl(detail.telePhone_url)}}"  alt="" class="mydraw_moble pull-left" src="{{defaultImgUrl}}">
+      	<div class="mydraw_txt_box pull-left">
+      		<h4 class="mydraw_txt_title">{{detail.phoneTitle}}</h4>
+  	    	<p>{{detail.number}}</p>
+      	</div>
+      </div>
+      <h5 ng-class="{'draw_biglabel' : '0' == detail.state,'draw_biglabel1' : '2' == detail.state,'draw_biglabel2' : '1' == detail.state}">{{detail.periods}}</h5>
+      </a>
+      </section>
+        <div class="loading_more_wrap" ng-show="e_row > 10 && mark">
+         <div class="loading_more" ng-show="loadingMore">加载更多...</div>
+         <div class="loading_more" ng-show="!loadingMore" >无更多数据...</div>
+        </div>
+ 
+     <div ng-show="loading" class="ng-hide">
+      <i class="fa fa-spinner fa-spin loading-spinner"></i>
+    </div>
+
+    <!-- 无搜索结果 -->
+    <div class="no_search_result" 
+      ng-show="isEmpty" 
+      ng-include="'views/widget/no_search_result.html'">
+    </div>
+   </div>
+</div>

@@ -1,0 +1,325 @@
+<div ng-repeat="city in cityList">城市名称:{{city.city_name}}</div>
+<div class="scrollable page brand_result search_result my_favorites">
+    <!-- 内容 -->
+    <div class="scrollable-content">
+
+        <header class="header common_header search_header">
+            <a href="javascript:void(0);">
+                <div class="back return_btn" ng-click="goback()">
+                    <div class="back_arrow"></div>
+                    <div>返回</div>
+                </div>
+            </a>
+
+            <div class="confirm_btn" ng-click="deleteFavorIni();listPadding = true"
+                 ng-show="isShowStore && showDelete && !favor_delete">编辑
+            </div>
+            <div class="confirm_btn" ng-click="deleteDiscountIni();listPadding = true"
+                 ng-show="isShowDiscount && !showDelete && !discount_delete">编辑
+            </div>
+            <ul class="my_favor_navi" ui-state='myFavorTab' ui-default='1'>
+
+                <li ng-class="{active: showDelete}"
+                    ng-click="getStore();favor_delete = false;noThingTemp=false;listPadding = false">
+                    商户收藏
+                </li>
+
+
+                <li ng-class="{active: !showDelete}"
+                    ng-click="getDiscount();discount_delete = false;noThingTemp=true;listPadding = false">
+                    优惠收藏
+                </li>
+
+
+            </ul>
+        </header>
+        <div ng-show="noThing && noThingTemp">您未收藏任何优惠!</div>
+        <!-- 商户收藏 -->
+        <div ng-show="showDelete" ng-class="{delete_list:favor_delete}">
+            <!-- 搜索部分 -->
+            <div class="search_section my_favorites_search ">
+                <div class="search_input">
+                    <input type="search" title="" placeholder="搜索收藏商户" ng-model="searchValue" id="keyword"
+                           ng-keydown="keypress($event, searchValue)">
+
+                    <div class="close_icon" ng-show="searchValue" ng-click="searchValue=''"></div>
+                </div>
+            </div>
+            <div class="list_filter_wrap">
+                <div class="list_filter" ui-state="listFilterIndex">
+                    <div class="list_filter_category" ng-click="filterToggle(1)"
+                         ui-class="{'selected':listFilterIndex == 1 && listFilter}">
+                        <div class="name">{{typetop || '全部类别'}}</div>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                    <div class="list_filter_category" ng-click="filterToggle(2)"
+                         ui-class="{'selected':listFilterIndex == 2 && listFilter}">
+                        <div class="name">{{citytop || '全部城市'}}</div>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                    <div class="list_filter_category" ng-click="filterToggle(3)"
+                         ui-class="{'selected':listFilterIndex == 3 && listFilter}">
+                        <div class="name">{{sorttop || '排序'}}</div>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                </div>
+                <div class="drop_down_group" ui-state="listFilter" ui-show="listFilter && listFilterIndex == 1">
+                    <div class="side_list_tab">
+                        <ui-state id="sideTab1" default="1"></ui-state>
+                        <ul class="tabs">
+                            <!-- <li class="tab tab_left selected" ui-set="{'sideTab1': 1}" ui-class="{'selected': sideTab1==1}">热门分类</li>
+                            <li class="tab tab_left" ui-set="{'sideTab1': 2}" ui-class="{'selected': sideTab1==2}">美食</li>
+                            <li class="tab tab_left" ui-set="{'sideTab1': 3}" ui-class="{'selected': sideTab1==3}">小吃</li> -->
+                            <div>
+                                <li class="tab tab_left"
+                                    ng-click="searchFavoriteStore({'large_code':'','small_code':''});typetop='全部类别';store_erow=0;">
+                                    全部类别
+                                </li>
+                            </div>
+                            <div ng-repeat="industry in industryList">
+                                <li class="tab tab_left" ui-class="{'selected': sideTab1=={{$index+1}}}"
+                                    ng-click="sideTabToggle1($index,industry.large_name,industry.large_code);setType(industry.large_name)">
+                                    {{industry.large_name}}
+                                </li>
+                            </div>
+                        </ul>
+                        <div class="tab_contents">
+                            <ul class="filter_choices"
+                                ng-click="searchFavoriteStore({'large_code':tempCode,'small_code':''});setType(tempName);store_erow=0;">
+                                <li>{{tempName}}</li>
+                            </ul>
+                            <ul ng-repeat="industry in industryList" class="filter_choices"
+                                ng-if="Ui.eq('sideTab1',$index+1)">
+                                <li ng-repeat="small in industry.smallList"
+                                    ng-click="searchFavoriteStore({'large_code':industry.large_code,'small_code':small.small_code});setType(small.small_name);store_erow=0;">
+                                    {{small.small_name}}
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- end of tab contents -->
+                    </div>
+                    <!-- end of side list tab -->
+                    <div class="mask modal" ui-if="listFilter && listFilterIndex == 1" ng-click="filterToggle(0)"></div>
+                </div>
+                <!-- end of drop down group -->
+
+
+                <div class="drop_down_group" ui-state="listFilter" ui-show="listFilter  && listFilterIndex == 2">
+                    <div class="side_list_tab">
+                        <ui-state id="sideTab2" default="1"></ui-state>
+                        <ul class="tabs">
+                            <li class="tab tab_left"
+                                ng-click="searchFavoriteStore({'city_code':'','district_code':''});setCity('全部城市')">全部城市
+                            </li>
+                            <div ng-repeat="city in cityList">
+                                <li class="tab tab_left" ui-class="{'selected': sideTab2=={{$index+1}}}"
+                                    ng-click="sideTabToggle2($index,city.city_name,city.city_code);setCity(city.city_name);">
+                                    {{city.city_name}}
+                                </li>
+                            </div>
+                        </ul>
+                        <div class="tab_contents">
+                            <ul class="filter_choices">
+                                <li ng-click="searchFavoriteStore({'city_code':tempCityCode,'district_code':''});store_erow=0;setCity(tempCityName);">
+                                    {{tempCityName}}
+                                </li>
+                            </ul>
+                            <ul ng-repeat="city in cityList" class="filter_choices" ng-if="Ui.eq('sideTab2',$index+1)">
+                                <li ng-repeat="sub in city.list"
+                                    ng-click="searchFavoriteStore({'city_code':city.city_code,'district_code':sub.district_code});setCity(sub.district_name);store_erow=0;">
+                                    {{sub.district_name}}
+                                </li>
+                            </ul>
+                            <!--               <ul class="filter_choices" ui-if="sideTab2 == 2"> -->
+                            <!--                 <li>电影院</li> -->
+                            <!--                 <li>私人影院</li> -->
+                            <!--               </ul> -->
+                            <!--               <ul class="filter_choices" ui-if="sideTab2 == 3"> -->
+                            <!--                 <li>KTV</li> -->
+                            <!--                 <li>足疗按摩</li> -->
+                            <!--                 <li>温泉</li> -->
+                            <!--               </ul> -->
+                        </div>
+                        <!-- end of tab contents -->
+                    </div>
+                    <!-- end of side list tab -->
+                    <div class="mask modal" ui-if="listFilter && listFilterIndex == 2" ng-click="filterToggle(0)"></div>
+                </div>
+                <!-- end of drop down group -->
+
+                <div class="drop_down_group" ui-state="listFilter" ui-show="listFilter && listFilterIndex == 3">
+                    <div class="side_list_tab">
+                        <ui-state id="sideTab3" default="1"></ui-state>
+                        <div class="tab_contents sort_content">
+                            <ul class="filter_choices " ui-if="sideTab3 == 1">
+                                <li ng-click="searchFavoriteStore({'order_key':'1'});setSort('按时间');store_erow=0;">按时间
+                                </li>
+                                <li ng-click="searchFavoriteStore({'order_key':'2'});setSort('按距离');store_erow=0;">按距离
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- end of tab contents -->
+                    </div>
+                    <!-- end of side list tab -->
+                    <div class="mask modal" ui-if="listFilter && listFilterIndex == 3" ng-click="filterToggle(0)"></div>
+                </div>
+                <!-- end of drop down group -->
+            </div>
+            <div ng-show="loading" class="ng-hide">
+                <i class="fa fa-spinner fa-spin loading-spinner"></i>
+            </div>
+            <div ng-show="isShowStore && store_show">您未收藏任何商户!</div>
+            <ul class="thumb_list" mobile-infinite-scroll on-reach-bottom="showLoading(); searchMyFavorite({})">
+                <li ng-class="{delete_item: favor_select[{{$index}}]}" ng-repeat="favBusiness in FavBusinesses"
+                    id="{{favBusiness[$index].store_code}}">
+                    <div class="favor_list_check "
+                         ng-class="{favor_check_icon:favor_select[{{$index}}], favor_uncheck_icon:!favor_select[{{$index}}]}"
+                         ng-click="favor_select[{{$index}}]=!favor_select[{{$index}}];doPush1(favBusiness.store_code,favor_select[$index]);">
+                    </div>
+                    <a href="#/business/index/{{favBusiness.store_code}}">
+                        <img class="left" ng-src="{{ parseImageUrl(favBusiness.image_url)}}"
+                             fallback-src="{{defaultImgUrl}}">
+
+                        <div class="right">
+                            <div class="top large">{{favBusiness.store_name | limitTo : 4}}<span
+                                    ng-show="favBusiness.store_name.length>4">...</span></div>
+                            <div class="middle">
+                                <div class="stars">
+                                    <div ng-repeat="star in favBusiness.level" class="star_{{star.type}}">
+                                        {{favBusiness.level}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom_wrap">
+                                <div class="bottom small gray" ng-show="favBusiness.showdistance=='0.0m'">
+                                    {{favBusiness.bottomContent | limitTo : 17}}<span
+                                        ng-show="item.bottomContent.length>17">...</span>
+                                </div>
+                                <div class="bottom small gray" ng-show="favBusiness.showdistance!='0.0m'">
+                                    {{favBusiness.bottomContent | limitTo : 12}}<span
+                                        ng-show="item.bottomContent.length>12">...</span>
+                                </div>
+                                <div class="right_bottom small light_gray" ng-show="favBusiness.showdistance!='0.0m'">
+                                    {{favBusiness.showdistance}}
+                                </div>
+                            </div>
+                            <div class="other_info">
+                                <div ng-repeat="role in favBusiness.new_icons" class="top discount_icon {{role}}"></div>
+                                <div class="middle small avg_price text_right"
+                                     ng-show="favBusiness.promotions_type && favBusiness.promotions_type>0">
+                                    {{favBusiness.promotions_type}}元/人
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <div class="get_more_content" class="loading_more_wrap" ng-show="store_erow > 10 && mark">
+                <div class="loading_more" ng-show="store_erow > 10 && loadingMore">加载更多...</div>
+                <div class="loading_more" ng-show="!loadingMore">无更多数据...</div>
+            </div>
+            <!-- 删除按钮 -->
+            <div class="scrollable-footer" ng-show="showDelete && listPadding">
+                <div class="red_confirm_btn delete_btn" ng-click="preDelete('1')">
+                    删除
+                </div>
+                <div class="gray_confirm_btn" ng-click="deleteFavorCancel();listPadding = false">取消
+                </div>
+            </div>
+        </div>
+
+        <!-- 优惠收藏 -->
+        <div ng-show="!showDelete" ng-class="{delete_list:discount_delete}">
+            <ul class="thumb_list discount_list">
+                <li ng-class="{delete_discount_item: discount_select[0]}" ng-repeat="dis in disList">
+                    <div class="favor_list_check"
+                         ng-class="{favor_check_icon:favor_select[$index], favor_uncheck_icon:!favor_select[$index]}"
+                         ng-click="favor_select[$index]=!favor_select[$index];doPush(dis.pft_code,dis.favorite_type,favor_select[$index])">
+                    </div>
+                    <a href="{{dis.favorite_url}}">
+                        <img class="left" ng-src="{{ parseImageUrl(dis.img_url)}}" fallback-src="{{defaultImgUrl}}">
+
+                        <div class="right">
+                            <div class="top large">{{dis.title}}</div>
+                            <div class="middle none"></div>
+                            <div class="bottom">
+                                <div class="prices" ng-show="dis.favorite_type ==='3'">
+                                    <div class="price_now">¥{{dis.n_price||0}}</div>
+                                    <div class="price_before">
+                                        ¥{{dis.o_price||0}}
+                                        <div class="red_line"></div>
+                                    </div>
+                                </div>
+
+
+                                <div class="prices" ng-show="dis.favorite_type === '1'">
+                                    <div class="small gray">
+                                        <span>{{::dis.start_date}}</span>
+                                        <span>-</span>
+                                        <span>{{::dis.end_date}}</span>
+                                    </div>
+                                </div>
+                                <div class="prices" ng-show="dis.favorite_type === '2'">
+                                    <div class="small">
+                                        适用门店({{::dis.custmers}}家)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right_bottom small light_gray" ng-show="dis.favorite_type ==='3'">
+                                已购买{{dis.buy_count || 0}}次
+                            </div>
+                            <div class="right_bottom small light_gray" ng-show="dis.favorite_type ==='1'">
+                                已浏览{{dis.borwse || 0}}次
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- 删除按钮 -->
+            <div class="scrollable-footer" ng-show="!showDelete && listPadding">
+                <div class="red_confirm_btn delete_btn" ng-click="preDelete('2')">
+                    删除
+                </div>
+                <div class="gray_confirm_btn" ng-click="deleteDiscountCancel();listPadding = false">取消
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 删除收藏商户 -->
+    <div ui-content-for="modals">
+        <div class="modal confirm_modal ng-scope favor_delete_modal" ui-if="favor_del_modal" ui-state="favor_del_modal">
+            <div class="modal-backdrop in" ui-turn-off="favor_del_modal"></div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="top">
+                        <div>你确定删除选中的收藏吗?</div>
+                    </div>
+                    <div ui-turn-off="favor_del_modal" class="bottom clearfix">
+                        <div ui-turn-off="favor_del_modal">取消</div>
+                        <div ng-click="del();" ui-turn-off="favor_del_modal">确定</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 错误弹窗 -->
+
+        <div class="modal alert_modal ng-scope " ui-if="favor_del_error_modal" ui-state="favor_del_error_modal">
+            <div class="modal-backdrop in" ui-turn-off="favor_del_error_modal"></div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="top">
+                        <div>你还没选中需要删除的收藏</div>
+                    </div>
+                    <div ui-turn-off="favor_del_error_modal" class="bottom clearfix">
+
+                        <div ui-turn-off="favor_del_error_modal">确定</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

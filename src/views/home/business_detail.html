@@ -1,0 +1,28 @@
+<div class="page business_detail page_scroll">
+
+    <!-- 头部栏 -->
+    <header class="header common_header">
+        <a href="javascript:history.back();">
+            <div class="back">
+                <div class="back_arrow"></div>
+                <div>返回</div>
+            </div>
+        </a>
+
+        <div class="title">商户信息</div>
+    </header>
+
+    <!-- 商户简介 -->
+    <div class="detail_info">商户简介</div>
+    <div class="detail_desc line_break">{{busiDetail.merbriefintro}}</div>
+
+    <!-- 商户特色 -->
+    <div class="detail_info">商户特色</div>
+    <div class="detail_desc line_break" >{{busiDetail.meruniqueservinfo}}</div>
+
+    <!-- 营业时间 -->
+    <div class="detail_info">营业时间</div>
+    <div class="detail_desc line_break">{{busiDetail.busihours||'全天'}}</div>
+
+
+</div>

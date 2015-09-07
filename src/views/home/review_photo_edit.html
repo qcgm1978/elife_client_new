@@ -1,0 +1,48 @@
+<!-- 照片信息编辑 -->
+<div class="scrollable page review_photo_edit">
+    <!-- 内容 -->
+    <div class="scrollable-content">
+        <header class="header common_header">
+            <a href="javascript:history.back();">
+                <div class="back">
+                    <div class="back_arrow"></div>
+                    <div>返回</div>
+                </div>
+            </a>
+            <a ng-click="confirm()">
+                <div class="confirm_btn">确定</div>
+            </a>
+            <div class="title">相册</div>
+        </header>
+    
+        <div class="image_wrap">
+            <img ng-src="{{parseImageUrl(image_url)}}" fallback-src="{{defaultImgUrl}}" id="target_photo" alt="photo"
+                 ng-class="{ 'r360': rotate==0, 'r90': rotate==1, 'r180': rotate==2, 'r270': rotate==3}">
+        </div>
+
+        <div class="photo_ctrl">
+            <div class="icon_rotate" ng-click="doRotate()"></div>
+            <div class="icon_delete" ng-click="doDelete()"></div>
+        </div>
+
+        <div class="photo_info">
+            <div class="info">
+                <div class="name">选择类型：</div>
+                <div class="values">
+                    <div class="type"
+                        ng-repeat="album in albumList"
+                        ng-class="{selected: currentAlbum == album}"
+                        ng-click="selectAlbum(album)">
+                        {{album.aname | limitTo:6}}<span ng-show="album.aname.length > 6">..</span>
+                    </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="name">照片命名：</div>
+                <div class="values">
+                    <input class="name_input" ng-model="comment" maxlength="10" placeholder="最多输入10个字" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

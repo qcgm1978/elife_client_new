@@ -1,0 +1,44 @@
+.draw_con1 {
+    @include draw_content;
+}
+.my_draw_label {
+    @extend .draw_label;
+    background: url(img/draw_redlabel.png) no-repeat;
+  	background-size: 45px 45px;
+}
+
+.draw_label1 {
+    @extend .draw_label;
+    background: url(img/draw_label.png) no-repeat;
+  	background-size: 45px 45px;
+}
+
+.draw_label2 {
+    @extend .draw_label;
+    background: url(img/draw_greenlabel.png) no-repeat;
+  	background-size: 45px 45px;
+}
+
+.mydraw_moble{
+    @include draw_moble(20px,35px,30px,60px);
+}
+
+.mydraw_txt_box{
+	margin-top:20px;
+	margin-left:40px;
+	.mydraw_txt_title{
+		line-height:40px;
+	}
+}
+
+.draw_biglabel{
+	@include draw_biglabel;
+}
+
+.draw_biglabel1{
+	@include draw_biglabel($background-color:#CFCFCF,$text-align:center);
+}
+
+.draw_biglabel2{
+	@include draw_biglabel($background-color:#94B74F,$text-align:center);
+}

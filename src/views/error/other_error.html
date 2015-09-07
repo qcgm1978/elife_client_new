@@ -1,0 +1,40 @@
+<div class="page error_other">
+
+  <!-- 头部栏 -->
+  <header class="header common_header">
+    <a href="javascript:history.back();">
+      <div class="back">
+        <div class="back_arrow"></div>
+        <div>返回</div>
+      </div>
+    </a>
+     
+    <div class="confirm_btn" ng-click="errorReport('10')">确定</div>
+    
+    <div class="title">其他错误</div>
+  </header>
+
+  <!-- 其他错误信息报告 -->
+  <div class="detail_info">感谢您反馈的错误信息，请在下方填写，我们会尽快处理。</div>
+  <div class="detail_desc_wrap">
+    <textarea class="detail_desc" ng-model="content" ng-maxlength="500" maxlength="500" ></textarea>
+  </div>
+  <div class="count"><p>请限制在500字以内</p></div>
+
+</div>
+<div ui-content-for="modals">
+  <div class="modal alert_modal ng-scope" ui-if="success_modal" ui-state="success_modal">
+    <div class="modal-backdrop in" ui-turn-off="success_modal"></div>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="top">
+            <div>提交成功</div>
+            <div>感谢您的指正，我们会尽快通知商户修改相关信息</div>
+          </div>
+          <div ui-turn-off="success_modal" class="bottom">
+           确定
+         </div>
+       </div>
+     </div>
+   </div>
+</div>

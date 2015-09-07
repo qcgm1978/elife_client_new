@@ -1,0 +1,961 @@
+body{
+  background: $bg_color;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei";
+  overflow: auto;
+}
+
+a{
+  color: black;
+  &:hover {
+    text-decoration: none;
+    color: black;
+  }
+   &:focus {
+    text-decoration: none;
+    color: black;
+  }
+  &:active {
+    opacity: 1;
+  }
+}
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.has-modal .scrollable-content{
+  overflow: hidden;
+}
+
+/*loading spinner*/
+.app-content-loading {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  position: relative;
+}
+
+.loading-spinner {
+  position: absolute;
+  font-size: 50px;
+  left: 50%;
+  top: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
+}
+.loading-index {
+  z-index: 10;
+}
+.app{
+  background-color: $bg_color;
+}
+
+// 页面中间搜索块
+.search_section{
+   @extend .search_header;
+}
+/*banner style*/
+.rect_banner{
+  font-size: 0;
+  width: 100%;
+  overflow: hidden;
+  @include retina_border_top(1px, solid, #ccc);
+  @include retina_border_bottom(1px, solid, #ccc);
+  padding-top: 10px;
+
+}
+
+/*rect box style*/
+.rect_section{
+  font-size: 0;
+  width: 100%;
+  margin: 10px 0;
+  padding-top: 10px;
+  overflow: hidden;
+  @include retina_border_top(1px, solid, #ccc);
+  @include retina_border_bottom(1px, solid, #ccc);
+}
+
+/*title section*/
+.title_section{
+  background-color: #f8f8f0;
+  @include retina_border_top(1px, solid, #ccc);
+  @include retina_border_bottom(1px, solid, #ccc);
+  position:relative;
+  width: 100%;
+  margin: 10px 0;
+
+  .section_header{
+    @include retina_border_bottom(1px, solid, #ccc);
+    @include clearfix();
+    padding: 10px 10px;
+    .title{
+      font-size: 14px;
+      line-height: 28px;
+      color: $text_color_dark_gray;
+      float: left;
+
+    }
+
+    .subtitle{
+      color: $text_color_gray;
+      float: right;
+      font-size: 12px;
+      line-height: 28px;
+    }
+
+    .content{
+      padding: 10px 0;
+    }
+  } 
+}
+
+/*colums layout 分列布局*/
+.colums_layout{
+  .col:last-child{
+    border-right: 0;
+  }
+  @include clearfix();
+
+}
+.colums_3{
+  .col{
+    width: 1 / 3 *100% ;
+    float: left;
+    @include retina_border_right(1px, solid, #dcdcd4)
+  }
+
+}
+
+.colums_2{
+  .col{
+    width: 1 / 2 *100% ;
+    float: left;
+    @include retina_border_right(1px, solid, #dcdcd4)
+  }
+}
+
+//通用  顶部搜索栏
+.search_bar{
+  padding:0px 33px;
+  width: 100%;
+  height: 48px;
+  padding-top: 10px;
+  background-color: $bg_color;
+  @include retina_border_bottom();
+
+.input_wrap{
+  width: auto;
+  height: 28px; 
+  background-color: #fff;
+  border-radius: 14px;
+  position: relative;
+  padding: 0px 14px;
+  
+  input{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+    font-size: 12px;
+    @include placeholder_style(center);
+  }
+   
+ }
+}
+
+// 热门城市、最近搜索通用样式
+// 快速选择面板
+
+%fast_search_pane {
+     padding: 0 10px;
+     background-color: $bg_color;
+     text-align: center; 
+     @include retina_border_bottom();
+     .search_section_title{
+       font-size: 14px;
+       color: $search_secction_title;
+       text-align: left; 
+      
+       padding:15px 0;
+     }
+     .col-xs-4{
+       padding-left: 10px;
+       padding-right: 10px;
+       padding-bottom: 10px;
+       font-size: 12px;
+       div{
+         width: 100%;
+         height: 30px;
+         line-height: 30px;
+         vertical-align: middle;
+         background-color: #fff;
+       }
+     }
+   //popular tag
+     .tag_left{
+       padding-left: 0px;
+     }
+     .tag_mid{
+       padding-left: 5px;
+       padding-right: 5px;
+     }
+     .tag_right{
+       padding-right: 0px;
+     }
+     .search_history{
+      padding: 15px 0;
+      span{
+       font-size: 12px;
+       color: $text_color_blue;
+       float: right;
+      }
+    }
+}
+
+//红色字体
+.red_text{
+  color:$text_color_red;
+  }
+.text_overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+//淡灰色字体
+.light_gray_text{
+  color:$text_color_light_gray;
+  }
+// 蓝色字体
+.light_blue_text{
+  color:$text_color_light_blue;
+}
+//旋转180
+.rotate180{
+  @include transform(rotate(180deg));
+}
+//transition all
+.transition{
+  @include transition(linear all 0.2s);
+}
+
+
+// 商家过滤搜索  可以抽离
+.offer_list_filter_wrap{
+  position: relative;
+}
+
+.offer_list_filter{
+  height: 42px;
+  padding: 7px 0px;
+  @include retina_border_bottom(1px, solid, #cccccc);
+  @include retina_border_top(1px, solid, #cccccc);
+  &_category1{
+    height: 34px;
+    line-height: 28px;
+    text-align: center;
+    float: left;
+    width: 1/2 * 100%;
+    @include retina_border_right(1px, solid, #cccccc);
+    .name1{
+      display: inline-block;
+      color: #cc0000;
+    }
+  }
+}
+
+.offer_list_filter{
+  height: 42px;
+  padding: 7px 0px;
+  @include retina_border_bottom(1px, solid, #cccccc);
+  @include retina_border_top(1px, solid, #cccccc);
+  &_category2{
+    height: 34px;
+    line-height: 28px;
+    text-align: center;
+    float: right;
+    width: 1/2 * 100%;
+    @include retina_border_right(-1px, solid, #cccccc);
+    .name2{
+      display: inline-block;
+    }
+  }
+}
+
+// 网友点评
+.review{
+  background-color:#fff;
+  .section_header {
+    padding: 10px 10px;
+    font-size: 12px;
+    height: auto;
+    position:relative;
+  }
+  .content{
+    padding: 10px 10px;
+    .img_wrap{
+      width:60px;
+      height:60px;
+      float:left;
+    }
+    .right{
+      margin-left: 75px;
+      position:relative;
+      
+      .desc{
+        font-size: 12px;
+        margin: 5px 0; 
+      }
+      ul{
+        overflow: hidden;
+        li{
+          float:left;
+           margin-right: 5px;
+          margin-bottom: 5px;
+          width : 60px;
+          text-align: center;
+            img{
+              height: 45px;
+            }
+        }
+      }
+    }
+  }
+}
+
+//通用更多按钮
+  .btn-more {
+    text-align: center;
+    padding: 8px 0;
+    a {
+      padding: 6px 40px;
+      /*color: white;
+      padding: 6px 40px;
+      border-radius: 4px;
+      border: 1px solid rgb(121, 121, 121);
+      background-color: rgb(153, 153, 153);*/
+    }
+  }
+
+//通用分页加载更多
+ .loading_more_wrap {
+    padding: 5px; 
+    position: absolute;
+    bottom: 0px;
+     .loading_more {
+    position: relative;
+    left: 144%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  }
+
+
+// 通用向右箭头
+.right_arrow{
+  width:10px;
+  height: 100%;
+  position:absolute;
+  top: 0px;
+  right: 10px;
+  margin-left: 21px;
+  background-size:10px 17px;
+}
+
+
+
+//通用相册照片列表
+.album_photo_list{
+      padding:10px 10px;
+      // 左边列的图片
+      .left_img{
+        padding-left:0px;
+        padding-right:5px;
+        position:relative;
+      }
+      .right_img{
+        padding-left:5px;
+        padding-right:0px;
+        position:relative;
+        .img_box{
+          float: right;
+        }
+      }
+      .no_padding{
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+      
+      .img_box{
+        @include retina_border;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 15px;
+        position: relative;
+        img{
+          width: 100%;
+        }
+        .ablum_img{
+          height: 150px;
+        }
+
+        // 每张照片底部描述
+        .photo_description{
+          position:absolute;
+          bottom: 0px;
+          left: 0px;
+          width: 100%;
+          background-color: rgba(0,0,0,0.5);
+          color: #fff;
+          font-size: 14px;
+          height: 30px;
+          line-height: 30px;
+          text-align:center;
+        }
+      }
+} 
+
+.search_result{
+  .header{
+    border-bottom:0;
+  }
+}
+
+
+//图文列表项，统一样式
+ul.thumb_list{
+  li{
+    padding: 10px;
+    @include retina_border_bottom();
+    // &:last-child{
+    //   border-bottom: none;
+    // }
+
+    .left{
+      float: left;
+      width: 90px;
+      height: 65px;
+    }
+
+    //右侧带有箭头
+    .right.indicator{
+      background-image: url(img/list_arrow_right.png);
+      background-repeat: no-repeat;
+      background-position: 100% 50%;
+      background-size: 10px 18px;
+    }
+
+    .right{
+      height : 75px;
+      margin-left: 107px;
+      position: relative;
+      font-size: 14px;
+
+      .top, .middle, .bottom{
+        position: relative;
+        text-align: left;
+      }
+
+      .top{
+        
+
+        .top_title{
+          display:inline-block;
+        }
+        //小图标区域对应large字体
+        .icon_area{
+         display:inline-block;
+         margin-left: 20px;
+         position:relative;
+         top:4px;
+        }
+      }
+      .middle{
+        padding: 5px 0;
+      }
+      .text_right {
+        text-align: right !important;
+      }
+      .bottom{
+      }
+      
+
+      //字号
+      .large{
+        font-size: 16px;
+      }
+      .small{
+        font-size: 12px;
+      }
+
+      //文字样式 默认黑色 红色——red 灰色——gray 浅灰——light_gray
+      .red{
+        color: $text_color_red;
+      }
+      .gray{
+        color: $text_color_gray;
+      }
+      .light_gray{
+        color: $text_color_light_gray;
+      }
+
+      // 定位辅助样式
+      .right_bottom{
+        position: absolute;
+        right: 0;
+        bottom: 8px;
+      }
+
+      .right_top{
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      // 空白行
+      .none{
+        height: 22px;
+        margin: 0;
+      }
+
+    //小图标
+    .discount_icon{
+          background-size: 17px 17px;
+          width: 17px;
+          // margin-left: 2px;
+        }
+     // 单个价格
+       .price{
+        display: inline-block;
+        margin-left: 10%;
+        position: relative;
+        top: 2px;
+       }
+      // 价格  单独实现
+      .prices{
+        .price_now{
+          color: $text_color_red;
+          font-size: 14px;
+          display: inline-block;
+        }
+        .price_before{
+          color: $text_color_light_gray;
+          font-size: 10px;
+          display: inline-block;
+          text-decoration: line-through;
+        }
+      }
+      //五星评价 单独实现
+      .stars{
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 0;
+        .star{
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+          background-image: url(img/icon_star_full.png);
+          background-size: 12px 12px;
+          margin-right: 2px;
+        }
+
+        .half{
+          background-image: url(img/icon_star_half.png);
+        }
+
+        .star_gray{
+          background-image: url(img/icon_star_gray.png);
+        }
+        
+      }
+      .other_info{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+      }
+    }
+  }
+  p{
+    margin: 0 0;
+  }
+  .icon_yi, .icon_ji, .icon_shan, .icon_tuan, .icon_gong, .icon_cu, .icon_yu, .icon_shua, .icon_fen{
+      width: 17px;
+      height: 22px;
+      background-size:17px 17px;   
+      float: right;  
+    }
+}
+
+// 价格块组合
+.price_block{
+  .former_price{
+    float: left;
+    color: $text_color_light_gray;
+    font-size: 10px;
+    height: 16px;
+    position:relative;
+    top:9px;
+    margin-left: 5px;
+    .red_line{
+      width: 100%;
+      border-bottom:1px solid  $text_color_red;
+      z-index:10;
+      position:absolute;
+      top: 8px;
+    }
+  }
+// 现在的价格
+ .current_price{
+    float:left;
+    font-size: 20px;
+    color: $text_color_red;
+  }
+}
+
+//fix carousel
+ul[rn-carousel] {
+  > li {
+    position: relative;
+    margin-left: -100%;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+//图片查看器 弹窗
+.image_modal{
+
+  .modal-backdrop{
+    background-color: black;
+    opacity: 1;
+  }
+  .modal-dialog{
+    width: 100%;
+    padding: 5px;
+    margin-left: 0;
+    position: absolute;
+    top: 50%;
+    margin-top: -50%;
+  }
+  .modal-content{
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    .info{
+      
+      .name{
+        float: left;
+      }
+      .time{
+        float: right;
+      }
+    }
+
+    .desc{
+      padding: 10px 0;
+    }
+    img{
+      width: 100%;
+    }
+  }
+ }
+ // 红色背景统一确认按钮
+.red_confirm_btn{
+  background-color:$text_color_red;
+  text-align: center;
+  font-size: 17px;
+  padding: 12px 0px;
+  color: #fff;
+  border-radius: 5px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+
+}
+ // 灰色背景统一确认按钮
+.gray_confirm_btn{
+  @extend .red_confirm_btn;
+  background-color:$text_color_light_gray;
+}
+
+ // 报错弹出框
+ .action_sheet{
+   position: absolute;
+   width: auto;
+   margin: 0; 
+   bottom: 0;
+   width: 100%;
+   padding: 10px;
+
+   .modal-content{
+     background-color: transparent;
+   }
+   .item{
+     height: 40px;
+     line-height: 40px;
+     display: block;
+     text-align: center;
+     background-color: white;
+     overflow: hidden;
+     margin: 4px 10px;
+     border-radius: 4px;
+     color: $text_color_blue;
+
+     &.last{
+       background-color: #cccdcb;
+     }
+   }
+ }
+
+
+ .alert_modal{
+   //提示弹窗
+   .modal-dialog{
+     position:absolute;
+     bottom:40%;
+     margin-left: 15px;
+     margin-right: 15px;
+     left: 0px;
+     right: 0px;
+   }
+   .top{
+     font-size: 14px;
+     text-align: center;
+     padding: 20px 10px;
+     @include retina_border_bottom(1px, solid, $text_color_red);
+     .icon{
+      width: 56px;
+      height: 56px;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      margin: 10px auto;
+     }
+     .icon_praise{
+      background-image: url(img/icon_praise_large.png);
+     }
+   }
+
+
+//'|'分隔符
+.split{
+  position:absolute;
+  left: 50%;
+
+  font-size: 26px;
+  top: 5px;
+}
+   .bottom{
+     padding: 12px 0;
+     text-align:center;
+     font-size: 17px;
+   }
+   .bottom1{
+    position:relative;
+     text-align:center;
+     font-size: 17px;
+     height: 53px;
+     .bottom_cancel, .bottom_confirm{
+      width: 50%;
+      height: 100%;
+      float:left;
+      line-height: 53px;
+     }
+    
+   }
+
+   // 点赞图标
+  .praise_icon{
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+
+ }
+
+ .confirm_modal{
+   .top{
+    font-size: 17px;
+    }
+   @extend .alert_modal;
+   .bottom{
+     padding:0px;
+     position: relative;
+     div{
+       padding: 12px 0;
+       float: left;
+       width: 50%;
+     }
+     div:first-child{
+       @include retina_border_right(1px,solid, $text_color_red);
+     }
+   }
+ }
+
+ // 二选一带取消按钮的弹出框 如选择性别提示框
+.check_modal{
+  .check_modal_top{
+    border-radius: 5px;
+    background-color: #fff;
+    div{
+       padding: 12px 0;
+      text-align: center;
+      @include retina_border_top;
+    }
+    div:first-child{
+      border-top: 0px;
+    }
+  }
+
+  .modal_cancel_botton{
+    @extend .red_confirm_btn; 
+    font-size: 14px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 10px;
+  }
+}
+
+// 左右浮动类
+.fr{
+  float: right;
+}
+.fl{
+  float: left;
+}
+
+
+
+// 统一输入框样式
+input {
+  outline: none;
+  border:0px;
+}
+ input::-webkit-inner-spin-button {
+     -webkit-appearance: none !important;
+     margin: 0;
+}
+
+// 数字选择器
+.num_selector{
+  .minus, .plus, .num{
+    @include retina_border(1px, solid, $text_color_red);
+    position:absolute;
+    height: 33px;
+    top: 10px;
+    line-height: 31px;
+    text-align: center;
+  }
+  .gray_border{
+     @include retina_border;
+  }
+  .minus{
+    right: 108px;
+    width: 33px;
+
+  }
+  .plus{
+    right: 10px;
+    width: 33px;
+  }
+  .num{
+    right: 48px;
+    width: 55px;
+    outline: none;
+
+  }
+ .error{
+  float: right;
+  right: 10px;
+  font-size: 10px;
+  color: $text_color_red;
+  margin-top:45px;
+ }
+
+ input::-webkit-inner-spin-button {
+ -webkit-appearance: none !important;
+ margin: 0;
+ }
+}
+
+.modal{
+  .close{
+    padding: 5px;
+  }
+}
+
+/*全局弹窗提示 toast*/
+
+.toast, .toastApp{
+  position: fixed;
+  top: 50%;
+  z-index: 999;
+  margin: auto;
+  width: 180px;
+  min-height: 50px;
+  left: 50%;
+  margin-left: -90px;
+  margin-top: -25px;
+  border-radius: 10px;
+  padding: 10px;
+  line-height: 30px;
+  text-align: center;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+}
+.toastApp{
+  z-index: -999;
+}
+.page_scroll{
+  height: 100%;
+  overflow: scroll;
+}
+.icon_explain_modal{
+  width: 266px;
+  height: 387px;
+  margin-left: 55%;
+  left: -133px;
+  background:#fff!important;
+}
+
+//定位页隐藏的input
+#trigger{
+  width: 0.00000001px;
+  height:0.00000001px;
+}
+.none{
+  display:none!important;
+}
+
+//
+.search-head {
+  position: absolute!important;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+.content-top {
+  padding-top: 87px;
+}
+.select-head {
+  position: absolute!important;
+  top: 45px;
+  width: 100%;
+  z-index: 10;
+}
+.w-b-a{
+  word-break: break-all;
+}

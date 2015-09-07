@@ -1,0 +1,156 @@
+
+//border mixin
+@mixin retina_border_bottom($width:1px, $style:solid, $color:#ccc){
+  border-bottom: $width $style $color;
+  @media (-webkit-min-device-pixel-ratio: 2){
+    border-bottom: $width $style $color;
+  }
+}
+// @media 
+//   only screen and (-webkit-min-device-pixel-ratio: 2),
+//   only screen and (   min--moz-device-pixel-ratio: 2),
+//   only screen and (     -o-min-device-pixel-ratio: 2/1),
+//   only screen and (        min-device-pixel-ratio: 2),
+//   only screen and (                min-resolution: 192dpi),
+//   only screen and (                min-resolution: 2dppx){
+//     border-right: $width/2 $style $color;
+//   }
+
+@mixin retina_border_top($width:1px, $style:solid, $color:#ccc){
+  border-top: $width $style $color;
+  @media (-webkit-min-device-pixel-ratio: 2){
+    border-top: $width $style $color;
+  }
+}
+@mixin retina_border_left($width:1px, $style:solid, $color:#ccc){
+  border-left: $width $style $color;
+  @media (-webkit-min-device-pixel-ratio: 2){
+    border-left: $width $style $color;
+  }
+}
+@mixin retina_border_right($width:1px, $style:solid, $color:#ccc){
+  border-right: $width $style $color;
+  @media (-webkit-min-device-pixel-ratio: 2){
+    border-right: $width $style $color;
+  }
+}
+@mixin retina_border($width:1px, $style:solid, $color:#ccc){
+    border: $width $style $color;
+  @media (-webkit-min-device-pixel-ratio: 2){
+    border: $width $style $color;
+  }
+
+}
+
+
+//placeholder样式
+@mixin placeholder_style($text-align){
+  &::-webkit-input-placeholder{
+    text-align:$text-align;
+    }
+  &::-moz-placeholder{
+    text-align:$text-align;
+    }
+
+}
+@mixin clearfix(){
+  &:after{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+@mixin transform($style...){
+  transform: $style;
+  -ms-transform: $style; /* IE */
+  -moz-transform: $style; /* Firefox */
+  -webkit-transform: $style; /* Safari and Chrome */
+  -o-transform: $style; /* Opera */
+}
+
+@mixin transition($style...){
+  transition: $style;
+  -moz-transition: $style; /* Firefox 4 */
+  -webkit-transition: $style; /* Safari 和 Chrome */
+  -o-transition: $style; /* Opera */
+}
+
+@mixin opacity($style:0.5){
+  filter: alpha(opacity = $style);       /* IE */
+  -moz-opacity:$style;              /* 老版Mozilla */
+  -khtml-opacity:$style;              /* 老版Safari */
+  opacity: $style;
+}
+// 抽奖
+
+@mixin draw_content($bg_color: #fff,$border_color_light_gray:#efefef){
+  position: relative;
+  width: 94%;
+  margin: 10px auto 0;
+  border:$border_color_light_gray;
+  background-color: $bg_color;
+}
+@mixin draw_moble($top:30px,$right:35px,$bottom:30px,$left:40px){
+  width: 59px;
+  height: 82px;
+  margin: $top $right $bottom $left;
+}
+@mixin draw_button($background-color: #dc0f0f){
+  display: block;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  background-color: $background-color;
+}
+@mixin draw_biglabel($background-color:#dc0f0f,$text-align:center){
+  height:30px;
+  width:100%;
+  line-height:30px;
+  text-align:$text-align;
+  color:#fff;
+  background:$background-color;
+  div {
+    display: inline;
+  }
+}
+// 弹窗
+
+@mixin popup_draw($text-align:center,$color:#000,$font-size:16px,$width:1px,$style:solid,$border-color:#c7000a){
+  height: 40px;
+  line-height: 40px;
+  text-align: $text-align;
+  color: $color;
+  font-size: $font-size;
+  border-bottom: $width $style $border-color;
+}
+@mixin popup_draw_bottom{
+  color: #fff;
+  font-size: 14px;
+  width: 92%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin: 20px auto;
+  border-radius: 4px;
+  background-color: #c7000a;
+}
+
+// 表格信息
+@mixin list_draw_table{
+  width: 94%;
+  font-size: 12px;
+  color: #666;
+  border: 0;
+  td,th{
+    vertical-align: middle;
+    text-align: center;
+    font-weight: normal;
+  }
+}

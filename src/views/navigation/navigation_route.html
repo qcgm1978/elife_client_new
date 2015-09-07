@@ -1,0 +1,31 @@
+<div class="scrollable page navigation-route">
+    <div class="scrollable-content">
+        <div class="scrollable-header">
+            <header class="header common_header">
+                <a href="javascript:history.back();" class="return_btn">
+                    <div class="back">
+                        <div class="back_arrow"></div>
+                        <div>返回</div>
+                    </div>
+                </a>
+
+                <div class="title">
+                    <i ng-click="changeNavigationType('bus')" class="fa fa-bus"
+                       ng-class="{'fa-active': navigationType === 'bus'}"></i>
+                    <i ng-click="changeNavigationType('driving')" class="fa fa-car"
+                       ng-class="{'fa-active': navigationType === 'driving'}"></i>
+                    <i ng-click="changeNavigationType('walking')" class="fa fa-male"
+                       ng-class="{'fa-active': navigationType === 'walking'}"></i>
+                </div>
+            </header>
+        </div>
+        <div class="map-container">
+            <div id="navigationRoute"></div>
+        </div>
+    </div>
+    <div class="links">
+        <a href="http://webapp.diditaxi.com.cn/?channel=55139">滴滴打车</a>
+        <a href="http://h5.edaijia.cn/app/index.html">e代驾</a>
+        <!--<a ng-click="searchPath()">规划路径</a>-->
+    </div>
+</div>

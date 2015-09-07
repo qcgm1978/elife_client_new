@@ -1,0 +1,33 @@
+<div class="scrollable page business_info">
+  <div class="scrollable-content">
+    <!-- 页头 -->
+    <header class="header common_header check_draw_header">
+      <a href="javascript:history.back();" class="return_btn">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="favorite_draw"></div>
+      <div class="title">天天开 20130317期</div>
+    </header>
+    <section class="draw_content clearfix">
+    	<div class="win_draw_label"><p>中奖了</p></div>
+    	<img  lazy-img="{{parseImageUrl(detail.phone_url)}}"  alt="" class="draw_moble pull-left" src="{{defaultImgUrl}}">
+    	<div class="draw_txt_box pull-left">
+    		<h4 class="draw_txt_title">{{detail.phoneName}}</h4>
+	    	<p>{{detail.number}}</p>
+	    	<p>{{detail.state}}</p>
+    	</div>
+    	<div class="clearfix"></div>
+	   	<a href="javascript:void(0);" class="draw_button">您中奖了</a>
+	   	<div class="draw_text">
+	   		<p class="draw_text_title">活动介绍</p>
+		   	<p>奖品介绍</p>
+		   	<p>{{detail.introduce}}</p>
+		   	<p>活动细则</p>
+		   	<p>{{detail.rule}}</p>
+	   	</div>
+    </section>
+   </div>
+</div>

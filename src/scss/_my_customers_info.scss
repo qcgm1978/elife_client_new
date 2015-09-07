@@ -1,0 +1,109 @@
+.my_customers_info{
+   .fa{
+      position:absolute;
+      right: 10px;
+      color: $text_color_light_gray;
+    }
+  // 发送优惠券
+  .send_customers_block{
+    position: relative;
+    padding: 15px 0;
+    font-size: 17px;
+    text-align: center;
+    background-color: #fff;
+    .fa{
+      top: 22px;
+    }
+  }
+  // 顶部信息快
+  .thumb_list{
+    background-color: #fff;
+  }
+  .top_info{
+    li{
+      position: relative;
+      .right{
+        .middle{
+          padding: 0px;
+          
+        }
+        .customers_attributes{
+        height: 20px;
+        }
+        .total_price{
+          margin-top: -3px;
+           }
+      }   
+      .fa{
+        font-size: 17px;
+        top: 42px;
+
+      }   
+    }
+  }
+  // 券号部分
+  .my_customers_section{
+    margin: 10px 10px;
+    .my_customers_section_item{
+      padding: 20px 0;
+      line-height: 20px;
+      background-color: #fff;
+      @include retina_border;
+      position: relative;
+      &:before, &:after{
+        content: '';
+        display: inline-block;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        background-color: #F7F7F7;
+      }
+      // .border-left, .border-right{
+      //   position: absolute;
+      //   width: 10px;
+      //   height: 10px;
+      //   border-right: 1px solid #EFEFEF;
+      //   border-top-right-radius: 5px;
+      //   border-bottom-right-radius: 5px;
+      //   background-color: #F7F7F7;
+      // }
+      &:after{
+        right: -5px;
+        top: 28px;
+        border-left: 1px solid #EFEFEF;
+      }
+      &:before{
+        left: -5px;
+        top: 28px;
+        border-right: 1px solid #EFEFEF;
+      }
+
+
+      .my_customers_title{
+        float: left;
+        font-size: 12px;
+        margin-left: 20px;
+      }
+      .my_customers_num{
+        // float: left;
+        margin-left: 60px;
+        font-size: 20px;
+      }
+      .my_customers_state{
+        float: right;
+        margin-right: 20px;
+        font-size: 12px;
+      }
+    }
+    .my_customers_section_item:first-child{
+      border-bottom:0px;
+    }
+
+
+  }
+  .red_confirm_btn{
+    margin-top: 20px;
+  }
+
+}

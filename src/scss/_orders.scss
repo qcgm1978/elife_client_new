@@ -1,0 +1,200 @@
+.my_orders{
+  .menu_list{    
+    .item{
+      display: block;
+      height: 50px;
+      padding: 10px;
+      line-height: 30px;
+      background-color: white;
+      position: relative;
+      @include retina_border_bottom(1px, solid, #efefef);
+  
+      .name{
+        color: #333333;
+        font-size: 14px;
+      }
+      i{
+        line-height: 50px;
+        height: 50px;
+        color: $text_color_gray;
+        position: absolute;
+        right: 10px;
+        top: 0;
+        font-size: 16px;
+      }
+
+    }
+  }
+
+  .my_orders_nav{
+    @include retina_border_bottom(1px,solid,$text_color_light_gray);
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    background-color: white;
+    position: relative;
+    .paid{
+      float: left;
+      width: 50%;
+      height: 40px;
+      
+    }
+    .unpaid{
+      height: 40px;
+      float: left;
+      width: 50%;
+      @include retina_border_right(1px,solid,$text_color_light_gray);
+    }
+    .active_nav{
+      color: $text_color_red;
+      @include retina_border_bottom(3px,solid,$text_color_red);
+    }
+
+  }
+
+  .unpaid_list{
+    .pay_btn{
+      font-size: 14px;
+      color: #fff;
+      height: 30px;
+      width: 50px;
+      line-height: 30px;
+      position: absolute;
+      text-align: center;
+      border-radius: 5px;
+      right:10px;
+      top: 35px;
+      background-color: $text_color_red;
+    }
+    .thumb_list li{
+      .right{
+        .gray{
+          margin-top:32px !important;
+        }
+      }
+    }
+  }
+  .my_orders_list{
+    background-color: white;
+  }
+  .thumb_list li{
+    position: relative;
+  }
+}
+
+//支付界面
+.pay_orders{
+        .pay_btn {
+          display: block;
+  width: 90%;
+  margin: 0 auto;
+      }
+  .sum-wrap{
+    margin: 10px 15px;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    background-color: white;
+    overflow: hidden;
+    @include retina_border();
+    .i{
+      z-index:1000;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .input-wrap{
+      margin-left: 65px;
+      line-height: 38px;
+    }
+    input{
+      border: none;
+      height: 38px;
+      line-height: 38px;
+      width: 100%;
+
+      &:focus{
+        outline: none;
+        border: none;
+      }
+    }
+  }
+  .menu_list{ 
+    margin-bottom: 10px;
+      display: block;
+
+    .item{
+      display: block;
+      height: 50px;
+      padding: 10px;
+      line-height: 30px;
+      background-color: white;
+      position: relative;
+      @include retina_border_bottom(1px, solid, #efefef);
+
+      .icon{
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        background-size: 100% 100%;
+        vertical-align: middle;
+        margin-right: 5px;
+      }
+  
+      .name{
+        color: #333333;
+        font-size: 14px;
+        width: 20%;
+        float: left;
+      }
+      .price{
+        float: right;
+        text-align: right;
+        padding-right: 15px;
+        color: $text_color_red;
+      }
+      i{
+        line-height: 50px;
+        height: 50px;
+        color: $text_color_gray;
+        position: absolute;
+        right: 10px;
+        top: 0;
+        font-size: 16px;
+      }
+
+    }
+  }
+}
+
+//选择电子券
+.choose_coupon{
+  .coupon_list{
+    background-color: white;
+
+    // .top{
+    //   white-space: nowrap;
+    //   overflow: hidden;
+    // }
+  }
+}
+
+.marRight{
+  margin-left:130px !important;
+  height:90px !important;
+  .gray{
+    width:150px;
+    word-break:break-all;
+  }
+}
+
+.specialName{
+  width:70%;
+  word-break:break-all;
+}

@@ -1,0 +1,173 @@
+.btn_credit {
+  width: 99%;
+  margin: 10px 0.5%;
+  a {
+    @extend .red_btn;
+  }
+}
+
+.my_integral {
+  .confirm_btn {
+    width: 72px;
+  }
+  .intefral_top {
+    margin-bottom: 10px;
+    background: #fff;
+    .top_remain {
+      padding-left: 10px;
+      height: 27 p;
+      color: #999;
+      line-height: 27px;
+      font-size: 12px;
+      border-bottom: solid 1px #efefef;
+      background: #FDFBD1;
+    }
+
+    .integral_num {
+      padding: 0 10px;
+      font-size: 16px;
+      height: 54px;
+      line-height: 54px;
+      .fl {
+        float: left;
+      }
+      .fr {
+        color: #C7000B;
+      }
+    }
+
+    .remaining_sum {
+      border-bottom: solid 1px #efefef;
+      .fr {
+        font-size: 12px;
+
+        ul {
+          height: 52px;
+          line-height: 20px;
+          text-align: right;
+          padding-top: 7px;
+        }
+      }
+    }
+  }
+
+  .statistics {
+    background: #fff;
+    ul {
+      border-bottom: solid 1px #efefef;
+    }
+
+    .form_head {
+      padding: 0 10px;
+      background: #999;
+      height: 28px;
+      line-height: 28px;
+      color: #fff;
+      font-size: 12px;
+    }
+
+    .stat_list {
+      padding: 0 10px;
+      height: 49px;
+      line-height: 49px;
+      font-size: 14px;
+      color: #666;
+
+      .fl {
+        ul {
+          height: 49px;
+          line-height: 20px;
+          padding-top: 6px;
+        }
+      }
+
+      .price_time {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .mare_btn {
+    background: #fff;
+    height: 29px;
+    line-height: 29px;
+    text-align: center;
+    diplay: block;
+    a {
+      color: #999;
+    }
+  }
+
+  .plus {
+    color: #C7000B;
+  }
+
+  .minus {
+    color: #18FF00;
+  }
+
+  .modal-backdrop {
+    top: 45px;
+  }
+
+  .modal-dialog {
+    font-size: 13px;
+    margin: 0;
+    top: 45px;
+
+    .integral_content {
+      background: #fff;
+      .valid_from {
+        padding: 0 10px;
+        padding-top: 25px;
+        ul {
+          height: 29px;
+          line-height: 29px;
+          li {
+            float: left;
+          }
+        }
+        .time {
+          float: right;
+          text-align: right;
+          width: 230px;
+          border: solid 1px #ccc;
+          padding-right: 13px;
+          input{
+            width: 100%;
+            text-align: center;
+          }
+        }
+      }
+      .time_choose {
+        width: 100%;
+        margin: 25px 0px 10px 0px;
+        ul {
+          li {
+            float: left;
+            width: 17.6%;
+            margin-left: 2%;
+            height: 29px;
+            line-height: 29px;
+            text-align: center;
+            color: #666;
+            border: solid 1px #ccc;
+          }
+
+          .chosen {
+            border: solid 1px #C7000B;
+            color: #C7000B;
+          }
+        }
+      }
+      .btn {
+        width: 99%;
+        margin: 0 0.5%;
+        a {
+
+          @extend .red_btn;
+        }
+      }
+    }
+  }
+}

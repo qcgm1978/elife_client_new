@@ -1,0 +1,32 @@
+{
+  "name": "xn-components",
+  "version": "0.0.1",
+  "authors": [
+    "njugray <njugray@gmail.com>"
+  ],
+  "description": "angular xn-components ",
+  "keywords": [
+    "angular",
+    "xn-components"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.16",
+    "angular-route": "~1.3.15",
+    "mobile-angular-ui": "~1.2.0-beta.11",
+    "angular-carousel": "~0.3.10",
+    "angular-mobile-infinite-scroll": "~0.1.0",
+    "jquery": "~1.11.1",
+    "angular-cookies": "~1.3.16",
+    "angular-multirange-slider": "~1.1.1",
+    "angular-lazy-img": "~1.0.2"
+  }
+}
